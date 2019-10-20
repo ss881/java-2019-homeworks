@@ -7,6 +7,8 @@
  */
 package formations;
 
+import exceptions.NoSpaceForFormationException;
+import exceptions.PathNotFoundException;
 import field.Position;
 import field.Field;
 import items.Living;
@@ -29,17 +31,23 @@ public abstract class Formation {
      * 公共接口。
      * 先寻找合适位置，再进行布阵。
      */
-    public boolean embattle(){
-        if(!findPlace())
-            return false;
+    public boolean embattle() throws NoSpaceForFormationException{
+        findPlace();
         leader.setMovable(false);
         Position[] positions=form();
         for(int i=0;i<N;i++){
-            boolean flag=followers[i].walkTowards(positions[i]);
-            if(!flag)
-                return false;
-            else
-                followers[i].setMovable(false);
+            try {
+                followers[i].walkTowards(positions[i]);
+            }
+            catch (PathNotFoundException e){
+                System.out.println(
+                        "Cannot format as "+toString()+" due to "+e);
+                NoSpaceForFormationException n=
+                        new NoSpaceForFormationException(this);
+                n.initCause(e);
+                throw n;
+            }
+            followers[i].setMovable(false);
         }
         return true;
     }
@@ -67,7 +75,7 @@ public abstract class Formation {
      * 寻找适合布阵的leader位置。
      * @return 是否成功
      */
-    protected boolean findPlace(){
+    protected boolean findPlace() throws NoSpaceForFormationException {
         Field passed=new Field();
         for(Living l:followers){
             l.setMovable(true);
@@ -75,7 +83,8 @@ public abstract class Formation {
         return findPlace(passed);
     }
 
-    private boolean findPlace(Field passed){
+    private boolean findPlace(Field passed)
+            throws NoSpaceForFormationException{
         if(ready())
             return true;
         Position position=leader.getPosition();
@@ -93,6 +102,6 @@ public abstract class Formation {
                     leader.moveOrSwap(-dir.dx(),-dir.dy());
             dir.next();
         }
-        return false;
+        throw new NoSpaceForFormationException(this);
     }
 }

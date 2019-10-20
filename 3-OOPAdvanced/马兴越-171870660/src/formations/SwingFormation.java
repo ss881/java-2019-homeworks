@@ -1,5 +1,6 @@
 package formations;
 
+import exceptions.NoSpaceForFormationException;
 import field.Field;
 import field.Position;
 import items.Living;
@@ -32,7 +33,7 @@ public class SwingFormation extends Formation {
     }
 
     @Override
-    public boolean embattle() {
+    public boolean embattle() throws NoSpaceForFormationException {
         if(N%2!=0){
             System.out.println(toString()+"需要偶数的从者！");
             return false;

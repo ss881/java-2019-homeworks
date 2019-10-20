@@ -3,6 +3,7 @@ package items;
  * 蝎子精，领队。负责指挥喽啰排队。
  */
 
+import exceptions.NoSpaceForFormationException;
 import field.*;
 import formations.*;
 
@@ -23,11 +24,13 @@ public class ScorpionDemon extends Living {
     }
 
     private boolean standAsFormation(Formation formation){
-        boolean flag=formation.embattle();
-        if(!flag){
-            System.out.println("没有空间排布"+formation);
+        try {
+            formation.embattle();
         }
-        return flag;
+        catch (NoSpaceForFormationException e){
+            System.out.println(e.toString());
+        }
+        return true;
     }
 
     /*

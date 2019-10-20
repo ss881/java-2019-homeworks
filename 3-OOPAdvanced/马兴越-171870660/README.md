@@ -26,6 +26,13 @@
 * `formations.SwingFormation`类。“鹤翼”阵型类。
 * `formations.ArrowFormation`类。“锋矢”阵型类。
 
+### 异常部分
+
+所有的异常构成`exceptions`包，此部分于2019年10月20日重构时，第一次添加。
+
+* `exceptions.PathNotFoundException` 找不到路径。一般不会抛出这样的异常。
+* `exceptions.NoSpaceForFormationException` 没有空间排布阵型异常，此异常很常见。
+
 
 
 ## 设定
@@ -56,6 +63,8 @@
 前已述及，一般情况下，将布阵中已经就位的生物体的`moveable`设为`false`。在实际操作中，尤其是对妖精的布阵中，经常出现已经布阵的部分妖精和葫芦娃连成一条线，从而把地图分成两部分，会造成比较大概率的移动失败。为此，引入前述的`exchangeable`接口，当遇到可交换的同类对象阻挡时，如果它不在`called`列表中（i.e.不是直接或间接调用本对象的对象，防止死递归），则将移动到指定位置的任务交给它，而自己直接到它原来的位置即可。
 
 在遍历过程中，使用`field.Field`类的实例`passed`用于记录已经到达过的地方。对于每个到达过的地方，加入一个`items.Living`实例，如此，地址`p`没有到过是当且仅当`passed.livingAt(p)==null`。
+
+如果找不到路径，将抛出`PathNotFoundException`。
 
 ### `items.Elder`类
 老人家类是`items.Living`的一个子类，其`toString`方法返回`LRJ`，即“老人家”，标识在地图上。
@@ -115,7 +124,7 @@ field.livingAt(p)==null || field.livingAt(p).getPosition()==p
 
 `findPlace`方法使用递归算法寻找`leader`的位置，使得当前类的阵型能够铺开。能够铺开的条件是，`form()`指定的位置上没有不可移动对象，此过程由`ready()`方法判断。
 
-`findPlace()`方法首先检查当前`leader()`所在位置是否可以布阵，若是则直接返回，否则遍历周围的8个邻域方向，进入可到达的位置然后递归；如果递归返回找到了位置，则返回；否则退回原来位置，进入下一方向。此过程类似`DFS`算法。
+`findPlace()`方法首先检查当前`leader`所在位置是否可以布阵，若是则直接返回，否则遍历周围的8个邻域方向，进入可到达的位置然后递归；如果递归返回找到了位置，则返回；否则退回原来位置，进入下一方向。此过程类似`DFS`算法。如果找不到合适的位置，将抛出`NoPlaceForFormationException`异常。
 
 ## `UML`类图
 

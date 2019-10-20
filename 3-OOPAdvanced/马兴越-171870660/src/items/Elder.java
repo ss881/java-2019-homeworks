@@ -3,6 +3,7 @@ package items;
  * 老人家类。负责“指挥”葫芦娃，维护葫芦娃列表。
  */
 
+import exceptions.PathNotFoundException;
 import field.*;
 
 public class Elder extends Living {
@@ -43,8 +44,12 @@ public class Elder extends Living {
         Position pos=calabashes[0].getPosition().copy();
         for(int i=1;i<7;i++){
             pos.setPos(pos.getX(),pos.getY()+1);
-            calabashes[i].walkTowards(pos);
-//            assert calabashes[i].getPosition().equals(pos);
+            try {
+                calabashes[i].walkTowards(pos);
+            }
+            catch(PathNotFoundException e){
+                System.out.println("Cannot format as snake due to "+e);
+            }
             calabashes[i].setMovable(false);
         }
     }
