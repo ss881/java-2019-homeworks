@@ -1,0 +1,21 @@
+@startuml
+
+class DrawBase {
+__private__
++ NMap nMap;
+- DrawBase(NMap nMap, GraphicsContext graphicsContext);
+
+- void drawPic(Picture picture);
+__ public __
++ GraphicsContext graphicsContext;
+
+- void draw(){}
+}
+
+DrawBase <|-- DrawCalabashTeam : extends
+DrawBase <|-- DrawEnemyTeam : extends
+DrawBase <|-- DrawMap : extends
+DrawBase <|-- DrawGrand : extends
+
+
+@enduml
