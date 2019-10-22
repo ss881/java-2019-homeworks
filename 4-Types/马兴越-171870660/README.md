@@ -1,7 +1,7 @@
-# 第3次作业
+# 第4次作业
 171870660, 马兴越
 
-本次作业弃用了上次实现的部分，重新实现所有内容。
+本次作业由第3次作业迁移过来，代码和本文档的大多数内容保持不变。
 
 ## 类结构概述
 ### 生物部分
@@ -12,6 +12,7 @@
 * `items.FollowDemon`类。妖精的喽啰类。各个对象有一个序号，但编程中认为各个对象是全同（i.e.可交换）的。
 * `items.ScorpionDemon`类。蝎子精。负责指挥喽啰布阵，并站在阵首，维护喽啰的引用。
 * `items.SnakeDemon`类。蛇精。理论上负责指挥蝎子精和喽啰，维护有蝎子精的引用。
+* `items.Leader`接口。有“指挥布阵”能力的生物实现这个接口。
 ### 场地部分
 所有与场地和位置有关的类构成`field`包，包含以下类。
 * `field.Field`类。场地类。是所有生物体活动的场地，有`N*N`的正方形场地，每个位置由坐标`(x,y)`确定。
@@ -20,11 +21,13 @@
 
 ### 阵型部分
 
-阵型部分构成`formations`包，此部分于2019年10月6日重构完成。根据目前的要求，有以下类。
+阵型部分构成`formations`包，此部分于2019年10月6日重构首次添加，2019年10月22日重新设计架构。目前的设计包括以下类。
 
-* `formations.FormationOld`类。抽象的阵型基类。
-* `formations.SwingFormationOld`类。“鹤翼”阵型类。
-* `formations.ArrowFormationOld`类。“锋矢”阵型类。
+* `formations.Formation`类。抽象的阵型基类。
+* `formations.SwingFormation`类。“鹤翼”阵型类。
+* `formations.ArrowFormation`类。“锋矢”阵型类。
+* `formations.SnakeFormation`类。将葫芦娃排的“长蛇”阵也归入阵型。
+* `formations.FormationHandler`类。阵型排布管理。
 
 ### 异常部分
 
@@ -111,22 +114,75 @@ field.livingAt(p)==null || field.livingAt(p).getPosition()==p
 ## `formations`包
 
 > 2019.10.06重构添加本包，将`ScorpionDemon`类中关于阵型的方法有效内容抽离出来形成主要逻辑，同时添加本部分内容。
+>
+> 2019.10.22的重构将阵型结构与布阵逻辑的实现分离开，重写这部分文档。
 
 ###  `Formation`类
 
-`Formation`类是所有阵型的抽象基类。维护`field` `leader`（首领） `followers`（从者）引用，由`scorpionDemon`实例化。
+`Formation`及其子类主要维护各种阵型的结构。`Formation`是抽象的基类。子类中通过实现抽象方法`form()`来产生每一个从者的位置数组。
 
-本类接口方法为：
+`Formation`类的数据在逻辑上属于常量，与领导者所在的具体位置无关。用于保存位置的数组中，以领导者位置为`(0,0)`，其他从者以相对坐标表示。
 
-`embattle()`布阵。先调用`findPlace()`方法寻找可以布阵的首领（`leader`）位置，或返回无法找到；然后将`followers`依次放到`form()`指定的位置。
+以接口方法`positions(Position center)`返回指定中心下，所有从者的位置。
 
-本类有一个抽象方法`form()`，由派生的具体阵型类来实现。返回一个指定所有`followers`位置的`Position`类型数组，其大小和`followers`大小一致。
+### `FormationHandler`类
 
-`findPlace`方法使用递归算法寻找`leader`的位置，使得当前类的阵型能够铺开。能够铺开的条件是，`form()`指定的位置上没有不可移动对象，此过程由`ready()`方法判断。
+这是一个泛型类，类参数为`<T extends Formation>`，表示所要排布的阵型。通过接口方法`embattle()`实现布阵过程。大概是个代理的设计模式。（？）
 
-`findPlace()`方法首先检查当前`leader`所在位置是否可以布阵，若是则直接返回，否则遍历周围的8个邻域方向，进入可到达的位置然后递归；如果递归返回找到了位置，则返回；否则退回原来位置，进入下一方向。此过程类似`DFS`算法。如果找不到合适的位置，将抛出`NoPlaceForFormationException`异常。
+将`FormationHandler`和`Formation`分开的理由是简化调用者的操作。由于各种阵型的布阵逻辑事实上是一样的，只有阵型给出的从者的具体位置不同。在以前的实现中，`Formation`中包含领导者、从者的引用，从而使得其实例化只能在指挥者（或领导者）的类内部进行，而且每增加一个新的阵型，都必须在指挥者（蝎子精）的类中增加一个方法，这违反了开放封闭（OCP）设计原则。
+
+新的设计中，所有的布阵都通过接口`Leader`指定的方法
+
+```java
+<T extends Formation> void embattleFormation(Class<T> formType)
+    			throws NoSpaceForFormationException;
+```
+
+实现，调用时只需要传入阵型类的`Class`对象即可完成。
+
+在本类的设计中使用了**泛型**和**反射**机制。这将在后面详述。
 
 ## `UML`类图
 
 使用`PlantUML`给出类图。在类图中，使用没有附加符号的虚线来表达`关联`关系，即有互发消息的类。即使一个类中存在另一个类的引用，但若它们之间不存在`组合` `聚合` 关系，仍然认为是`关联`关系。例如`items.SnakeDemon`和`items.ScorpionDemon`。
+
+2019年10月22日重新修改的类图中取消了`Living`子类与`Field`之间的连线。虽然逻辑上葫芦娃等生物是存在于`Field`上的，但`Field`处理的过程中实际上只利用了`Living`接口，并没有直接给其子类发消息。这也体现了依赖倒置（DIP）的设计原则。
+
 ![类图](uml.png)
+
+
+
+## 泛型与反射的使用
+
+在`FormationHandler`类中同时使用了泛型和反射机制。
+
+`FormationHandler`的类定义和构造函数签名为：
+
+```Java
+public class FormationHandler <T extends Formation> {
+    ...
+    public FormationHandler(Field field,Living leader,
+                     Living[] followers,Class<T> formType){
+        ...
+    }
+    ...
+}
+```
+
+其中，泛型参数`T`是所要布阵的阵型类，它是`Formation`的子类。所要传入的参数`Class<T> formType`是阵型类的`Class`对象。
+
+在构造函数中，应用reflect机制和`formType`参数，动态地获取`formType`类的构造函数，然后调用构造函数进行类实例化。关键代码为：
+
+```java
+int n=followers.length;
+Constructor cons=formType.getConstructors()[0];
+try{
+    formation=(T)cons.newInstance(n);
+}
+catch(Exception e){
+    System.err.println("failed to create formation object!");
+    throw new RuntimeException(e);
+}
+```
+
+这样设计的好处是，由于`Formation`类的构造需要传入参数`N`，即从者的数目，而`FormationHandler`类接受了从者的数组作为参数，自动包含了其数目，正好将其传给`Formation`，减少中间环节。如此，调用者也不必知道有多少从者。

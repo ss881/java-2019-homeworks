@@ -16,7 +16,7 @@ class items.Living{
     +String toString();
 }
 
-items.Living ... field.Field
+field.Field o-- items.Living
 items.Living *-- field.Position
 
 class items.Calabash{
@@ -25,7 +25,6 @@ class items.Calabash{
 }
 
 items.Living <|-- items.Calabash
-field.Field o-- items.Calabash
 
 class items.Elder{
     -items.Calabash[] calabashes;
@@ -35,7 +34,6 @@ class items.Elder{
 
 items.Living <|-- items.Elder
 items.Elder "7" o-- items.Calabash
-field.Field o-- items.Elder
 
 class items.FollowDemon{
     -int order;
@@ -44,7 +42,6 @@ class items.FollowDemon{
 }
 
 items.Living <|-- items.FollowDemon
-field.Field o-- items.FollowDemon
 
 class items.ScorpionDemon{
     -int followCount;
@@ -58,7 +55,6 @@ class items.ScorpionDemon{
 
 items.Living <|-- items.ScorpionDemon
 items.ScorpionDemon "n" ... items.FollowDemon
-field.Field o-- items.ScorpionDemon
 
 class items.SnakeDemon{
     -items.ScorpionDemon scorpionDemon;
@@ -69,7 +65,6 @@ class items.SnakeDemon{
 
 items.Living <|-- items.SnakeDemon
 items.SnakeDemon ... items.ScorpionDemon
-field.Field o-- items.SnakeDemon
 
 class field.Position{
     -int x,y;
@@ -108,23 +103,29 @@ class field.Field{
     +field.Position randomPosition();
 }
 
-class formations.FormationOld{
-    #items.Living[] followers;
-    #items.Living leader;
-    +boolean embattle();
+class formations.Formation{
     #field.Position[] form();
 }
 
-class formations.SwingFormationOld{
+class formations.SwingFormation{
 }
 
-formations.FormationOld <|-- formations.SwingFormationOld
+formations.Formation <|-- formations.SwingFormation
 
-class formations.ArrowFormationOld{
+class formations.ArrowFormation{
 
 }
 
-formations.FormationOld <|-- formations.ArrowFormationOld
+formations.Formation <|-- formations.ArrowFormation
 
-items.ScorpionDemon ... formations.SwingFormationOld
-items.ScorpionDemon ... formations.ArrowFormationOld
+class formations.FormationHandler{
+    -Formation formation;
+    -items.Living[] followers;
+    -items.Living leader;
+    +void embattle();
+}
+
+formations.FormationHandler o-- formations.Formation
+
+items.ScorpionDemon ... formations.FormationHandler
+items.Elder ... formations.FormationHandler
