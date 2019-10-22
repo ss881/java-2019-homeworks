@@ -19,6 +19,7 @@
 * `field.Position.Direction`类。邻域方向类。指定以某点为中心的八个方向（东，东北，北，西北，西，西南，南，东南）之一，并计算该方向相对中心位置的偏移量`dx` `dy`。
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### 阵型部分
 
 阵型部分构成`formations`包，此部分于2019年10月6日重构完成。根据目前的要求，有以下类。
@@ -34,10 +35,6 @@
 * `exceptions.PathNotFoundException` 找不到路径。一般不会抛出这样的异常。
 * `exceptions.NoSpaceForFormationException` 没有空间排布阵型异常，此异常很常见。
 
-
-
-=======
->>>>>>> parent of e2cb683... 2019.10.06  重构formations（阵型）类。
 ## 设定
 本系统下，我们设定生物体在场地中的移动，每次只能在**八邻域**意义下相邻的格点间完成。我们设定，相邻位置的两个生物体可以交换位置，且此动作一步完成，不需要多余的空间和步骤。
 
@@ -105,6 +102,7 @@ field.livingAt(p)==null || field.livingAt(p).getPosition()==p
 新增了`Direction.adjacentPosition()`和`Direction.aStep()`方法，前者返回按当前对象所示方向移动一步后的位置（而当前的`Position`对象不变），后者将当前的`Position`对象按`Direction`所示方向移动一步。同时取消`Position.adjacentPosition()`方法定义。
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 ## `formations`包
@@ -125,6 +123,8 @@ field.livingAt(p)==null || field.livingAt(p).getPosition()==p
 
 `findPlace()`方法首先检查当前`leader`所在位置是否可以布阵，若是则直接返回，否则遍历周围的8个邻域方向，进入可到达的位置然后递归；如果递归返回找到了位置，则返回；否则退回原来位置，进入下一方向。此过程类似`DFS`算法。如果找不到合适的位置，将抛出`NoPlaceForFormationException`异常。
 
+=======
+>>>>>>> parent of e2cb683... 2019.10.06  重构formations（阵型）类。
 =======
 >>>>>>> parent of e2cb683... 2019.10.06  重构formations（阵型）类。
 ## `UML`类图

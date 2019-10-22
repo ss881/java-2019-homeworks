@@ -24,6 +24,7 @@ public class ScorpionDemon extends Living {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private boolean standAsFormation(Formation formation){
         try {
             formation.embattle();
@@ -33,9 +34,47 @@ public class ScorpionDemon extends Living {
         }
         return true;
 =======
+=======
     /*
      * “鹤翼”阵型。
      */
+    public void standAsSwing(){
+        if(followCount%2!=0){
+            System.out.println("Swing requires EVEN number follower!");
+            return;
+        }
+        setMovable(false);
+        for(Living f:followDemons) {
+            f.setMovable(true);
+        }
+        if(!findPlaceForSwing()){
+            System.out.println("没有空间排布鹤翼阵型！");
+            return;
+        }
+        Position p=position.copy();
+        Position.Direction dir=p.new Direction(Position.Direction.NW);
+        for(int i=0;i<followCount/2;i++){
+            dir.aStep();
+            followDemons[i].walkTowards(p);
+            followDemons[i].setMovable(false);
+//            assert followDemons[i].getPosition().equals(p);
+        }
+        p=position.copy();
+        dir=p.new Direction(Position.Direction.NE);
+        for(int i=followCount/2;i<followCount;i++){
+            dir.aStep();
+            followDemons[i].walkTowards(p);
+            followDemons[i].setMovable(false);
+//            assert followDemons[i].getPosition().equals(p);
+        }
+    }
+
+>>>>>>> parent of e2cb683... 2019.10.06  重构formations（阵型）类。
+    /*
+     * 以蝎子精为参考位置，考察周边空位是否满足布局条件。
+     * 条件是所需要范围内，没有不可移动障碍物。（其实就是葫芦娃）
+     */
+<<<<<<< HEAD
     public void standAsSwing(){
         if(followCount%2!=0){
             System.out.println("Swing requires EVEN number follower!");
@@ -72,6 +111,8 @@ public class ScorpionDemon extends Living {
      * 以蝎子精为参考位置，考察周边空位是否满足布局条件。
      * 条件是所需要范围内，没有不可移动障碍物。（其实就是葫芦娃）
      */
+=======
+>>>>>>> parent of e2cb683... 2019.10.06  重构formations（阵型）类。
     private boolean readyForSwing(){
         int depth=followCount/2;
         //left
@@ -171,6 +212,7 @@ public class ScorpionDemon extends Living {
 //            assert followDemons[i].getPosition().equals(p);
         }
 
+<<<<<<< HEAD
     }
 
     private boolean readyForArrow(){
@@ -206,6 +248,43 @@ public class ScorpionDemon extends Living {
         return findPlaceForArrow(passed);
     }
 
+=======
+    }
+
+    private boolean readyForArrow(){
+        int swingCount=followCount/2;
+        if(swingCount%2==1)swingCount++;
+        int mainCount=followCount-swingCount;
+        Position p=position.copy();
+        Position.Direction d=p.new Direction(Position.Direction.S);
+        for(int i=0;i<mainCount;i++){
+            d.aStep();
+            if(field.Unreachable(p))
+                return false;
+        }
+        p=position.copy();
+        d=p.new Direction(Position.Direction.SW);
+        for(int i=0;i<swingCount/2;i++){
+            d.aStep();
+            if(field.Unreachable(p))
+                return false;
+        }
+        p=position.copy();
+        d=p.new Direction(Position.Direction.SE);
+        for(int i=0;i<swingCount/2;i++){
+            d.aStep();
+            if(field.Unreachable(p))
+                return false;
+        }
+        return true;
+    }
+
+    private boolean findPlaceForArrow(){
+        Field passed=new Field();
+        return findPlaceForArrow(passed);
+    }
+
+>>>>>>> parent of e2cb683... 2019.10.06  重构formations（阵型）类。
     private boolean findPlaceForArrow(Field passed){
         if(readyForArrow())
             return true;
