@@ -104,7 +104,7 @@ public abstract class Living{
         passed.addLiving(flag);
         for(int i=0;i<8;i++){
             toMove=direction.adjacentPosition();
-            if(!field.unreachable(toMove) && passed.livingAt(toMove)==null ){
+            if(!field.Unreachable(toMove) && passed.livingAt(toMove)==null ){
                 moveOrSwap(direction.dx(),direction.dy());
                 if(pathTo(passed,target,called))
                     return true;

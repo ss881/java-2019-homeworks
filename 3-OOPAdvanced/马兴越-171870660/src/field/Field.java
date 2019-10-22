@@ -158,7 +158,7 @@ public class Field {
      * 返回p指定的位置能否到达。
      * 不能到达是当且仅当该位置不在范围内，或者存在不可移动的对象。
      */
-    public boolean unreachable(Position p){
+    public boolean Unreachable(Position p){
         return !inside(p) || (livingAt(p) != null && !livingAt(p).isMovable());
     }
 }

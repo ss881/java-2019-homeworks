@@ -4,7 +4,7 @@
 
 import field.*;
 import items.*;
-import formations.*;
+
 public class Main {
     public static void main(String[] args){
         Field field=new Field();
@@ -17,7 +17,13 @@ public class Main {
                 field,8);
         System.out.println("加入妖精后");
         field.draw();
-        snakeDemon.standAsSwing();
+        try {
+            snakeDemon.standAsSwing();
+        }catch (AssertionError a){
+            a.printStackTrace();
+            field.draw();
+            return;
+        }
         System.out.println("排布鹤翼阵型后");
         field.addLiving(elder,field.leftRandomPosition());
         field.addLiving(snakeDemon,field.rightRandomPosition());

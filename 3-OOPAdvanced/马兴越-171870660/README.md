@@ -13,11 +13,12 @@
 * `items.ScorpionDemon`类。蝎子精。负责指挥喽啰布阵，并站在阵首，维护喽啰的引用。
 * `items.SnakeDemon`类。蛇精。理论上负责指挥蝎子精和喽啰，维护有蝎子精的引用。
 ### 场地部分
-所有与场地和位置有关的类构成`field`包，包含以下类。
+所有与场地和位置有关的类构成field包，包含以下类。
 * `field.Field`类。场地类。是所有生物体活动的场地，有`N*N`的正方形场地，每个位置由坐标`(x,y)`确定。
 * `field.Position`类。位置坐标类。在`items.Living`类中记录当前生物体所处的位置，在`field.Field`中作为参数，用于访问指定的位置。
 * `field.Position.Direction`类。邻域方向类。指定以某点为中心的八个方向（东，东北，北，西北，西，西南，南，东南）之一，并计算该方向相对中心位置的偏移量`dx` `dy`。
 
+<<<<<<< HEAD
 ### 阵型部分
 
 阵型部分构成`formations`包，此部分于2019年10月6日重构完成。根据目前的要求，有以下类。
@@ -35,10 +36,12 @@
 
 
 
+=======
+>>>>>>> parent of e2cb683... 2019.10.06  重构formations（阵型）类。
 ## 设定
 本系统下，我们设定生物体在场地中的移动，每次只能在**八邻域**意义下相邻的格点间完成。我们设定，相邻位置的两个生物体可以交换位置，且此动作一步完成，不需要多余的空间和步骤。
 
-## `items`包
+## 各类说明
 ### `items.Living`类
 实现了所有生物体共有的数据成员`field.Position`，即记载当前的位置。
 #### 活动方法
@@ -74,16 +77,11 @@
 ### `items.ScorpionDemon`类
 蝎子精类也是`items.Living`的子类。与老人家类似，蝎子精需要指挥喽啰（`items.FollowDemon`）布阵。布阵的实现过程与前者类似，但由于阵型比较复杂，很多位置实际排不出阵型，因此在实施布阵前有一系列的检查和移动操作。以下以“鹤翼”(`Swing`)阵型为例说明，实现的另一个阵型“锋矢”（`Arrow`）是完全类似的。
 
-以下内容是布阵的逻辑，自2019年10月6日重构后，这部分逻辑已经迁移到`formations.Formation`类中。
+利用`readyForSwing`方法检查当前空间是否能够排布Swing阵型。原理是依次检查阵型所需要到达的各个位置是否是可到达的。
 
->  利用`readyForSwing`方法检查当前空间是否能够排布Swing阵型。原理是依次检查阵型所需要到达的各个位置是否是可到达的。
->
-> 利用`findPlaceForSwing`方法，以递归算法寻找一个可以布阵的首领位置。如果当前位置不能布阵（`readyForSwing()==false`），则遍历周围的八个方向，寻找一个可以到达的位置，递归，如果成功找到则返回`true`，如果找不到则退回来找下一个；如果八个方向遍历完毕还是没找到，则返回`false`。
-
-## `Field`包
+利用`findPlaceForSwing`方法，以递归算法寻找一个可以布阵的首领位置。如果当前位置不能布阵（`readyForSwing()==false`），则遍历周围的八个方向，寻找一个可以到达的位置，递归，如果成功找到则返回`true`，如果找不到则退回来找下一个；如果八个方向遍历完毕还是没找到，则返回`false`。
 
 ### `field.Field`类
-
 `field.Field`类维护场地信息。用`public static final int N`记载场地的尺寸。
 
 利用`items.Living`实例的多态性，用`items.Living[][] map`二维数组记录每个位置的生物体，如果该位置没有生物体，则为`null`。为了输出位置方便，`map`的安排中是先行后列的，但一般习惯的`(x,y)`坐标中，`x`表示横坐标，为此在内部表示和调用中存在一个转置。为了适合一般习惯，实现了`livingAt`方法：
@@ -106,6 +104,7 @@ field.livingAt(p)==null || field.livingAt(p).getPosition()==p
 
 新增了`Direction.adjacentPosition()`和`Direction.aStep()`方法，前者返回按当前对象所示方向移动一步后的位置（而当前的`Position`对象不变），后者将当前的`Position`对象按`Direction`所示方向移动一步。同时取消`Position.adjacentPosition()`方法定义。
 
+<<<<<<< HEAD
 
 
 ## `formations`包
@@ -126,7 +125,8 @@ field.livingAt(p)==null || field.livingAt(p).getPosition()==p
 
 `findPlace()`方法首先检查当前`leader`所在位置是否可以布阵，若是则直接返回，否则遍历周围的8个邻域方向，进入可到达的位置然后递归；如果递归返回找到了位置，则返回；否则退回原来位置，进入下一方向。此过程类似`DFS`算法。如果找不到合适的位置，将抛出`NoPlaceForFormationException`异常。
 
+=======
+>>>>>>> parent of e2cb683... 2019.10.06  重构formations（阵型）类。
 ## `UML`类图
-
 使用`PlantUML`给出类图。在类图中，使用没有附加符号的虚线来表达`关联`关系，即有互发消息的类。即使一个类中存在另一个类的引用，但若它们之间不存在`组合` `聚合` 关系，仍然认为是`关联`关系。例如`items.SnakeDemon`和`items.ScorpionDemon`。
 ![类图](uml.png)
