@@ -1,10 +1,11 @@
 package items;/*
  * 蛇精。总指挥。
  */
+import exceptions.NoSpaceForFormationException;
 import field.*;
 import formations.*;
 
-public class SnakeDemon extends Living {
+public class SnakeDemon extends Living implements Leader{
     private ScorpionDemon scorpionDemon;
 
     public SnakeDemon(Position pos, Field field_, int followCount_) {
@@ -14,16 +15,18 @@ public class SnakeDemon extends Living {
         field_.addLiving(scorpionDemon,field_.rightRandomPosition());
     }
 
-    public void standAsSwing(){
-        scorpionDemon.standAsSwing();
-    }
-
-    public void standAsArrow(){
-        scorpionDemon.standAsArrow();
-    }
-
     @Override
     public String toString(){
         return "Sna";
+    }
+
+    @Override
+    public <T extends Formation> void embattleFormation(Class<T> formType) {
+        try{
+            scorpionDemon.embattleFormation(formType);
+        }
+        catch (NoSpaceForFormationException e){
+            System.out.println(e.toString());
+        }
     }
 }

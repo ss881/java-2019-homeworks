@@ -108,23 +108,23 @@ class field.Field{
     +field.Position randomPosition();
 }
 
-class formations.Formation{
+class formations.FormationOld{
     #items.Living[] followers;
     #items.Living leader;
     +boolean embattle();
     #field.Position[] form();
 }
 
-class formations.SwingFormation{
+class formations.SwingFormationOld{
 }
 
-formations.Formation <|-- formations.SwingFormation
+formations.FormationOld <|-- formations.SwingFormationOld
 
-class formations.ArrowFormation{
+class formations.ArrowFormationOld{
 
 }
 
-formations.Formation <|-- formations.ArrowFormation
+formations.FormationOld <|-- formations.ArrowFormationOld
 
-items.ScorpionDemon ... formations.SwingFormation
-items.ScorpionDemon ... formations.ArrowFormation
+items.ScorpionDemon ... formations.SwingFormationOld
+items.ScorpionDemon ... formations.ArrowFormationOld

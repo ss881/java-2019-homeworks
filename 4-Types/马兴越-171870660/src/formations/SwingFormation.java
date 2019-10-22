@@ -1,48 +1,37 @@
+/*
+ * 2019.10.22重构。
+ * 取消对偶数个从者的限制。如果是奇数个从者，则在顶部多加一个从者。
+ */
 package formations;
 
-import exceptions.NoSpaceForFormationException;
-import field.Field;
 import field.Position;
-import items.Living;
 
 public class SwingFormation extends Formation {
-
-    public SwingFormation(Field field, Living leader, Living[] followers) {
-        super(field, leader, followers);
+    public SwingFormation(int n) {
+        super(n);
     }
 
-    protected Position[] form(){
-        Position[] positions=new Position[N];
-        int depth=N/2;
+    @Override
+    protected void form() {
+        Position center=new Position(0,0);
+        Position.Direction d=center.new Direction(Position.Direction.N);
         int t=0;
-        Position position=leader.getPosition();
-        //left
-        Position p=position.copy();
-        Position.Direction d=p.new Direction(Position.Direction.NW);
-        for(int i=0;i<depth;i++){
-            positions[t++]=d.adjacentPosition();
+        if(N%2==1){
+            coordinates[t++]=d.adjacentPosition();
             d.aStep();
         }
-        p=position.copy();
+        int swingCount=N/2;
+        Position p=center.copy();
+        d=p.new Direction(Position.Direction.NW);
+        for(int i=0;i<swingCount;i++){
+            coordinates[t++]=d.adjacentPosition();
+            d.aStep();
+        }
+        p=center.copy();
         d=p.new Direction(Position.Direction.NE);
-        for(int i=0;i<depth;i++){
-            positions[t++]=d.adjacentPosition();
+        for(int i=0;i<swingCount;i++){
+            coordinates[t++]=d.adjacentPosition();
             d.aStep();
         }
-        return positions;
-    }
-
-    @Override
-    public boolean embattle() throws NoSpaceForFormationException {
-        if(N%2!=0){
-            System.out.println(toString()+"需要偶数的从者！");
-            return false;
-        }
-        return super.embattle();
-    }
-
-    @Override
-    public String toString(){
-        return "鹤翼阵型";
     }
 }

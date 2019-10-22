@@ -124,4 +124,8 @@ public class Position {
         return new Position(x,y);
     }
 
+    public Position add(Position a){
+        return new Position(x+a.x,y+a.y);
+    }
+
 }

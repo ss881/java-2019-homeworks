@@ -22,9 +22,9 @@
 
 阵型部分构成`formations`包，此部分于2019年10月6日重构完成。根据目前的要求，有以下类。
 
-* `formations.Formation`类。抽象的阵型基类。
-* `formations.SwingFormation`类。“鹤翼”阵型类。
-* `formations.ArrowFormation`类。“锋矢”阵型类。
+* `formations.FormationOld`类。抽象的阵型基类。
+* `formations.SwingFormationOld`类。“鹤翼”阵型类。
+* `formations.ArrowFormationOld`类。“锋矢”阵型类。
 
 ### 异常部分
 
@@ -74,7 +74,7 @@
 ### `items.ScorpionDemon`类
 蝎子精类也是`items.Living`的子类。与老人家类似，蝎子精需要指挥喽啰（`items.FollowDemon`）布阵。布阵的实现过程与前者类似，但由于阵型比较复杂，很多位置实际排不出阵型，因此在实施布阵前有一系列的检查和移动操作。以下以“鹤翼”(`Swing`)阵型为例说明，实现的另一个阵型“锋矢”（`Arrow`）是完全类似的。
 
-以下内容是布阵的逻辑，自2019年10月6日重构后，这部分逻辑已经迁移到`formations.Formation`类中。
+以下内容是布阵的逻辑，自2019年10月6日重构后，这部分逻辑已经迁移到`formations.FormationOld`类中。
 
 >  利用`readyForSwing`方法检查当前空间是否能够排布Swing阵型。原理是依次检查阵型所需要到达的各个位置是否是可到达的。
 >

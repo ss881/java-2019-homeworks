@@ -23,35 +23,17 @@ public class ScorpionDemon extends Living implements Leader{
         }
     }
 
-    public void standAsFormation(Formation formation){
-        try {
-            formation.embattle();
-        }
-        catch (NoSpaceForFormationException e){
-            System.out.println(e.toString());
-        }
-    }
-
-    /*
-     * “鹤翼”阵型。
-     */
-    public void standAsSwing(){
-        Formation formation=new SwingFormation(field,this,followDemons);
-        standAsFormation(formation);
-    }
-
-    /*
-     * “锋矢”阵型。
-     * 将大致一半的followers放在主干线上，向下调整以保证两翼的数目是偶数。
-     * 剩下的作为两翼。
-     */
-    public void standAsArrow(){
-        ArrowFormation formation=new ArrowFormation(field,this,followDemons);
-        standAsFormation(formation);
-    }
-
     @Override
     public String toString(){
         return "Sco";
+    }
+
+
+    @Override
+    public <T extends Formation> void embattleFormation(Class<T> formType)
+            throws NoSpaceForFormationException {
+        FormationHandler<T> fh=new FormationHandler<T>(
+                field,this,followDemons,formType);
+        fh.embattle();
     }
 }

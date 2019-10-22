@@ -3,14 +3,10 @@ package items;
  * 老人家类。负责“指挥”葫芦娃，维护葫芦娃列表。
  */
 
-import com.sun.media.sound.ModelDirectedPlayer;
 import exceptions.NoSpaceForFormationException;
-import exceptions.PathNotFoundException;
 import field.*;
 import formations.Formation;
-import formations.SnakeFormation;
-
-import javax.naming.NoPermissionException;
+import formations.FormationHandler;
 
 public class Elder extends Living implements Leader{
     private Calabash[] calabashes;
@@ -40,16 +36,16 @@ public class Elder extends Living implements Leader{
      * 然后依次指挥其他葫芦娃到下面的位置来。
      */
     public void standAsSnake(){
-        Calabash[] followers = new Calabash[6];
-        for(int i=1;i<7;i++)
-            followers[i-1]=calabashes[i];
-        Formation form= new SnakeFormation(field,calabashes[0],
-                followers);
-        try {
-            standAsFormation(form);
-        }catch(NoSpaceForFormationException e){
-            System.out.println(e.toString());
-        }
+//        Calabash[] followers = new Calabash[6];
+//        for(int i=1;i<7;i++)
+//            followers[i-1]=calabashes[i];
+//        FormationOld form= new SnakeFormationOld(field,calabashes[0],
+//                followers);
+//        try {
+//            standAsFormation(form);
+//        }catch(NoSpaceForFormationException e){
+//            System.out.println(e.toString());
+//        }
 //        for (Calabash c:calabashes){
 //            c.setMovable(true);
 //        }
@@ -76,7 +72,19 @@ public class Elder extends Living implements Leader{
     }
 
     @Override
-    public void standAsFormation(Formation formation) throws NoSpaceForFormationException {
-        formation.embattle();
+    public <T extends Formation> void embattleFormation(Class<T> formType) {
+        Calabash[] followers=new Calabash[6];
+        for(int i=0;i<6;i++){
+            followers[i]=calabashes[i+1];
+        }
+        FormationHandler<T> fh=new FormationHandler<T>(
+                field,calabashes[0],followers,formType
+        );
+        try{
+            fh.embattle();
+        }
+        catch (NoSpaceForFormationException e){
+            System.out.println(e.toString());
+        }
     }
 }

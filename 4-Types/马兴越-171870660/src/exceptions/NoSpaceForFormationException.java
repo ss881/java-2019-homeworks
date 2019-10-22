@@ -1,6 +1,7 @@
 package exceptions;
 
 import formations.Formation;
+
 public class NoSpaceForFormationException extends Exception {
     private Formation form;
     public NoSpaceForFormationException(Formation f){

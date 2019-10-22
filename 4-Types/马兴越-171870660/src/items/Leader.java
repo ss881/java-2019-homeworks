@@ -8,6 +8,6 @@ import exceptions.NoSpaceForFormationException;
 import formations.Formation;
 
 public interface Leader {
-    void standAsFormation(Formation formation)
+    <T extends Formation> void embattleFormation(Class<T> formType)
             throws NoSpaceForFormationException;
 }
