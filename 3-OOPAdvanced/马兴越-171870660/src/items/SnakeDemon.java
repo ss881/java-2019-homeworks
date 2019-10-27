@@ -2,6 +2,7 @@ package items;/*
  * 蛇精。总指挥。
  */
 import field.*;
+import formations.*;
 
 public class SnakeDemon extends Living {
     private ScorpionDemon scorpionDemon;

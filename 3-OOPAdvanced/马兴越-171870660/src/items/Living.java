@@ -3,7 +3,6 @@
  */
 package items;
 
-import exceptions.PathNotFoundException;
 import field.*;
 
 import java.util.LinkedList;
@@ -76,7 +75,7 @@ public abstract class Living{
      * 若有阻挡，对于movable的，直接和他交换；否则找一个方向绕开。
      * 如果找不到路径，返回false.
      */
-    public boolean walkTowards(Position target) throws PathNotFoundException {
+    public boolean walkTowards(Position target){
         // 新建标记面板，用于记录走过的地方。
         // 在走过的地方添加一个虚拟的Living对象。
         Field passed=new Field();
@@ -91,10 +90,8 @@ public abstract class Living{
 
     /**
      * 递归算法实现找路径过程。
-     * 返回值事实上已经被架空
      */
-    private boolean pathTo(Field passed, Position target, List<Living> called)
-            throws PathNotFoundException{
+    private boolean pathTo(Field passed, Position target, List<Living> called){
         if(position.equals(target))//基本情况，已经移动到位
             return true;
         Position.Direction direction=position.new Direction(target);
@@ -104,7 +101,7 @@ public abstract class Living{
         passed.addLiving(flag);
         for(int i=0;i<8;i++){
             toMove=direction.adjacentPosition();
-            if(!field.Unreachable(toMove) && passed.livingAt(toMove)==null ){
+            if(!field.unreachable(toMove) && passed.livingAt(toMove)==null ){
                 moveOrSwap(direction.dx(),direction.dy());
                 if(pathTo(passed,target,called))
                     return true;
@@ -126,7 +123,7 @@ public abstract class Living{
             }
             direction.next();
         }
-        throw new PathNotFoundException(this,target);
+        return false;
     }
 
     public boolean exchangeable(){
