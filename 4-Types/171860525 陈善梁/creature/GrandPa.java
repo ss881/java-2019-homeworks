@@ -1,8 +1,10 @@
+package creature;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class GrandPa extends Creature {
+public class GrandPa extends Leader<Huluwa> {
     static final int N=12;//size of map
 
     public Huluwa[] initialize(){//返回葫芦娃数组
@@ -14,6 +16,11 @@ public class GrandPa extends Creature {
         }
         shuffle(huluwas);//打乱
         return huluwas;
+    }
+
+    @Override
+    public void changeForm(Huluwa[] huluwas) {
+        sortHuluwa(huluwas);
     }
 
     //shuffle huluwas,and set their posotions(according to their index in shuffled array)
@@ -48,9 +55,9 @@ public class GrandPa extends Creature {
         setCurrentPosition(6,1);
     }
 
-    @Override
-    public char getSymbol(){
-        return 'G';
-    }
+//    @Override
+//    public char getSymbol(){
+//        return 'G';
+//    }
 
 }

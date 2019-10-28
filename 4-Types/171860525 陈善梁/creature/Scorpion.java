@@ -1,15 +1,10 @@
-class Evial extends Creature{
-    @Override
-    public char getSymbol(){
-        return 'E';
-    }
-}
+package creature;
 
-class Scorpion extends Evial{
+public class Scorpion extends Leader<Evial>{
     static final int N=12;//size of map
     static final int NUM_EVILS=20;//max number of evils
 
-    public Evial[] initialize(){
+    public Evial[] initialize(){//add Snake to evials?
         Evial[]evials = new Evial[NUM_EVILS];
         for(int i=0;i<evials.length;++i){
             evials[i]=new Evial();
@@ -18,33 +13,18 @@ class Scorpion extends Evial{
         return evials;
     }
 
-//    public void resetCurrentPositions(Evial []evials){
-//        Position notInMap=new Position(-1,-1);
-//        for(Evial evial:evials){
-////            evial.previousPosition=evial.currentPosition;
-//            evial.setPreviousPosition(evial.currentPosition.x,evial.currentPosition.y);
-//            if(evial.currentPosition.myEualsTo(notInMap)==false){
-//                //now this evial is in map
-//                //set its previousPos
-//                evial.setCurrentPosition(-1,-1);//remove it
-//            }
-//        }
-//        //now all currentpos is(-1,-1)
-//    }
-
-//    public void changeToCrane(Evial[]evials){
-//        resetCurrentPositions(evials);
-//        //use 7 evils (include Scorpion)
-//        //set Scorpion position
-//        setPreviousPosition(currentPosition.x,currentPosition.y);//self
-//        setCurrentPosition(7,7);
-//        int count=0;
-//        for(int i=1;i<=3;++i){
-//            evials[count].setCurrentPosition(7-i,7-i);
-//            evials[count+1].setCurrentPosition(7-i,7+i);
-//            count+=2;
-//        }
-//    }
+    @Override
+    public void changeForm(Evial[] evials) {
+        int nextForm=(int)(Math.random()*6)+1;//[1-6]
+        switch (nextForm){
+            case 1:changeToGoose(evials);break;
+            case 2:changeToCar(evials);break;
+            case 3:changeToFishScale(evials);break;
+            case 4:changeToSquare(evials);break;
+            case 5:changeToMoon(evials);break;
+            default:changeToArrow(evials);break;
+        }
+    }
 
     public void changeToCrane(Evial[]evials){
 //        resetCurrentPositions(evials);
@@ -184,8 +164,8 @@ class Scorpion extends Evial{
         }
     }
 
-    @Override
-    public char getSymbol(){
-        return 'X';
-    }
+//    @Override
+//    public char getSymbol(){
+//        return 'X';
+//    }
 }

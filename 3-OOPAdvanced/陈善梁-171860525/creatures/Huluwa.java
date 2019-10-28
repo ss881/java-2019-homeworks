@@ -1,3 +1,5 @@
+package creatures;
+
 public class Huluwa extends Creature implements Comparable<Huluwa> {
     private String name,color;
     private int rank;

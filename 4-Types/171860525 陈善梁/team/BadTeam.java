@@ -1,57 +1,59 @@
-public class BadTeam {
-    private Scorpion scorpion;
-    private Evial[]evials;
+package team;
+
+import creature.*;
+
+public class BadTeam extends Team<Evial,Scorpion> {
     private Snake snake;
 
     public BadTeam(){
-        scorpion = new Scorpion();
-        evials=scorpion.initialize();
+        leader = new Scorpion();
+        members=leader.initialize();
         snake=new Snake();
         snake.setCurrentPosition(4,7);
     }
 
     public void changeToGoose(){
         System.out.println("\n transform to 雁行:\n--------------------------------------------\n");
-        scorpion.changeToGoose(evials);
+        leader.changeToGoose(members);
 //        snake.setPreviousPosition(snake.currentPosition.x,snake.currentPosition.y);
         snake.moveTo(4,7);
     }
 
     public void changeToCrane(){
         System.out.println("\n transform to 鹤翼:\n--------------------------------------------\n");
-        scorpion.changeToCrane(evials);
+        leader.changeToCrane(members);
 //        snake.setPreviousPosition(snake.currentPosition.x,snake.currentPosition.y);
         snake.moveTo(5,7);
     }
 
     public void changeToCar(){
         System.out.println("\n transform to 衡轭:\n--------------------------------------------\n");
-        scorpion.changeToCar(evials);
+        leader.changeToCar(members);
 //        snake.setPreviousPosition(snake.currentPosition.x,snake.currentPosition.y);
         snake.moveTo(6,5);
     }
 
     public void changeToFishScale(){
         System.out.println("\n transform to 鱼鳞:\n--------------------------------------------\n");
-        scorpion.changeToFishScale(evials);
+        leader.changeToFishScale(members);
         snake.moveTo(2,7);
     }
 
     public void changeToSquare(){
         System.out.println("\n transform to 方:\n--------------------------------------------\n");
-        scorpion.changeToSquare(evials);
+        leader.changeToSquare(members);
         snake.moveTo(6,7);
     }
 
     public void changeToMoon(){
         System.out.println("\n transform to 偃月:\n--------------------------------------------\n");
-        scorpion.changeToMoon(evials);
+        leader.changeToMoon(members);
         snake.moveTo(6,4);
     }
 
     public void changeToArrow(){
         System.out.println("\n transform to 锋矢:\n--------------------------------------------\n");
-        scorpion.changeToArrow(evials);
+        leader.changeToArrow(members);
         snake.moveTo(2,7);
     }
 
@@ -68,17 +70,23 @@ public class BadTeam {
 
     }
 
-    public Evial[]getEvials(){
-        return evials;
-    }
-
-    public Scorpion getScorpion(){
-        return scorpion;
-    }
-
     public Snake getSnake(){
         return snake;
     }
 
 
+    @Override
+    public void changeForm() {
+        changeRandomly();
+    }
+
+    @Override
+    public Evial[] getMembers() {
+        return members;
+    }
+
+    @Override
+    public Scorpion getLeader() {
+        return leader;
+    }
 }

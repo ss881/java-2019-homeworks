@@ -1,6 +1,8 @@
+import creature.*;
+import team.*;
+
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+
 
 class Tile{
     char ch1;
@@ -27,13 +29,12 @@ public class BattleFiled {
             }
         }
     }
-
     public void setGoodTeam(GoodTeam goodTeam){
-        GrandPa grandPa=goodTeam.getGrandPa();
-        for(Huluwa huluwa:goodTeam.getHuluwas()){
+        GrandPa grandPa=goodTeam.getLeader();
+        for(Huluwa huluwa:goodTeam.getMembers()){
             //for huluwa,must be only one creature on one tile
             Position curPos=huluwa.currentPosition;
-            map[curPos.x][curPos.y].ch1=huluwa.getSymbol();
+            map[curPos.x][curPos.y].ch1='H';
             map[curPos.x][curPos.y].count=1;
             map[curPos.x][curPos.y].changed=true;
             draw();
@@ -43,15 +44,15 @@ public class BattleFiled {
         draw();
     }
 
-    public void removeEvial(Evial evial){
-        if(map[evial.previousPosition.x][evial.previousPosition.y].count==1){
-            map[evial.previousPosition.x][evial.previousPosition.y].ch1=' ';
-            map[evial.previousPosition.x][evial.previousPosition.y].count--;
+    public void removeCreature(Creature creature){
+        if(map[creature.previousPosition.x][creature.previousPosition.y].count==1){
+            map[creature.previousPosition.x][creature.previousPosition.y].ch1=' ';
+            map[creature.previousPosition.x][creature.previousPosition.y].count--;
         }
-        else if(map[evial.previousPosition.x][evial.previousPosition.y].count==2){//count==2
-            map[evial.previousPosition.x][evial.previousPosition.y].ch1=
-                    map[evial.previousPosition.x][evial.previousPosition.y].ch2;
-            map[evial.previousPosition.x][evial.previousPosition.y].count--;
+        else if(map[creature.previousPosition.x][creature.previousPosition.y].count==2){//count==2
+            map[creature.previousPosition.x][creature.previousPosition.y].ch1=
+                    map[creature.previousPosition.x][creature.previousPosition.y].ch2;
+            map[creature.previousPosition.x][creature.previousPosition.y].count--;
         }
         else{
             throw new RuntimeException("error! cannot remove nothng!");
@@ -59,42 +60,62 @@ public class BattleFiled {
 //        draw();
     }
 
-    public void placeEvial(Evial evial){
-        if(map[evial.currentPosition.x][evial.currentPosition.y].count==0){
-            map[evial.currentPosition.x][evial.currentPosition.y].ch1=evial.getSymbol();
+    public void placeCreature(Creature creature) {
+        //REFLECTION
+        char symbol='C';
+        if(creature instanceof GrandPa){
+            symbol='G';
         }
-        else if(map[evial.currentPosition.x][evial.currentPosition.y].count==1){
+        else if(creature instanceof Scorpion){
+            symbol='X';
+        }
+        else if(creature instanceof Snake){
+            symbol='S';
+        }
+        else if(creature instanceof Evial){
+            symbol='E';
+        }
+        else if(creature instanceof Huluwa){
+            symbol='H';
+        }
+        else{
+            symbol='C';
+        }
+        if(map[creature.currentPosition.x][creature.currentPosition.y].count==0){
+            map[creature.currentPosition.x][creature.currentPosition.y].ch1=symbol;
+        }
+        else if(map[creature.currentPosition.x][creature.currentPosition.y].count==1){
             //in fact ,no need "if"
-            map[evial.currentPosition.x][evial.currentPosition.y].ch2=evial.getSymbol();
+            map[creature.currentPosition.x][creature.currentPosition.y].ch2=symbol;
         }
-        if(map[evial.currentPosition.x][evial.currentPosition.y].count==2){
+        if(map[creature.currentPosition.x][creature.currentPosition.y].count==2){
             throw new RuntimeException("error!connot put more than 2 on one tile!");
         }
         else{//must
-            map[evial.currentPosition.x][evial.currentPosition.y].changed=true;
+            map[creature.currentPosition.x][creature.currentPosition.y].changed=true;
         }
-        map[evial.currentPosition.x][evial.currentPosition.y].count++;
+        map[creature.currentPosition.x][creature.currentPosition.y].count++;
 //        draw();
     }
 
     public void setBadTeam(BadTeam badTeam){
-        Scorpion scorpion=badTeam.getScorpion();
-        Evial[]evials=badTeam.getEvials();
+        Scorpion scorpion=badTeam.getLeader();
+        Evial[]evials=badTeam.getMembers();
         Snake snake=badTeam.getSnake();
-        //remove previous positions
+        //remove previous po qsitions
         for(Evial evial:evials){
             boolean change=false;
             if(evial.inMapBefore()){
                 //remove if in map
                 {
                     change=true;
-                    removeEvial(evial);
+                    removeCreature(evial);
                 }
             }
             if(evial.notInMap()==false)
             {
                 change=true;
-                placeEvial(evial);
+                placeCreature(evial);
             }
             if(change)
                 draw();
@@ -102,17 +123,17 @@ public class BattleFiled {
 
         if(scorpion.inMapBefore()){
             //remove if in map
-            removeEvial(scorpion);
+            removeCreature(scorpion);
         }
 
-        placeEvial(scorpion);
+        placeCreature(scorpion);
         draw();
 
         if(snake.inMapBefore()){
             //remove if in map
-           removeEvial(snake);
+           removeCreature(snake);
         }
-        placeEvial(snake);
+        placeCreature(snake);
         draw();
     }
 
@@ -134,19 +155,15 @@ public class BattleFiled {
     public static void main(String[]args) throws InterruptedException, FileNotFoundException {
 
         GoodTeam goodTeam=new GoodTeam();
-        goodTeam.sortHuluwa();
-
+        goodTeam.changeForm();
         BadTeam badTeam=new BadTeam();
-
-
-
 
         BattleFiled battleFiled=new BattleFiled();
         battleFiled.setGoodTeam(goodTeam);
         battleFiled.setBadTeam(badTeam);
 
         Thread.sleep(500);
-        badTeam.changeRandomly();
+        badTeam.changeForm();
         battleFiled.setBadTeam(badTeam);
 
 
