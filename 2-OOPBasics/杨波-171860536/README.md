@@ -1,22 +1,27 @@
-//������ʾ���ܻ����룬��gbk��vscode����������
-����õ�������World��CalabashBrother���������main��CalabashBrothersSort
+# 类
 
-CalabashBrother������«�ޣ��������ԣ�
-���ݣ�id��Ψһ��־����������ɫ�������������ʱ���Ը���id����
-�Ӵ���Χ��touchSize����ʾ�������Χ��������������Ӵ�
-ʵ�ʷ�Χ��realSize����ʾ��«��ʵ��ռ��λ��
-λ�����飬position����ʾ��«����������λ�ã�����������Χ������������������
-�ٶȣ�speedX��speedY����ʾ��«���ƶ��ٶ�
-���и�����������ƶ�ʱ���õ�
+## World
+	World类用到的方法和成员主要是static类型，记录地图信息和地图上所有生物的信息，这里用到的主要是位置信息。生物要进行移动时向World类发出信息，World类中更新自己记录的信息，并回复生物使其修改自己的位置信息到达某处，除此之外还有控制排序进行的作用。
+## Creature
+	生物类，作为一个抽象类，描述生物所具有的一些特性，walk等，可以派生出其他一些具体的生物，这里只有葫芦娃。
+## CalabashBrother
+	描述葫芦娃，从Creature类派生，重载实现Creature类中描述的一些行为，同时有身份名，颜色等属性。
+## CalabashBrotherSort
+	main函数所在，在此进行葫芦娃排序。
 
-World�����ڹ���һ�����磬������16*16�ķ�������ʾ��ÿ������䳤Ϊ100�����ζ���Ϊƽ��
-Ȼ���������д���7����«�ޣ�����һ������calabashList��λ��˳���¼������«��
+# 运行流程
+	从main函数开始执行，先创建7个葫芦娃，根据创建的先后顺序决定其编号（在CalabashBrother的构造函数中体现），同时共享statusName和colors数组，根据自己的编号确定自己的身份名和颜色，所以后续排序时可以直接根据编号大小来排。之后随机排列，调用World类中bubbleSort()方法开始冒泡排序，在该冒泡排序中，World根据各个生物所处的位置，从最后一个开始，向其发送开始排序的信息（toBubbleSort()），进行若干轮，冒泡排序结束。结束后让葫芦娃报数，调用World中的showMap(1)，用第一种模式报数，即报自己的身份名（根据位置从前往后报）。
+```
+toBubbleSort()：
+对葫芦娃来说，该方法执行时先看看自己前面的人，比较一下自己和它的id
+	如果自己的id小就让自己和它交换位置，然后继续和前面的人比直至到达最前面或者前面的人id比自己小;
+	如果自己的id大，则通知前面的人开始冒泡排序.
+```
+	然后再随机化葫芦娃的位置，这时用到的不是设置位置，而是调用葫芦娃的waldTo()，走到相应位置，之后进行二分插入排序，调用World中的binaryInsertSort()。排完序后再从前往后报数，这次用showMap(2)，报颜色。
+```
+bianryInsertSort()
+这里要由World来选择要插入到哪个位置，选择位置的过程使用二分法，比较时调用Creature的compareTo（），CalabashBrother类中对其重载。找到插入位置后调用Creature的walkTo()到达相应位置。
+```
+# 结构图
+![结构图](http://www.plantuml.com/plantuml/png/dLJ1Rjim3BtxAuHUbc1fWRRN7Ofc6913rm8jiCEw0oCpiL1PD2XvMPlrtqT5jkSazW8ibyZYezxZ8wKR7u13NLhb0zSwr8oPjk2z-aPiysscvBTT6RJvkq9Nb-g9AbepLCNhSUopOTJ1aDiBROKZ6FskLiQ1LSQ5TFYZUSD1O8_Z-mzLGZMCcZD252mOtIpl19l09OQ2-cYFeKru86-YoacxCHDDqv4yNO1Rut-bug-K_611uz-CTZ6MjYbeuHTknUJ2v1_7B-lbqk8ZSPYCGiHnVbquZnmQu7lJtrR5VejZSwgcnht0aiWYE07SDVtOf_GOEc-EDM_0lZpHGC1le8hRizr4N7G3T01ROnXCjqGlNuWtmFcX1vhA2XWbRSHlNz3ctk70gO5kaxK7Ze659VZYbYaKoDlXgNmCRDnQPZ9krFuhb7W2gCaI-wCsc7pX3YYpSLSEAukyau7zUIIRZ5Xnok1nbqwRB-4n9-C9sv49_bY2SPFMgx4vPt0vbUQjkMfIXs25BclfrQVVv-Vgo4v70TLPVtQdipIhijZDvbHjZBNAeyjLYTx36hqAb5wmPxVxIn1Te7xflqHAEDnUPapi5CbQWxLD5wVotRmroWJVNS8p1UBNPQEqV-LdwNAdZoHXZ6kMf7JKEQ5NdgADOckYk6ee1Ade9pAR7FDEN7DywEhxq4Wafq18AnRF8qjR0wsw4fvTRxvKIJasvwKa1wN0ELq31LeJvw8gwe_OdRhxovuwT85VPycydV-Y9Kt4hZEUEAIIhhFKdekBwE3yKXQT1xtGLJQ_6WbTP_DhMGmDR7Qm5s4YymPTNfVs3m00  "结构图")
 
-������е�CalabashBrothersSort�ִ࣬�������¼�
-
-��һ����Ҫ���й��̣���CalabashBrothersSort����ִ�У����������жϣ�idΪi(��j)�ĵĺ�«���Ƿ���Ҫ����ĳ��λ�ã�
-���Ҫ�ߵĻ���ִ�к�«���е�walkTo�����ߵ���Ӧλ�ã�ֱ��������ɣ�������Ҫ�����ݻ�����walkTo������򵥽���һ�¡�
-���ȸ������߷����ж϶�Ӧ�������Ƿ����ĺ�«�޽Ӵ����õ��Ӵ���Χ������ȱ��������еĻ����佻��λ�ã�����ֱ����
-����λ��ʱ��������������«�޴���λ�ã���������«����������Ϊ������Ϊһ��ռ100*100����������º�«�޶�λ�ڸ������ģ�
-����һ����«��������50��һ����«��������50��Ȼ��ֱ����������ߣ����������50������50�ص����ģ���ɽ�����
-��Ҫ˼·���������ˡ�

@@ -1,0 +1,27 @@
+# 181860123_颜同路_java程序设计第三次作业
+
+## UML类图
+![UML类图](http://www.plantuml.com/plantuml/png/XP3FIlDG44VtynGNicafXQ-V84LTLBhefWL1NOTfEZQNJEQ6oOt_VGCNFe0hNy2bJoJeMrWrQMmQw2Ahd7FvdHdb7jKNAOEtdibylZo_Fpr-lBsQmN0mtFyt-BzdniWunpm-LaLPKahYpVbi2X5ZdhVzlOCmp8evsoWC0O8KhNIwy02bCSDia-Ybc45mebRyNswiXBvGQi22AK7FNA--6mWcphkL59mX9nkoaqKHUQUDCUEOIB-54kXq3okfRcdESufCq5EK188yiSoThgcrAMLAKOo5j8i1NLhUrYQAiiYmuKJbXhaw7vFcwycrU2gOK4ExSCpkYdG3hovuTD_lh-FCWLcIa2BRM_JMIGEh3hU3gwDRmEgD7xBit87zLcr38rf1ANy1)
+
+## 类定义简介
+
+1. 主类为CalabaArrangement，包含main方法
+2. 定义了Creature类，表示生物，包含public变量name、坐标x和y；同时定义了Goto方法和Talk方法，分别用于在地图上走动和说话
+3. 定义了Map类，维护一个20 * 20 的Creature二维数组，存放生物对象的引用，用来表示地图，包含一个打印地图的Print方法
+4. 从Creature类派生了Calabash类和Leprechaun类，分别表示葫芦娃和妖精，他们都包含一个morale成员变量表示阵营士气，其中葫芦娃类又包含rank变量表示葫芦娃们从老大到老七的次序，和一个虚方法skill，表示葫芦娃们各自独特的本领；妖精类包含一个虚方法evilskill，表示邪恶的手段
+5. 从Creature类派生了Conductor类，表示指挥官类，用于派生老爷爷和蛇精类；包含一个虚方法Cheer用于加油助威、鼓舞士气，以及Conductor方法用于指挥葫芦娃\小喽啰。
+6. 从Condutor类派生了Grandpa类表示老爷爷，包含一个实例化为葫芦娃类的ArrayList calabashbrothers，表示老爷爷心中惦记着七个葫芦娃，也便于对七个葫芦娃的访问，初始化时创建七个葫芦娃对象并保存他们的引用；重写了Cheer方法让老爷爷可以为葫芦娃们加油助威
+7. 从Conductor类派生了Snake类表示蛇精，包含一个实例化为妖精类的ArrayList follower，表示蛇精手下妖精的集合，用于访问妖精们，初始化时创建蝎子精、蝙蝠精、蛤蟆精、蜈蚣精、天牛精、黄蜂精、野猪精、蜘蛛精八个妖精并储存它们的引用；重写了Cheer方法让蛇精可以为妖精们加油助威
+
+## 实现细节简述
+
+1. Map中的成员变量和函数都定义为了静态，所以可以直接通过类访问，不需要创建任何对象且唯一存在，比较符合事实。
+2. 因为老爷爷和蛇精需要访问类外的非静态成员，所以其成员方法无法声明为全静态
+3. Map类Print方法打印地图时，发现即使使用String.format方法也无法将元素对齐，经过反复的试验发现是因为输出的角色名是中文，所以最终在输出时利用\t制表符同样实现了对齐输出（没有生物的空地为了更清晰地表示打印'0'）
+4. 老爷爷和蛇精的Cheer方法中使用java提供的类库中的Random类实现了随机输出加油口号的效果
+
+## 使用的OOP机制、理念与好处
+
+1. 使用最频繁的是继承机制，例如所有的生物对象都继承自Creature类，因为他们共有的基础属性是名字和坐标，共有的基础方法是移动和说话。使用继承不仅使对象之间的关系清晰，还能实现代码的复用以及不同类型对象的统一管理，即一种**多态**的体现。比如Map类就通过一个Creature类型的二维数组就实现了对所有派生生物的统一管理；Conductor类的Conduct方法也用Creature类的参数同时实现了对葫芦娃和妖精的指挥
+2. 其次是对静态方法、变量的使用，如实现细节简述中提到的Map类，就可以很好地表示唯一存在的地图
+3. 还有继承时对父类方法的重载或覆写，比如老爷爷类和蛇精类对Conductor类中Cheer虚方法的覆写，以实现各自的需要；但是对Conduct方法进行重载时却发生了严重的问题，目前放弃了对其的重载，正在排查原因

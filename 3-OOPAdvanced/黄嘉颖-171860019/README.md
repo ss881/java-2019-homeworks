@@ -1,4 +1,4 @@
-作业三：面向葫芦娃编程
+# 作业三：面向葫芦娃编程
 
 ## 需求分析
 
@@ -32,25 +32,38 @@
 
 - Creature子类，因为老爷爷不是妖怪也不是葫芦娃，方便以后对老爷爷添加方法
 
+  creatureUML图：
+
+  ![](uml/creatureUML.png)
+
 #### HuluwaTeam类
 
 - 由葫芦娃数组brothers和啦啦队员老爷爷cheerleader组成
+
 - 拥有接口获得属性
+
 - void randomQueue()对葫芦娃兄弟乱序排列
+
 - void bubbleSort()按照排行排序的方法
-- void generateTheSpecificPattern(...)覆盖了排列阵法
+
+- void generateChangshePattern(...)覆盖了排列阵法
+
 - void generateTheCheerPattern(...)设置啦啦队员位置的接口
+
+  HuluwaTeamUML图：
+
+  ![](uml/HuluwaTeam.PNG)
 
 #### SnakeTeam类
 
 - 由妖怪数组demons和啦啦队员蛇精cheerleader组成
 - 拥有接口获得各属性
-- void generateTheSpecificPattern(...)覆盖了排列阵法
+- void generateChangshe/Chonge/....（共八种）Pattern(...)覆盖了排列阵法
 - void generateTheCheerPattern(...)设置啦啦队员位置的接口
 
-creatureUML图：
+SnakeTeamUML图：
 
-![](uml/creatureUML.png)
+![](uml/SnakeTeam.png)
 
 ### Package space
 
@@ -96,15 +109,15 @@ battleUML图：
 
 ### Package queuepattern
 
-#### QueuePattern 接口
+#### HuluwaTeamQueuePattern 接口
 
-- void generateTheSpecificPattern(Space battleground, SnakeTeam snakeTeam, int x, int y)用来设置蛇精妖怪队伍的阵型
-- void generateTheSpecificPattern(Space battleground, HuluwaTeam huluwaTeam, int x, int y)用来设置葫芦娃队伍的阵型
-- 设有蛇形、雁行等八种不同的阵型的子接口
+- void generateChangshePattern(Space battleground, int x, int y))用来设置葫芦娃队伍的阵型
+- void generateCheerPattern(Space battleground, int x, int y))用来设置老爷爷啦啦队的位置
 
-queuepatternUML图：
+#### SnakeTeamQueuePattern 接口
 
-![](uml/queuepatternUML.png)
+- void generateChangshe/Yanxing/...（共8种）Pattern(Space battleground, HuluwaTeam huluwaTeam, int x, int y)用来设置蛇精妖怪队伍的阵型
+- void generateCheerPattern(Space battleground, int x, int y))用来设置蛇精啦啦队的位置
 
 ## 使用javafx增加GUI
 
