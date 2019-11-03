@@ -83,35 +83,35 @@ public class Controller {
                 }
                 switch (rand) {
                     case 1:
-                        battle.snakeTeam.generateTheSpecificPattern(new HeyiPattern(), battle.battleField, 8, 4);
+                        battle.snakeTeam.generateHeyiPattern(battle.battleField, 8, 4);
                         display();
                         break;
                     case 2:
-                        battle.snakeTeam.generateTheSpecificPattern(new YanxingPattern(), battle.battleField, 14, 3);
+                        battle.snakeTeam.generateYanxingPattern(battle.battleField, 14, 3);
                         display();
                         break;
                     case 3:
-                        battle.snakeTeam.generateTheSpecificPattern(new ChongePattern(), battle.battleField, 14, 3);
+                        battle.snakeTeam.generateChongePattern(battle.battleField, 14, 3);
                         display();
                         break;
                     case 4:
-                        battle.snakeTeam.generateTheSpecificPattern(new ChangshePattern(), battle.battleField, 14, 3);
+                        battle.snakeTeam.generateChangshePattern(battle.battleField, 14, 3);
                         display();
                         break;
                     case 5:
-                        battle.snakeTeam.generateTheSpecificPattern(new YulinPattern(), battle.battleField, 11, 3);
+                        battle.snakeTeam.generateYulinPattern(battle.battleField, 11, 3);
                         display();
                         break;
                     case 6:
-                        battle.snakeTeam.generateTheSpecificPattern(new FangyuanPattern(), battle.battleField, 12, 3);
+                        battle.snakeTeam.generateFangyuanPattern(battle.battleField, 12, 3);
                         display();
                         break;
                     case 7:
-                        battle.snakeTeam.generateTheSpecificPattern(new YanyuePattern(), battle.battleField, 14, 2);
+                        battle.snakeTeam.generateYanyuePattern(battle.battleField, 14, 2);
                         display();
                         break;
                     case 8:
-                        battle.snakeTeam.generateTheSpecificPattern(new FengshiPattern(), battle.battleField, 11, 3);
+                        battle.snakeTeam.generateFengshiPattern(battle.battleField, 11, 3);
                         display();
                         break;
                     default:
@@ -183,7 +183,7 @@ public class Controller {
         //battle.huluwaTeam.randomQueue();
         currentHuluwaSortDone=false;
         huluSortNum=0;
-        battle.huluwaTeam.generateTheSpecificPattern(new ChangshePattern(), battle.battleField,3,3);
+        battle.huluwaTeam.generateChangshePattern(battle.battleField,3,3);
         display();
         isHuluwaOnTheSpace=true;
     }
@@ -191,6 +191,8 @@ public class Controller {
     @FXML private void shexingHuluTeamOnAction(ActionEvent event){
         if (isHuluwaOnTheSpace==true) {
             battle.huluwaTeam.bubbleSort();
+            huluSortNum=0;
+            currentHuluwaSortDone=false;
             Huluwa currentHuluwa = battle.huluwaTeam.getTheSpecificHuluwa(huluSortNum);
             int destX = 0;
             int destY = currentHuluwa.getRank() - 1 + 3;
@@ -214,49 +216,49 @@ public class Controller {
         }
         else{
             //battle.huluwaTeam.bubbleSort();
-            battle.huluwaTeam.generateTheSpecificPattern(new ChangshePattern(), battle.battleField,0,3);
+            battle.huluwaTeam.generateChangshePattern(battle.battleField,0,3);
             display();
             isHuluwaOnTheSpace=true;
         }
     }
 
     @FXML private void heyiDemonTeamOnAction(ActionEvent event) {
-        battle.snakeTeam.generateTheSpecificPattern(new HeyiPattern(), battle.battleField,8,4);
+        battle.snakeTeam.generateHeyiPattern(battle.battleField,8,4);
         display();
     }
 
     @FXML private void yanxingDemonTeamOnAction(ActionEvent event) {
-        battle.snakeTeam.generateTheSpecificPattern(new YanxingPattern(), battle.battleField,14,3);
+        battle.snakeTeam.generateYanxingPattern(battle.battleField,14,3);
         display();
     }
 
     @FXML private void chongeDemonTeamOnAction(ActionEvent event) {
-        battle.snakeTeam.generateTheSpecificPattern(new ChongePattern(), battle.battleField,14,3);
+        battle.snakeTeam.generateChongePattern(battle.battleField,14,3);
         display();
     }
 
     @FXML private void changsheDemonTeamOnAction(ActionEvent event) {
-        battle.snakeTeam.generateTheSpecificPattern(new ChangshePattern(), battle.battleField,14,3);
+        battle.snakeTeam.generateChangshePattern(battle.battleField,14,3);
         display();
     }
 
     @FXML private void yulinDemonTeamOnAction(ActionEvent event) {
-        battle.snakeTeam.generateTheSpecificPattern(new YulinPattern(), battle.battleField,11,3);
+        battle.snakeTeam.generateYulinPattern(battle.battleField,11,3);
         display();
     }
 
     @FXML private void fangyuanDemonTeamOnAction(ActionEvent event) {
-        battle.snakeTeam.generateTheSpecificPattern(new FangyuanPattern(), battle.battleField,12,3);
+        battle.snakeTeam.generateFangyuanPattern(battle.battleField,12,3);
         display();
     }
 
     @FXML private void yanyueDemonTeamOnAction(ActionEvent event) {
-        battle.snakeTeam.generateTheSpecificPattern(new YanyuePattern(), battle.battleField,14,2);
+        battle.snakeTeam.generateYanyuePattern(battle.battleField,14,2);
         display();
     }
 
     @FXML private void fengshiDemonTeamOnAction(ActionEvent event) {
-        battle.snakeTeam.generateTheSpecificPattern(new FengshiPattern(), battle.battleField,11,3);
+        battle.snakeTeam.generateFengshiPattern(battle.battleField,11,3);
         display();
     }
 

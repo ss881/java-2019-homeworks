@@ -1,0 +1,107 @@
+@startuml
+package creatures{
+class Creature{
+    # int coordX
+   # int coordY
+    # State state
+    # int health
+    # String name
+    # Camp camp
+      + Creature(int x, int y, String n)
+       + Creature()
+    + void setPos()
+        + int getCoordX()
+        + int getCoordY()
+        + int getHealth()
+        + Camp getCamp()
+        + String getName()
+        + State getState()
+}
+class Huluwa{
+    + Huluwa(int x,int y, String n, int r, HuluwaColor c)
+    - int rank;
+    - HuluwaColor color;
+    + int getRank()
+    + HuluwaColor getColor()
+
+}
+
+class Grandpa{
+    + Grandpa(int x,int y, String n)
+    + void cheer()
+
+}
+
+class Damon{
++ Damon(int x,int y, String n)
+  + void setDead()
+    + void setLive()
+}
+
+class Snake{
++ Snake()
++ void cheer()
+}
+class SnakeTeam{
+- Damon damons[];
+    - Snake snake;
+    - ArrangeMent arrangement;
+    + SnakeTeam(int num)
+        + SnakeTeam()
+    + void yanXing(int x, int y)
+        + void hengE(int x, int y)
+        + void yuLing(int x, int y)
+        + void fangYuan(int x, int y)
+        + void yanYue(int x, int y)
+        + void fengShi(int x, int y)
+        + void arrange(Ground ground)
+         + Creature[] getTeamMembers()
+}
+
+class HuluwaTeam{
+  - Huluwa[]  brothers;
+    - Grandpa grandpa;
+       + HuluwaTeam()
+        - void swap(int i, int j)
+        + void Sort(Ground ground)
+        + Creature[] getTeamMembers()
+    }
+    }
+package ground{
+    class Cell{
+      - String name;
+        - State state;
+        + Cell()
+        + void setNameAndState(String n, State s)
+        + String getName()
+    }
+    class Ground{
+        - {static} final int N=13;
+        - Creature huluwa[];
+        - Creature damons[];
+        - Cell [][]grounds;
+        + Ground()
+        + Ground(Creature hulu[],Creature snake[])
+        + void update(Creature []c)
+        - void update()
+        + void print()
+    }
+}
+class Main{
++ {static} void main(String []args)
+}
+Huluwa --|> Creature
+Grandpa--|>Creature
+Snake --|> Creature
+Damon --|> Creature
+
+Snake <- SnakeTeam
+Damon <- SnakeTeam
+
+Huluwa<- HuluwaTeam
+Grandpa <- HuluwaTeam
+
+HuluwaTeam<-Ground
+SnakeTeam<-Ground
+Cell<-Ground
+@enduml
