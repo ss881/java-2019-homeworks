@@ -1,10 +1,4 @@
-enum Color{
-    赤, 橙, 黄, 绿, 青, 蓝, 紫
-}
-enum Rank{
-    老大, 老二, 老三, 老四, 老五, 老六, 老七
-}
-
+import SWT.*;
 /**
  * 葫芦娃类
  */
@@ -15,11 +9,16 @@ public class Calabash {
     private int position;
 
     public Calabash(){}
-    public Calabash(int id){
-        this.id = id;
-        this.color = Color.values()[id];
-        this.rank = Rank.values()[id];
-        this.position = -1; //初始时顺序不知
+    /**
+     * 不要使用id进行初始化，葫芦娃出生时应该给予颜色和排行
+     * @param color
+     * @param rank
+     * @param image
+     */
+    public Calabash(Color color, Rank rank){
+        this.color = color;
+        this.rank = rank;
+        this.id = rank.ordinal();
     }
     public int getId(){
         return this.id;

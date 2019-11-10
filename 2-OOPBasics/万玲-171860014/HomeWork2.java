@@ -1,9 +1,9 @@
 
 class Huluwa
 {
-    int num;//兄弟排行
-    String ChineseNum;//汉字排行，例如老大
-    int pos;//位置编号
+    int num;
+    String ChineseNum;
+    int pos;
     String color;
     Huluwa(int n, int p)
     {
@@ -11,13 +11,13 @@ class Huluwa
         pos=p;
         switch(n)
         {
-            case 1:ChineseNum="老大";color="红色";break;
-            case 2:ChineseNum="老二";color="橙色";break;
-            case 3:ChineseNum="老三";color="黄色";break;
-            case 4:ChineseNum="老四";color="绿色";break;
-            case 5:ChineseNum="老五";color="青色";break;
-            case 6:ChineseNum="老六";color="蓝色";break;
-            case 7:ChineseNum="老七";color="紫色";break;
+            case 1:ChineseNum="鑰佸ぇ";color="绾㈣壊";break;
+            case 2:ChineseNum="鑰佷簩";color="姗欒壊";break;
+            case 3:ChineseNum="鑰佷笁";color="榛勮壊";break;
+            case 4:ChineseNum="鑰佸洓";color="缁胯壊";break;
+            case 5:ChineseNum="鑰佷簲";color="闈掕壊";break;
+            case 6:ChineseNum="鑰佸叚";color="钃濊壊";break;
+            case 7:ChineseNum="鑰佷竷";color="绱壊";break;
             default:break;
         }
     }
@@ -52,44 +52,43 @@ public class HomeWork2
         Huluwa h5=new Huluwa(5,1);bro[1]=h5;
         Huluwa h6=new Huluwa(6,5);bro[5]=h6;
         Huluwa h7=new Huluwa(7,3);bro[3]=h7;
-        System.out.println("初始化乱序为：");
+        System.out.println("鍒濆鍖栦贡搴忎负");
         for(int i=0;i<7;i++)
         {
             bro[i].sayNum();
         }
         System.out.println(" ");
-        //冒泡排序
-        System.out.println("1、冒泡排序过程：");
+        //鍐掓场鎺掑簭
+        System.out.println("1銆佸啋娉℃帓搴忚繃绋嬶細");
         for(int i=0;i<6;i++)
         {
             for(int j=0;j<7-i-1;j++)
             {
                 if(bro[j].num>bro[j+1].num)
                 {
-                    //交换j和j+1的位置
-                    
+                   
 
                     bro[j].sayNum();System.out.println(":"+j+"->"+(j+1));
                     bro[j+1].sayNum();System.out.println(":"+(j+1)+"->"+j);
                     bro[j].changePos(j+1);
                     bro[j+1].changePos(j);
-                    Huluwa tmp=new Huluwa(0);
+                    Huluwa tmp=new Huluwa(0,0);
                     tmp=bro[j];
                     bro[j]=bro[j+1];
                     bro[j+1]=tmp;
                 }
             }
         }
-        System.out.println("冒泡排序后依次报数：");
+        System.out.println("鍐掓场鎺掑簭鍚庝緷娆℃姤鏁帮細");
         for(int i=0;i<7;i++)
         {
             bro[i].sayNum();
             
         }
         System.out.println(" ");
-        //重新打乱
+        //閲嶆柊鎵撲贡
         bro[6]=h1;bro[4]=h2;bro[0]=h3;bro[2]=h4;bro[1]=h5;bro[5]=h6;bro[3]=h7;
-        System.out.println("重新打乱顺序为：");
+        System.out.println("閲嶆柊鎵撲贡椤哄簭涓猴細");
         for(int i=0;i<7;i++)
         {
             bro[i].sayNum();
@@ -97,10 +96,10 @@ public class HomeWork2
         }
         System.out.println(" ");
         //System.out.println("-------------------");
-        //二分排序
-        System.out.println("2、二分排序过程：");
+        //浜屽垎鎺掑簭
+        System.out.println("2銆佷簩鍒嗘帓搴忚繃绋嬶細");
         binarySort(bro, 7);
-        System.out.println("二分排序结果为：");
+        System.out.println("浜屽垎鎺掑簭缁撴灉涓猴細");
         for(int i=0;i<7;i++)
         {
             bro[i].sayColor();
@@ -110,7 +109,7 @@ public class HomeWork2
     public static void binarySort(Huluwa []a,int len)
     {
         int start=0,mid=0,end=0;
-        Huluwa tmp=new Huluwa(0);
+        Huluwa tmp=new Huluwa(0,0);
         for(int i=1;i<len;i++)
         {
             start=0;

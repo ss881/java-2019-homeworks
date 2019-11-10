@@ -3,101 +3,89 @@ import java.util.*;
 public class homework3 {
     public static void main(String[] args){
         String[][] boyName={{"老五","青","5"},{"老三","黄色","3"},{"老大","红色","1"},{"老二","橙色","2"},{"老七","紫色","7"},{"老六","蓝色","6"},{"老四","绿色","4"}};
-        String[] enemyName = {"蝎子精","炮灰1号","炮灰2号","炮灰3号","炮灰4号","炮灰5号","炮灰6号"};
+        String[] enemyName = {"蝎子精","炮灰1号","炮灰2号","炮灰3号","炮灰4号","炮灰5号","炮灰6号","炮灰7号"};
 
+        God god = new God();
         System.out.println("生成世界");
         World world = new World();
         System.out.println("生成生物体");
-        Boy[] boy = world.createBoy(boyName);//创建七个葫芦娃
-        Enemy[] enemy = world.createEnemy(enemyName);//创建蝎子精等七个敌人
-        Creature grandpa = new Creature("爷爷");
-        Enemy snake = new Enemy("蛇精");
+        Boy[] boy = god.createBoy(boyName);//创建七个葫芦娃
+        Enemy[] enemy = god.createEnemy(enemyName);//创建蝎子精等七个敌人
+        Creature grandpa = god.createCreature("爷爷");
+        Creature snake = god.createCreature("蛇精");
 
         System.out.println("葫芦娃站队（长蛇阵型）");
-        world.snake(boy,0, 1);//葫芦娃站队：乱序的长蛇阵
+        god.formation.snake(world, boy,1, 1);//葫芦娃站队：乱序的长蛇阵
         System.out.println("葫芦娃排序");
-        world.sortY(0,1, 7);//乱序葫芦娃排序
-        System.out.println("敌人站队（鹤翼阵型）");
-        world.wing(enemy, 7, 9);//敌人以鹤翼阵型站队
+        god.sortY(world, 1,1, 7);//乱序葫芦娃排序
         System.out.println("爷爷移动");
-        world.move(grandpa, 0, 0);//放置爷爷
+        god.move(world, grandpa, 0, 0);//放置爷爷
+
+        System.out.println("敌人站队（鹤翼阵型）");
+        god.formation.wing(world, enemy, 7, 14);//敌人以鹤翼阵型站队
         System.out.println("蛇精移动");
-        world.move(snake, 8, 9);//放置蛇精
+        god.move(world, snake, 0, 14);//放置蛇精
         world.show();//打印对峙局面
+
         System.out.println("敌人变换阵型为雁行");
-        world.goose(enemy, 0, 14);//敌人变化阵型为雁行
+        god.formation.snake(world, enemy,0,19);
+        god.formation.goose(world, enemy, 2, 14);//敌人变化阵型为雁行
         System.out.println("蛇精移动");
-        world.move(snake, 7, 14);//蛇精移动
+        god.move(world, snake, 1, 14);//蛇精移动
+        world.show();//打印对峙局面
+
+        System.out.println("敌人变换阵型为衡轭");
+        god.formation.snake(world, enemy,0,19);
+        god.formation.yoke(world, enemy, 3, 14);//敌人变化阵型为衡轭
+        System.out.println("蛇精移动");
+        god.move(world, snake, 2, 14);//蛇精移动
+        world.show();//打印对峙局面
+
+        System.out.println("敌人变换阵型为方圆");
+        god.formation.snake(world,enemy,0,19);
+        god.formation.square(world,enemy, 3, 10);//敌人变化阵型为方圆
+        System.out.println("蛇精移动");
+        god.move(world, snake, 2, 10);//蛇精移动
+        world.show();//打印对峙局面
+
+        System.out.println("敌人变换阵型为箭矢");
+        god.formation.snake(world, enemy,0,19);
+        god.formation.arrow(world, enemy, 3, 14);//敌人变化阵型为箭矢
+        System.out.println("蛇精移动");
+        god.move(world, snake, 2, 14);//蛇精移动
         world.show();//打印对峙局面
     }
 
 }
 
-class World{//坐标类，定义代表地图的二维坐标和对数组的操作
-    Creature[][] map;
-    static final int N = 15;
-    World(){
-        map = new Creature[N][N];
+class God{
+    Formation formation = new Formation();
+    Creature createCreature(String name){
+        return new Creature(name);
     }
-    int getSize(){return N;}
-    //阵型函数，以xy作为起始坐标
-    void snake(Creature[] queue, int x, int y){//xy是纵向长蛇的最上面一点的坐标
-        int a = x, b = y;
-        int len = queue.length;
-        if((a+len-1) >= N || a >= N || b >= N || a < 0 || b < 0){
-            System.out.println("坐标越界，无法创建长蛇阵型");
-            return;
+    Enemy[] createEnemy(String[] name){//创建敌人
+        int len = name.length;
+        Enemy[] enemy = new Enemy[len];
+        for(int i = 0; i < len; i++){//循环进行实例初始化
+            enemy[i] = new Enemy(name[i]);
         }
-        for(int i = 0; i < len; i++){
-            boolean flag = queue[i].walk(this, a, b);
-            if( flag == false)
-                System.out.println("长蛇阵型排列失败,位置："+a+','+b);
-            a++;
-        }
+        return enemy;
     }
-    void wing(Creature[] queue, int x, int y){//xy是鹤翼中心点的坐标
-        int len = queue.length;
-        int half1 = (len - 1) / 2;
-        int half2 = len - 1 - half1;
-        int i = 0;
-        int a = x, b = y;
-        if((a-half1) < 0 || (a-half2) < 0 || (b-half1) < 0 || (b+half2) >= N || a >= N || b >= N || a < 0 || b < 0){
-            System.out.println("坐标越界，无法创建鹤翼阵型");
-            return;
+    Boy[] createBoy(String[][] info){//创建葫芦娃
+        int len = info.length;
+        Boy[] boy = new Boy[len];
+        for(int i = 0; i < len; i++){//循环进行实例初始化
+            boy[i] = new Boy(info[i][0], info[i][1],Integer.parseInt(info[i][2]));
         }
-        for(; i < half1 + 1; i++){
-            boolean flag = queue[i].walk(this, a, b);
-            if( flag == false)
-                System.out.println("鹤翼阵型排列失败,位置："+a+','+b);
-            a--; b--;
-        }
-        a = x - 1;
-        b = y + 1;
-        for(; i < len; i++){
-            boolean flag = queue[i].walk(this, a, b);
-            if( flag == false)
-                System.out.println("鹤翼阵行排列失败,位置："+a+','+b);
-            a--; b++;
-        }
+        return boy;
     }
-    void goose(Creature[] queue, int x, int y){
-        //(x,y)是雁行阵型的右上坐标
-        int len = queue.length;
-        int a = x, b = y;
-        if( a < 0 || b >= N || (a+len-1) >= N || (y-len+1) < 0){
-            System.out.println("坐标越界，无法创建雁行阵型");
-            return;
-        }
-        for(int i = 0; i < len; i++){
-            boolean flag = queue[i].walk(this, a, b);
-            if( flag == false)
-                System.out.println("雁行阵行排列失败,位置："+a+','+b);
-            a++; b--;
-        }
+    void move(World world, Creature creature, int x, int y){
+        creature.walk(world, x, y);
     }
-    //两个排序函数
-    void sortY(int x, int y, int len){//对纵向排列的葫芦娃进行排序
-       if(len <= 0){//合法性检查
+    void sortY(World world, int x, int y, int len){//对纵向排列的葫芦娃进行排序
+        Creature[][] map = world.map;
+        int N = world.getSize();
+        if(len <= 0){//合法性检查
             System.out.println("排序元素个数非法, 排序失败");
             return;
         }
@@ -124,9 +112,9 @@ class World{//坐标类，定义代表地图的二维坐标和对数组的操作
                             }
                         }
                     }
-                    boolean flag = a.walk(this, tmpX, tmpY);
-                    flag = flag & b.walk(this, j, y);
-                    flag = flag & a.walk(this, j+1, y);
+                    boolean flag = a.walk(world, tmpX, tmpY);
+                    flag = flag & b.walk(world, j, y);
+                    flag = flag & a.walk(world, j+1, y);
                     if(flag == false){//葫芦娃移动失败
                         System.out.println("排序失败");
                         return;
@@ -135,7 +123,9 @@ class World{//坐标类，定义代表地图的二维坐标和对数组的操作
             }
         }
     }
-    void sortX(int x, int y, int len){//对横向排列的葫芦娃进行排序
+    void sortX(World world, int x, int y, int len){//对横向排列的葫芦娃进行排序
+        Creature[][] map = world.map;
+        int N = world.getSize();
         if(len <= 0){//合法性检查
             System.out.println("排序元素个数非法, 排序失败");
             return;
@@ -162,9 +152,9 @@ class World{//坐标类，定义代表地图的二维坐标和对数组的操作
                             }
                         }
                     }
-                    boolean flag = a.walk(this, tmpX, tmpY);
-                    flag = flag & b.walk(this, x, j);
-                    flag = flag & a.walk(this, x, j+1);
+                    boolean flag = a.walk(world, tmpX, tmpY);
+                    flag = flag & b.walk(world, x, j);
+                    flag = flag & a.walk(world, x, j+1);
                     if(flag == false){
                         System.out.println("排序失败");
                         return;
@@ -173,6 +163,15 @@ class World{//坐标类，定义代表地图的二维坐标和对数组的操作
             }
         }
     }
+}
+
+class World{//坐标类，定义代表地图的二维坐标和对数组的操作
+    Creature[][] map;
+    static final int N = 20;
+    World(){
+        map = new Creature[N][N];
+    }
+    int getSize(){return N;}
     //打印对峙局面
     void show(){
         //打印对峙局面
@@ -190,24 +189,153 @@ class World{//坐标类，定义代表地图的二维坐标和对数组的操作
             System.out.println("");
         }
     }
-    Enemy[] createEnemy(String[] name){//创建敌人
-        int len = name.length;
-        Enemy[] enemy = new Enemy[len];
-        for(int i = 0; i < len; i++){//循环进行实例初始化
-            enemy[i] = new Enemy(name[i]);
+}
+class Formation{
+    //阵型函数，以xy作为起始坐标
+    void snake(World world, Creature[] queue, int x, int y){//xy是纵向长蛇的最上面一点的坐标
+        int a = x, b = y;
+        int len = queue.length;
+        int N = world.getSize();
+        if((a+len-1) >= N || a >= N || b >= N || a < 0 || b < 0){
+            System.out.println("坐标越界，无法创建长蛇阵型");
+            return;
         }
-        return enemy;
-    }
-    Boy[] createBoy(String[][] info){//创建葫芦娃
-        int len = info.length;
-        Boy[] boy = new Boy[len];
-        for(int i = 0; i < len; i++){//循环进行实例初始化
-            boy[i] = new Boy(info[i][0], info[i][1],Integer.parseInt(info[i][2]));
+        for(int i = 0; i < len; i++){
+            boolean flag = queue[i].walk(world, a, b);
+            if( flag == false)
+                System.out.println("长蛇阵型排列失败,位置："+a+','+b);
+            a++;
         }
-        return boy;
     }
-    void move(Creature creature, int x, int y){
-        creature.walk(this, x, y);
+    void wing(World world, Creature[] queue, int x, int y){//xy是鹤翼中心点的坐标
+        int len = queue.length;
+        int half1 = (len - 1) / 2;
+        int half2 = len - 1 - half1;
+        int N = world.getSize();
+        int i = 0;
+        int a = x, b = y;
+        if((a-half1) < 0 || (a-half2) < 0 || (b-half1) < 0 || (b+half2) >= N || a >= N || b >= N || a < 0 || b < 0){
+            System.out.println("坐标越界，无法创建鹤翼阵型");
+            return;
+        }
+        for(; i < half1 + 1; i++){
+            boolean flag = queue[i].walk(world, a, b);
+            if( flag == false)
+                System.out.println("鹤翼阵型排列失败,位置："+a+','+b);
+            a--; b--;
+        }
+        a = x - 1;
+        b = y + 1;
+        for(; i < len; i++){
+            boolean flag = queue[i].walk(world, a, b);
+            if( flag == false)
+                System.out.println("鹤翼阵行排列失败,位置："+a+','+b);
+            a--; b++;
+        }
+    }
+    void goose(World world, Creature[] queue, int x, int y){
+        //(x,y)是雁行阵型的右上坐标
+        int len = queue.length;
+        int a = x, b = y;
+        int N = world.getSize();
+        if( a < 0 || b >= N || (a+len-1) >= N || (y-len+1) < 0){
+            System.out.println("坐标越界，无法创建雁行阵型");
+            return;
+        }
+        for(int i = 0; i < len; i++){
+            boolean flag = queue[i].walk(world, a, b);
+            if( flag == false)
+                System.out.println("雁行阵行排列失败,位置："+a+','+b);
+            a++; b--;
+        }
+    }
+    void yoke(World world, Creature[] queue, int x, int y){
+        //衡轭 (x,y)是最上方的坐标
+        int len = queue.length;
+        int N = world.getSize();
+        if(x<0||y<0||x>=N||y>=N||len+x-1>=N){
+            System.out.println("坐标越界，无法创建衡轭阵型");
+            return;
+        }
+        int a = x, b = y;
+        for(int i = 0; i < len; i++){
+            boolean flag = queue[i].walk(world, a, b);
+            if( flag == false)
+                System.out.println("衡轭阵行排列失败,位置："+a+','+b);
+            if(i%2==0){
+                b--;
+            }
+            else
+                b++;
+            a++;
+        }
+
+    }
+    void scale(World world, Creature[] queue, int x, int y){//鱼鳞
+
+    }
+    void square(World world, Creature[] queue, int x, int y){
+        int len = queue.length;
+        if(len%4!=0){
+            System.out.println("生物个数不允许创建方圆阵型");
+            return;
+        }
+        int N = world.getSize();
+        if(x<0||y<0||x>=N||y>=N||x+len/2>=N||y+len/4>=N||y-len/4<0){
+            System.out.println("坐标越界，无法创建方圆阵型");
+            return;
+        }
+        int turn = len / 4;
+        int cnt = 0;
+        int m = 0;
+        int a = x, b = y;
+        for(int i = 0; i < len; i++){
+            boolean flag = queue[i].walk(world, a, b);
+            if( flag == false)
+                System.out.println("方圆阵行排列失败,位置："+a+','+b);
+
+            if(cnt == turn){
+                cnt = 0; m++;
+            }
+            if(m==0){
+                a++;b--;
+            }
+            else if(m==1){
+                a++;b++;
+            }
+            else if(m==2){
+                a--;b++;
+            }
+            else{
+                a--;b--;
+            }
+            cnt++;
+        }
+    }
+    void moon(World world, Creature[] queue, int x, int y){
+
+    }
+    void arrow(World world, Creature[] queue, int x, int y){
+        int len = queue.length;
+        if(len <= 7){
+            System.out.println("生物数量不足，无法创建箭矢阵型");
+            return;
+        }
+        int N = world.getSize();
+        if(x<0||y<0||x>=N||y>=N||x+2>=N||y+2>=N||y-2<0||x+len-5>=N){
+            System.out.println("坐标越界，无法创建箭矢阵型");
+            return;
+        }
+        queue[0].walk(world,x,y);
+        queue[1].walk(world,x+1,y+1);
+        queue[2].walk(world,x+2,y+2);
+        queue[3].walk(world,x+1,y-1);
+        queue[4].walk(world,x+2,y-2);
+        int a = x+1, b = y;
+        for(int i = 5; i < len; i++){
+            queue[i].walk(world,a,b);
+            a++;
+        }
     }
 }
 class Creature{
@@ -265,7 +393,6 @@ class Boy extends Creature{
     }
     int tellRank(){ return rank;}
     String tellColor(){ return color;}
-    String tellName(){return name;}
 }
 class Enemy extends Creature{
     Enemy(String name){
