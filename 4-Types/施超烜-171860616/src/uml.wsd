@@ -1,0 +1,172 @@
+@startuml
+title class.png
+package location{
+    class Location{
+        - int x
+        - int y 
+        # Location()
+        # Location(int x,int y)
+        # void setX(int x)
+        # void setY(int y)
+        # int getX()
+        # int getY()
+    }
+}
+package creature{
+    enum Race{
+        Nothing
+        CalabashBrother
+        Grandfather
+        ScorpionEssence
+        SnakeEssence
+        Wannabe
+        Space
+    }
+    class Creature{
+        - Race race
+        - Location location
+        + String symbol
+        # Creature()
+        # Creature(Race r)
+        # Race getRace()
+        # Location getLocation()
+        # void setLocation(int x,int y)
+        # String getSymbol()
+        # void rushto(int x,int y)
+        # void followOrder(Creature from,int x,int y)
+    }
+    Creature *-up- Location:聚合
+    Creature -right-> Race:关联
+    class CalabashBrother{
+        - int rank 
+        # CalabashBrother()
+        # CalabashBrother(int rank)
+        # void setRank(int rank)
+        # void followOrder(Creature from,int x,int y)
+    }
+    CalabashBrother--|>Creature:继承
+    class Grandfather{
+        # Grandfather()
+        # void makeOrder(Creature to,int x,int y)
+        # void followOrder(Creature from,int x,int y)
+        # void fight()
+    }
+    Grandfather--|>Creature:继承
+    class Wannabe{
+        # Wannabe()
+        # void followOrder(Creature from,int x,int y)
+    }
+    Wannabe--|>Creature:继承
+    class ScorpionEssence{
+        # ScorpionEssence()
+        # void followOrder(Creature from,int x,int y)
+    }
+    ScorpionEssence--|>Creature:继承
+    class SnakeEssence{
+        # SnakeEssence()
+        # void makeOrder(Creature to,int x,int y)
+        # void followOrder(Creature from,int x,int y)
+        # void fight(int maxnum)
+    }
+    SnakeEssence--|>Creature:继承
+    class Space{
+        # Space()
+        # void followOrder(Creature from,int x,int y)
+    }
+    Space--|>Creature:继承
+}
+package formation{
+    class Formation{
+        - int length 
+        - int width 
+        + Creature[][] all 
+        + CreatureGenerator generator
+        # Formation(int length,int width)
+        # Creature[][] getAllCreature()
+        # int getLength()
+        # int getWidth()
+    }
+    Formation --* Creature:聚合
+    class CraneWing{
+        # CraneWing()
+    }
+    CraneWing--|>Formation:继承
+    class FangYan{
+        # FangYan()
+    }
+    FangYan--|>Formation:继承
+    class FishScale{
+        # FishScale()
+    }
+    FishScale--|>Formation:继承
+    class SharpArrow{
+        # SharpArrow()
+    }
+    SharpArrow--|>Formation:继承
+    class WildGeese{
+        # WildGeese()
+    }
+    WildGeese--|>Formation:继承
+    class YanYue{
+        # YanYue()
+    }
+    YanYue--|>Formation:继承
+    class Yokes{
+        # Yokes()
+    }
+    Yokes--|>Formation:继承
+}
+package generator{
+    interface Generator<T>{
+        # T generate(String classname)
+    }
+    class CreatureGenerator{
+        - Class[] creatureType
+        # CreatureGenerator()
+        # Creature generate(String classname)
+    }
+    CreatureGenerator .up.|> Generator:实现
+    CreatureGenerator..>CalabashBrother:实例化
+    CreatureGenerator..>Grandfather:实例化
+    CreatureGenerator..>ScorpionEssence:实例化
+    CreatureGenerator..>SnakeEssence:实例化
+    CreatureGenerator..>Space:实例化
+    CreatureGenerator..>Wannabe:实例化
+    class FormationGenerator{
+        - Class[] formationType
+        # FormationGenerator()
+        # Formation generate(String classname)
+    }
+    FormationGenerator .up.|> Generator:实现
+    FormationGenerator..>CraneWing:实例化
+    FormationGenerator..>FangYan:实例化
+    FormationGenerator..>FishScale:实例化
+    FormationGenerator..>SharpArrow:实例化
+    FormationGenerator..>WildGeese:实例化
+    FormationGenerator..>YanYue:实例化
+    FormationGenerator..>Yokes:实例化
+}
+package map{
+    class Map{
+        - int size 
+        - Creature[][] map
+        - CreatureGenerator cGenerator
+        - FormationGenerator fGenerator
+        - SnakeEssence snake
+        - Grandfather grandfather
+        - Formation currentFormation
+        # Map(int size)
+        - int[] randomArrayGenerator(int n)
+        - void determinFormation()
+        - void arrangeEssence()
+        - void arrangeGrandfatherAndCalabash()
+        - void clean()
+        - void print()
+        # void begin()
+    }
+    Map --* Creature:聚合
+    Map --* CreatureGenerator:聚合
+    Map --* Formation:聚合
+    Map --* FormationGenerator:聚合
+}
+@enduml
