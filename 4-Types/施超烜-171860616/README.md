@@ -38,3 +38,5 @@ FormationGenerator、一个GrandFather类的对象、一个SnakeEssence类的对
 &emsp; 相对于作业3的代码来说进行了一些解耦工作，尽量实现了单一职责原则。<br><br>
 ## 里氏替换原则
 &emsp; 在CreatureGenertor类和FormationGenerator类的设计中应用了里氏替换原则，使用子类替换父类。<br><br>
+## uml图片
+![uml类图](https://github.com/tmsxk/java-2019-homeworks/blob/master/4-Types/%E6%96%BD%E8%B6%85%E7%83%9C-171860616/img/uml.png)
