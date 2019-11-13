@@ -5,27 +5,20 @@ class DollBrother
     private int rank;
     private int color;
 
-    DollBrother(int rank)
+    DollBrother(int rank,int color)
     {
         this.rank=rank;
-        this.color=rank;
+        this.color=color;
     }
 
 
     public int getRank(){return rank;}
 
     public int getColor(){return color;}
-}
 
-public class GourdDoll
-{
-    public static DollBrother brothers[];
-
-    GourdDoll(){};
-
-    private String sayRank(DollBrother brother)
+    public String sayRank()
     {
-        int rank=brother.getRank();
+        int rank=this.getRank();
         switch(rank)
         {
             case 1: return "老大";
@@ -40,9 +33,9 @@ public class GourdDoll
         return null;
     }
 
-    private String sayColor(DollBrother brother)
+    public String sayColor()
     {
-        int color=brother.getColor();
+        int color=this.getColor();
         switch(color)
         {
             case 1: return "红色";
@@ -56,6 +49,13 @@ public class GourdDoll
 
         return null;
     }
+}
+
+public class GourdDoll
+{
+    public static DollBrother brothers[];
+
+    GourdDoll(){};
 
 
     public void bubblesort()
@@ -66,7 +66,8 @@ public class GourdDoll
         for(int i=0;i<7;i++)
         {
             int rank=sc.nextInt();
-            brothers[i]=new DollBrother(rank);
+            int color=rank;
+            brothers[i]=new DollBrother(rank,color);
         }
 
         for(int i=0;i<6;i++)
@@ -77,9 +78,9 @@ public class GourdDoll
                 int nextrank=brothers[j+1].getRank();
                 if(currank>nextrank)
                 {
-                    System.out.print(sayRank(brothers[j])+":"+j+"->"+(j+1)+" ");
-                    System.out.println(sayRank(brothers[j+1])+":"+(j+1)+"->"+j);
-                    DollBrother temp=new DollBrother(currank);
+                    System.out.print(brothers[j].sayRank()+":"+j+"->"+(j+1)+" ");
+                    System.out.println(brothers[j+1].sayRank()+":"+(j+1)+"->"+j);
+                    DollBrother temp=brothers[j];
                     brothers[j]=brothers[j+1];
                     brothers[j+1]=temp;
                 }
@@ -89,7 +90,7 @@ public class GourdDoll
         System.out.println("排序结束开始报数：");
         for(int i=0;i<7;i++)
         {
-            System.out.print(sayRank(brothers[i])+" ");
+            System.out.print(brothers[i].sayRank()+" ");
         }
         System.out.println('\n');
     }
@@ -102,7 +103,8 @@ public class GourdDoll
         for(int i=0;i<7;i++)
         {
             int rank=sc.nextInt();
-            brothers[i]=new DollBrother(rank);
+            int color=rank;
+            brothers[i]=new DollBrother(rank,color);
         }
 
         for(int i=0;i<7;i++)
@@ -120,11 +122,11 @@ public class GourdDoll
             for(int j=i-1;j>end;j--)
             {
                 //System.out.print(sayRank(brothers[j])+":"+j+"->"+(j+1)+" ");
-                System.out.println(sayRank(brothers[j])+":"+j+"->"+(j+1));
+                System.out.println(brothers[j].sayRank()+":"+j+"->"+(j+1));
                 brothers[j+1]=brothers[j];
             }
 
-            if(end+1!=i) System.out.println(sayRank(temp)+":"+i+"->"+(end+1));
+            if(end+1!=i) System.out.println(temp.sayRank()+":"+i+"->"+(end+1));
             brothers[end + 1] = temp;
 
         }
@@ -133,7 +135,7 @@ public class GourdDoll
         System.out.println("排序结束开始报数：");
         for(int i=0;i<7;i++)
         {
-            System.out.print(sayColor(brothers[i])+" ");
+            System.out.print(brothers[i].sayColor()+" ");
         }
         System.out.println('\n');
     }

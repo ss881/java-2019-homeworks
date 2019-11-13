@@ -108,7 +108,7 @@ class GroupHulu{
         }
     }
 }
-class God{
+class Console{
     public static void main(String args[]){
         GroupHulu bros=new GroupHulu();
         Scanner sc=new Scanner(System.in);

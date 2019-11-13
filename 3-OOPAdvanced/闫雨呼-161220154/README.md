@@ -22,11 +22,11 @@
 
 ### 抽象与封装
 
-本次任务中设计到的对象有**葫芦娃**、**爷爷**、**蝎子精**，**小喽啰**、**地图**、**阵型**以及**上帝**。接下来从不同的角度阐释任务中设计到的封装概念：
+本次任务中设计到的对象有**葫芦娃**、**生命体**、**爷爷**、**蝎子精**、**小喽啰**、**地图**、**地砖**、**阵型**、**位置**以及**上帝**。接下来从不同的角度阐释任务中设计到的封装概念：
 
 1. 在代表**地图**类的`GameMap`中，封装了二维数组`battleField`，其声明如下所示：
 
-   `static Object[][] battleField=new Object[N][N];`
+   `static Tile[][] battleField=new Tile[N][N];`
 
    **上帝（God类）**不能直接操纵该二维数组，只能调用`GameMap`类提供的函数，包括：
 
@@ -53,12 +53,16 @@ class Creature{
     int x;
     int y;
     boolean badGuy;
-    Creature(String name,boolean badGuy){
-       ...
-    }
+    Creature(String name,boolean badGuy){...}
+  	//生命体报数
     void solute(){
         System.out.print(name);
     }
+  	//生命体判断是否可以移动到某个位置
+  	boolean canMove(Tile[][] battleField,int a,int b){
+        ...
+    }
+  	//生命体移动到某个位置
     void runTo(Object[][] battleField,int x,int y){
         ...
     }
@@ -69,9 +73,9 @@ class Creature{
 
 
 
-### 强合成
+### 聚合
 
-1. `GameMap`类中合成了`Grandpa`类实例化的对象`grandpa`以及`ScorpionSperm`类实例化的对象`scorpionSperm`。如果`GameMap`对象消亡的话，那么`grandpa`以及`scorpionSperm`也将消亡。
+1. `GameMap`类中合成了`Grandpa`类实例化的对象`grandpa`以及`ScorpionSperm`类实例化的对象`scorpionSperm`。
 
    ~~~java
    class GameMap {
@@ -94,7 +98,7 @@ class Creature{
    }
    ~~~
 
-经过思考之后发现，上述两者之间不应该是强合成关系，因为如果**爷爷**不存在之后，并不影响**葫芦娃**们继续存在，所以应该使用**聚合**关系来组织两者之间的关系，对比**蝎子精**与**小喽啰**们之间同理，还有待后续改进。
+考虑到：如果`GameMap`对象消亡之后，其中的成员对象`grandpa`本质上不应该消亡，所以此处不应该采用**强合成**方法，应该使用**聚合**方式：所有的生命体都由上帝`God`创建，`GameMap`中的成员对象只是对象的引用，这样`GameMap`对象消亡之后，其中的生命体仍能继续存在。
 
 
 

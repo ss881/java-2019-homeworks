@@ -1,0 +1,82 @@
+@startuml
+class World{
+    {field} enum Topography
+    {field} enum Direction
+    {field} {static} final int WorldSize
+    {field} {static} Topography[][] map
+  
+    {method} {static} setCreaturePosition(Creature,int,int)
+    {method} {static} changeCreaturePosition(Creature,int,int)
+    {method} {static} showMap()
+}
+class Creature
+class Monster{
+    {field} enum MonsterType
+    {field} MonsterType monsterIdentity
+    {method} showOne()
+}
+class SnakeMonster{
+    {method} choosePlaceToSit()
+    {method} showOne()
+}
+class ScorpionMonster{
+    {field} {static} final int numOfSmallMonster
+    {field} -Monster[] monsterList
+    
+    {method} leadMonsters()
+    {method} setLineFormation() 
+    {method} setWingsFormation() 
+    {method} setMovePreventFormation()
+    {method} setWildGooseFormation()
+    {method} showOne() 
+}
+class Grandfather{
+    {field} -CalabashBrother[] calabashBrotherList
+    
+    {method} createCalabashBrothers()
+    {method} choosePlaceToSit()
+    {method} setLineFormation()
+    {method} showOne()
+}
+class CalabashBrother{
+    {field} {static} String[] statusName
+    {field} {static} String[] ownColor
+    {field} int idInCalabash
+
+    {method} showOne()
+}
+class FightFormation{
+   {method} {static} +main(String[])
+   {method} {static} randomizePlace(int[])
+   {method} {static} setLineFormation(...)
+   {method} {static} setWingsFormation(...)
+   {method} {static} setWildGooseFormation(...)
+   {method} {static} setMovePreventFormation(...)
+
+}
+note left: entry
+
+Creature <|-- Monster
+Creature <|-- Grandfather
+Creature <|-- CalabashBrother
+Monster <|-- SnakeMonster
+Monster <|-- ScorpionMonster
+
+Creature : int[] position
+Creature : boolean inMap
+Creature : setPosition(int,int)
+Creature : walkTo(int,int)
+Creature : swap(int,int,World.Direction)
+Creature : showOne()
+
+note "walkTo(),swap(),setPosition()\nwill send message to World;\nshowMap() wiil call Creature's showOne()" as N1
+note "Grandfather and ScorpionMonster's formation setting will use methods in FightFormation" as N2
+note "set formation will call creatures's walkTo()" as N3
+Creature .. N1
+N1 .. World
+FightFormation .. N2
+N2 .. Grandfather
+N2 .. ScorpionMonster
+FightFormation .. N3
+N3 .. Creature
+@enduml

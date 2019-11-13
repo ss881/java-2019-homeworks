@@ -1,0 +1,15 @@
+@startuml
+
+class GrandFather{
+__ private __
++ Picture goodPicture;
+__ public __
+- GrandFather(int px, int py, Image image, Picture goodPicture);
+
+- Picture getGoodPicture();
+}
+
+GrandFather -left-|> Character : extend
+GrandFather "1"-->"1" Picture : has
+
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+
+class OOPAdvance
+class Control
+class Application
+
+class OOPAdvance{
+__ private __
++ static final int MAPHEIGHT = 640;
++ static final int MAPWIDTH = 640;
++ Control control;
+__ public __
+- static void main(String[] args);
+- void start(Stage primaryStage);
+- void stop();
+}
+
+OOPAdvance *-- Control: Composition
+OOPAdvance -left-|> Application : extend
+
+@enduml
