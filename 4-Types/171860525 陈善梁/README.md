@@ -3,7 +3,7 @@
 ### 一. 对象
 >1. Creature生物类，有表示位置的Position域，实现Swapable和Moveable接口，符合SRP原则，功能通过接口分散。
 >3. Evial类，妖精类，并没有和Creature有什么区别，但是为了更好的体现真实的场景，还是创建了这个类。
->2. Huluwa葫芦娃类，继承自生物类，**实现了Comparable<Huluwa>**，能够和其他葫芦娃进行rank的比较。有名字、颜色、等级rank和在葫芦娃数组中的下标index。
+>2. Huluwa葫芦娃类，继承自生物类，实现了Comparable<Huluwa>，能够和其他葫芦娃进行rank的比较。有名字、颜色、等级rank和在葫芦娃数组中的下标index。
 >为了更好地进行模拟，葫芦娃有lookBack方法，观察自己的后一个葫芦娃是谁。
 >，并且能够用compareTo方法比较两者的先后，用swapWithHuluwa进行交换位置，
 >3. GrandPa老爷爷类，继承自Creature类，说明老爷爷能对葫芦娃们进行操纵，有initialize方法，初始化7个葫芦娃，
