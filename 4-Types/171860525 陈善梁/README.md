@@ -1,6 +1,6 @@
 # Java 第四次作业
 ## 设计思路
-一. 对象
+### 一. 对象
 >1. Creature生物类，有表示位置的Position域，实现Swapable和Moveable接口，符合SRP原则，功能通过接口分散。
 >3. Evial类，妖精类，并没有和Creature有什么区别，但是为了更好的体现真实的场景，还是创建了这个类。
 >2. Huluwa葫芦娃类，继承自生物类，**实现了Comparable<Huluwa>**，能够和其他葫芦娃进行rank的比较。有名字、颜色、等级rank和在葫芦娃数组中的下标index。
@@ -24,7 +24,7 @@
 >控制台打印当前战场信息。changeFormRandomly(int n,Scorpion scorpion,ArrayList<Creature>evials)是用于改变邪恶势力的阵型。
 >main()方法是程序入口。
 
-二. 机制
+### 二. 机制
 > 1. 继承。所有的生物都继承自Creature类，而Creature类有一个统一的Position属性表示当前位置，同时是生物还可以移动和相互交换位置，‘
 >因此他们都有moveTo()和swapPosition()方法。
 > 2. 多态。主要体现：(1). 工厂，抽象基类Factory T generate()确定了子类的接口，基类Factory可以引用子类对象，比如
@@ -37,10 +37,10 @@
 >调用creature.getClass获得对于的class对象，再通过getSimpleName获取对象的类名，通过比较类名字符串确定是具体哪种生物，用相应的字符表示。
 > 5. 容器。之前的葫芦娃、妖精对象都是用数组存放的。而数组的一个缺点是空间受限，比如如果需要增加妖精数量，就比较麻烦。我改用ArrayList容器来实现对象的存放。
 >将原先对于数组的操作改为对于容器的操作，代码逻辑没有改变。
-三. 设计理念
+### 三. 设计理念 
 > 1. 降低各个模块之间的耦合度，便于维护拓展。战场类和任务对象类是分开的，通过独立的Formation类负责
 >阵型的排布，反映在队伍成员的position中。战场类通过这些pisition获取所有人的位置信息，因此战场类
 >可以自己选择作图的方式。目前还是用非GUI的方式体现，以后引入GUI的话，也只要修改战场类的代码，
 >而老爷爷、蝎子精都不用改变。
 
-![UML](https://github.com/mqchenliang/java-2019-homeworks/blob/master/3-OOPAdvanced/%E9%99%88%E5%96%84%E6%A2%81-171860525/Uml.png)
+![UML](https://github.com/mqchenliang/java-2019-homeworks/blob/master/4-Types/171860525%20%E9%99%88%E5%96%84%E6%A2%81/hw4.png)
