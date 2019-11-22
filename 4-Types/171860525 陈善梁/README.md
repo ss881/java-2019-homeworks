@@ -27,8 +27,8 @@
 ### 二. 机制
 > 1. 继承。所有的生物都继承自Creature类，而Creature类有一个统一的Position属性表示当前位置，同时是生物还可以移动和相互交换位置，‘
 >因此他们都有moveTo()和swapPosition()方法。
-> 2. 多态。主要体现：(1). 工厂，抽象基类Factory T generate()确定了子类的接口，基类Factory可以引用子类对象，比如
->HuluwaFactory和EvialFactory，创建不同的Creature对象。 (2) Formation阵法。抽象基类Formation的changeForm(T leader, ArrayList<T> followers)
+> 2. 多态。主要体现：(1). 工厂，抽象基类Factory<T> 的T generate()方法确定了子类的接口，基类Factory可以引用子类对象，比如
+>HuluwaFactory和EvialFactory，创建不同的Creature对象。 (2) Formation阵法。抽象基类Formation<T>的changeForm(T leader, ArrayList<T> followers)
 >方法确定了子类可以通过changeForm方法修改阵型。可以使用Formation引用子类对象，比如Crane,实现鹤翼阵型。
 > 3. **泛型**。泛型主要体现在工厂类和阵法类。工厂的抽象基类Factory有一个类型参数T,表示工厂生成的对象类型。对于具体的工厂，比如葫芦娃工厂HuluwaFactory
 >可以继承Factory<Huluwa>，将类型参数设置为Huluwa类型。而对于阵法类，很多东西都可以有阵法，本程序中将Formation的类型参数T设置为Creature，表示是生物的阵法。
