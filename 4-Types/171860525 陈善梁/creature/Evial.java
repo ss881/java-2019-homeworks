@@ -5,4 +5,8 @@ public class Evial extends Creature{
 //    public char getSymbol(){
 //        return 'E';
 //    }
+    @Override
+    public String toString(){
+        return "Evial:"+ super.toString();
+    }
 }

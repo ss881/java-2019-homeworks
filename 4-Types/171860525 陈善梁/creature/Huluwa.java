@@ -1,12 +1,14 @@
 package creature;
 
+import java.util.ArrayList;
+
 public class Huluwa extends Creature implements Comparable<Huluwa> {
     private String name,color;
     private int rank;
     private int index;//when lookBack,need to know where self is (in huluwa[] array)
 
-    Huluwa(){}
-    Huluwa(int rank,String name,String color){
+    public Huluwa(){}
+    public Huluwa(int rank,String name,String color){
         super();
         this.rank=rank;
         this.name=name;
@@ -22,9 +24,9 @@ public class Huluwa extends Creature implements Comparable<Huluwa> {
         return this.rank-o.rank;
     }
 
-    public Huluwa lookBack(Huluwa[]huluwas){
-        if(index<huluwas.length-1){
-            return huluwas[index+1];
+    public Huluwa lookBack(ArrayList<Creature> huluwas){
+        if(index<huluwas.size()-1){
+            return (Huluwa) huluwas.get(index+1);
         }
         else{
             return null;
@@ -35,15 +37,10 @@ public class Huluwa extends Creature implements Comparable<Huluwa> {
         int temp=this.index;
         this.index=huluwa.index;
         huluwa.index=temp;
-        this.previousPosition=this.currentPosition;
-        huluwa.previousPosition=huluwa.currentPosition;
+        this.previousPosition=new Position(this.currentPosition);
+        huluwa.previousPosition=new Position(huluwa.currentPosition);
         swapPosition(huluwa);//swap currentPosition
     }
-
-//    @Override
-//    public char getSymbol(){
-//        return 'H';
-//    }
 
     @Override
     public String toString(){

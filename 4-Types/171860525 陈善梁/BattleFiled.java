@@ -1,7 +1,11 @@
 import creature.*;
-import team.*;
+import factory.GrandPaFactory;
+import factory.ScorpionFactory;
+import formation.*;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Random;
 
 
 class Tile{
@@ -29,20 +33,6 @@ public class BattleFiled {
             }
         }
     }
-    public void setGoodTeam(GoodTeam goodTeam){
-        GrandPa grandPa=goodTeam.getLeader();
-        for(Huluwa huluwa:goodTeam.getMembers()){
-            //for huluwa,must be only one creature on one tile
-            Position curPos=huluwa.currentPosition;
-            map[curPos.x][curPos.y].ch1='H';
-            map[curPos.x][curPos.y].count=1;
-            map[curPos.x][curPos.y].changed=true;
-            draw();
-        }
-        map[grandPa.currentPosition.x][grandPa.currentPosition.y].ch1='G';
-        map[grandPa.currentPosition.x][grandPa.currentPosition.y].changed=true;
-        draw();
-    }
 
     public void removeCreature(Creature creature){
         if(map[creature.previousPosition.x][creature.previousPosition.y].count==1){
@@ -63,19 +53,20 @@ public class BattleFiled {
     public void placeCreature(Creature creature) {
         //REFLECTION
         char symbol='C';
-        if(creature instanceof GrandPa){
+        String name = creature.getClass().getSimpleName();
+        if(name.equals("GrandPa")){
             symbol='G';
         }
-        else if(creature instanceof Scorpion){
+        else if(name.equals("Scorpion")){
             symbol='X';
         }
-        else if(creature instanceof Snake){
+        else if(name.equals("Snake")){
             symbol='S';
         }
-        else if(creature instanceof Evial){
+        else if(name.equals("Evial")){
             symbol='E';
         }
-        else if(creature instanceof Huluwa){
+        else if(name.equals("Huluwa")){
             symbol='H';
         }
         else{
@@ -98,43 +89,29 @@ public class BattleFiled {
 //        draw();
     }
 
-    public void setBadTeam(BadTeam badTeam){
-        Scorpion scorpion=badTeam.getLeader();
-        Evial[]evials=badTeam.getMembers();
-        Snake snake=badTeam.getSnake();
-        //remove previous po qsitions
-        for(Evial evial:evials){
-            boolean change=false;
-            if(evial.inMapBefore()){
-                //remove if in map
-                {
-                    change=true;
-                    removeCreature(evial);
-                }
-            }
-            if(evial.notInMap()==false)
+
+    void setCreature(Creature creature){
+        boolean change=false;
+        if(creature.inMapBefore()){
+            //remove if in map
             {
                 change=true;
-                placeCreature(evial);
+                removeCreature(creature);
             }
-            if(change)
-                draw();
         }
-
-        if(scorpion.inMapBefore()){
-            //remove if in map
-            removeCreature(scorpion);
+        if(creature.notInMap()==false)
+        {
+            change=true;
+            placeCreature(creature);
         }
+        if(change)
+            draw();
+    }
 
-        placeCreature(scorpion);
-        draw();
-
-        if(snake.inMapBefore()){
-            //remove if in map
-           removeCreature(snake);
+    void setCreatures(ArrayList<Creature> creatures){
+        for(Creature creature:creatures){
+            setCreature(creature);
         }
-        placeCreature(snake);
-        draw();
     }
 
     public void draw(){
@@ -152,20 +129,60 @@ public class BattleFiled {
         }
     }
 
+    public void changeFormRandomly(int n,Scorpion scorpion,ArrayList<Creature>evials){
+        Random random  = new Random();
+        Formation<Creature> formation = null;
+        if(n < 0)
+            n = random.nextInt(6);
+        switch (n){
+            case 0:{
+                System.out.println("\n transform to 雁行:\n--------------------------------------------\n");
+                formation = new Goose();
+            }break;
+            case 1:{
+                System.out.println("\n transform to 锋矢:\n--------------------------------------------\n");
+                formation = new Arrow();
+            }break;
+            case 2:{
+                System.out.println("\n transform to 衡轭:\n--------------------------------------------\n");
+                formation = new Car();
+            }break;
+            case 3:{
+                System.out.println("\n transform to 鱼鳞:\n--------------------------------------------\n");
+                formation = new FishScale();
+            }break;
+            case 4:{
+                System.out.println("\n transform to 偃月:\n--------------------------------------------\n");
+                formation = new Moon();
+            }break;
+            case 5:{
+                System.out.println("\n transform to 方:\n--------------------------------------------\n");
+                formation = new Square();
+            }break;
+            default: formation = new Arrow();
+        }
+        formation.changeForm(scorpion,evials);
+    }
+
     public static void main(String[]args) throws InterruptedException, FileNotFoundException {
 
-        GoodTeam goodTeam=new GoodTeam();
-        goodTeam.changeForm();
-        BadTeam badTeam=new BadTeam();
+        GrandPaFactory grandPaFactory = new GrandPaFactory();
+        GrandPa grandPa = grandPaFactory.generate();
+        ArrayList<Creature> huluwas = grandPa.initialize();
+        ScorpionFactory scorpionFactory = new ScorpionFactory();
+        Scorpion scorpion = scorpionFactory.generate();
+        ArrayList<Creature> evials = scorpion.initialize();
 
-        BattleFiled battleFiled=new BattleFiled();
-        battleFiled.setGoodTeam(goodTeam);
-        battleFiled.setBadTeam(badTeam);
+        BattleFiled battleFiled = new BattleFiled();
+        battleFiled.setCreatures(huluwas);
+        battleFiled.setCreature(grandPa);
+        battleFiled.setCreature(scorpion);
+        battleFiled.setCreatures(evials);
 
         Thread.sleep(500);
-        badTeam.changeForm();
-        battleFiled.setBadTeam(badTeam);
-
+        battleFiled.changeFormRandomly(-1,scorpion,evials);
+        battleFiled.setCreature(scorpion);
+        battleFiled.setCreatures(evials);
 
     }
 }

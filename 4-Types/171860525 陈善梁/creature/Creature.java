@@ -29,8 +29,8 @@ public class Creature implements Moveable,Swapable<Creature> {//Generices
 
     @Override
     public void swapPosition(Creature creature){
-        Position temp=this.currentPosition;
-        this.currentPosition=creature.currentPosition;
+        Position temp=new Position(this.currentPosition);
+        this.currentPosition=new Position(creature.currentPosition);
         creature.currentPosition=temp;
     }
 
