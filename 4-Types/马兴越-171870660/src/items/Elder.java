@@ -18,6 +18,9 @@ public class Elder extends Living implements Leader{
     public Elder(Position pos, Field field_) {
         super(pos, field_);
         calabashes=new Calabash[7];
+        String[] colors={
+                "红","橙","黄","绿","青","蓝","紫"
+        };
         for(int i=0;i<7;i++){
 //            field.Position position;
 //            if(i!=0)
@@ -25,7 +28,7 @@ public class Elder extends Living implements Leader{
 //            else
 //                position=new field.Position(5,1);
             Position position=field_.leftRandomPosition();
-            Calabash cal=new Calabash(position,field_,i+1);
+            Calabash cal=new Calabash(position,field_,i+1,colors[i]);
             calabashes[i]=cal;
             field_.addLiving(cal);
         }

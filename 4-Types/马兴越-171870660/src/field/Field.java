@@ -7,10 +7,13 @@ import java.util.Random;
 
 public class Field {
     public static final int N=12;
-    private Living[][] map;
+    private Block[][] map;
 
     public Field(){
-        map=new Living[N][N];
+        map=new Block[N][N];
+        for(int i=0;i<N;i++)
+            for(int j=0;j<N;j++)
+                map[i][j]=new Block(i,j);
     }
 
     /*
@@ -20,7 +23,7 @@ public class Field {
         if(livingAt(living.getPosition())!=null)
             return false;
         int x=living.getPosition().getX(),y=living.getPosition().getY();
-        map[y][x]=living;
+        map[y][x].setLiving(living);
         return true;
     }
 
@@ -32,7 +35,7 @@ public class Field {
     private boolean addLiving(Living living, int x, int y){
         if(livingAt(x,y)!=null)
             return false;
-        map[y][x]=living;
+        map[y][x].setLiving(living);
         living.getPosition().setPos(x,y);
         return true;
     }
@@ -42,15 +45,15 @@ public class Field {
     }
 
     private void removeLiving(Position position){
-        map[position.getY()][position.getX()]=null;
+        map[position.getY()][position.getX()].removeLiving();
     }
 
     public Living livingAt(Position pos){
-        return map[pos.getY()][pos.getX()];
+        return map[pos.getY()][pos.getX()].getLiving();
     }
 
     private Living livingAt(int x, int y){
-        return map[y][x];
+        return map[y][x].getLiving();
     }
 
     /*
