@@ -1,87 +1,94 @@
-### 一、使用的面向对象机制
+# 版本更新
 
-#### 1.Inheritance
+(重写所有代码)
 
-#### 2.Aggregation
+### 一、程序结构
 
-### 二、设计思路
+<img src="pic/structure.png" style="zoom:70%;" />	
 
-#### 1.对象的选择
+| 包                           |
+| ---------------------------- |
+| package hw3                  |
+| package hw3.Creature         |
+| package hw3.Creature.Monster |
+| package hw3.Dictionary       |
+| package hw3.Formation        |
 
-从题目中可以提炼出以下几个类：
-(1)class Being：即生物类，无论是葫芦娃、爷爷、蝎子精、蛇精还是小喽啰，其都是生物。
+### 二、类的设计
 
-​							具有姓名，拥有自己在二维空间中的坐标，也能从一个位置移动到另一个位置。
+| 类名                      | 父类            | 功能                                                         |
+| ------------------------- | --------------- | ------------------------------------------------------------ |
+| class Main                | 无              | 顶层实体，程序入口                                           |
+| class Game                | 无              | 游戏整体逻辑实现                                             |
+| class Field               | 无              | 战场，包含NxN个Tile                                          |
+| class Tile                | 无              | 砖块，每个砖块可以容纳一个Thing2D类型对象                    |
+| class Thing2D             | 无              | 二维事物，为生物和非生物的父类                               |
+| class Creature            | class Thing2D   | 生物，为葫芦娃、爷爷、妖怪的父类                             |
+| class Monster             | class Creature  | 妖怪，为蛇精、蝎子精、小喽啰的父类                           |
+| class Calabash            | class Creature  | 葫芦娃，游戏主要角色                                         |
+| class Grandpa             | class Creature  | 爷爷，游戏主要角色，能为葫芦娃呐喊助威                       |
+| class Snake               | class Monster   | 蛇精，游戏主要角色，能为其它妖怪呐喊助威                     |
+| class Scorpion            | class Monster   | 蝎子精，游戏主要角色，妖怪阵营的领头                         |
+| class Heeler              | class Monster   | 小喽啰，游戏主要角色                                         |
+| class CheerUp             | 无              | 接口，蛇精和爷爷实现该接口，从而可以呐喊助威                 |
+| class ColorDictionary     | 无              | 颜色词典，查阅葫芦娃的可取颜色                               |
+| class NameDictionary      | 无              | 名字词典，查阅葫芦娃的可取名字                               |
+| class FormationDictionary | 无              | 阵型字典，查阅阵型的可取名字                                 |
+| class Formation           | 无              | 阵型抽象类，为各种阵型的父类；存储该阵型的图谱map，用来安放Thing2D的位置 |
+| class FormationChangshe   | class Formation | 长蛇阵                                                       |
+| class FormationFangyuan   | class Formation | 方圆阵                                                       |
+| class FormationFengshi    | class Formation | 锋矢阵                                                       |
+| class FormationHenge      | class Formation | 衡轭阵                                                       |
+| class FormationHeyi       | class Formation | 鹤翼阵                                                       |
+| class FormationYanxing    | class Formation | 雁行阵                                                       |
+| class FormationYanyue     | class Formation | 偃月阵                                                       |
+| class FormationYulin      | class Formation | 鱼鳞阵                                                       |
 
-​							因此拥有String name、int x、int y和move方法。
+### 三、设计思路
 
-(2)class Calabash：即葫芦娃类，继承自Being类，额外具有颜色属性和自己构造函数
+1.添加程序入口：程序入口为class Main，通过创建Game对象，调用Game对象提供的方法运行整个游戏。
 
-​								  配套的有class CalabshName和class CalabashColor分别包含一个静态字符串数								  组，用来存储所有	葫芦娃的名字和颜色，类似字典或词典，从中取出一个作为自								  己的名字或颜色。
+2.布局：NxN的二维结构(这里N = 12)
 
-(3)class Grandfather：即爷爷类，继承自Being类，有自己的构造函数，并能为孩子们加油打气，因										此另外添加了cheerUp方法。
+​			   Field作为整个战场，包含NxN个砖块，每个砖块Tile可以容纳一个事物Thing2D(实际为Thing2D的子
 
-(4)class Snake：即蛇精类，继承自Being类，有自己的构造函数，并另外添加了cheerUp方法。
+​			   类，如葫芦娃)
 
-(5)class Scorpion：即蝎子类，继承自Being类，有自己的构造函数。
+3.运行过程：在Main中创建Game对象，调用init方法进行初始化(生成葫芦娃、爷爷、蛇精、蝎子精和小喽啰)
 
-(6)class Heeler：即小喽啰类，继承自Being类，有自己的构造函数。
+​					  调用play方法，选择阵型，通过Formation的getMap方法获得阵型图谱，从而设置葫芦娃等的位
 
-(7)class Formation：即阵型图谱类，包含阵型的名称以及阵型的点阵图。
+​					  置。
 
-​									 配套有class FormationName、class FormationMembers和									class FormationMap类，分别包含一个静态字符串数组、整型数组、布尔数组存									放阵型的所有名字、每种阵型需要的成员数量、每种阵型的点阵。
+### 四、 面向对象的概念、机制、设计理念 
 
-(8)class FormationBook：即阵型图谱书类，包含所有的阵型，通过一个阵型数组实现。通过构造函数											  对书中的每个阵型初始化，并通过getMap方法返回每个阵型的点阵图。
+#### 1.封装
 
-(9)class Map：即坐标点阵类，显示二维空间每个点的成员情况。
+数据成员使用private修饰符(对于需要开放给子类的成员使用protected修饰符)，通过get和set方法获得和修改值，防止调用者直接访问数据成员。
 
-(10)class Camp：即阵营类，有一堆Being对象构成，每个阵营有一本阵型图谱书用来换阵时调整成员							   的位置，还有一个Map对象存放当前阵营的成员所占位置情况。
+#### 2.继承
 
-(11)class Commander：即指挥类，指挥阵营变换阵型。也是程序的入口。
+生物和非生物继承自Thing2D，葫芦娃、爷爷、妖怪等继承生物类，蝎子精、蛇精等则继承妖怪类。通过继承实现代码复用，同时也为多态的使用提供了基础，提高代码灵活度。
 
-#### 2.整体思路：
+#### 3.多态
 
-利用**继承**的思想让葫芦娃、爷爷、蛇精等继承Being生物类。利用**聚合**的思想由葫芦娃们和爷爷组成葫芦娃阵营，蛇精、蝎子精和小喽啰组成妖怪阵营。每个阵营有阵型图谱书用来换阵时确定每个成员的位置。两个阵营进行对峙，葫芦娃摆长蛇阵，妖怪不断换阵型，每次换阵型之后，爷爷和蛇精分别为自己所在的阵营加油。
+具体的阵型如长蛇阵等继承抽象类Formation，实现抽象方法 initMap()，从而调用initMap()方法时可以动态绑定到子类的initMap()方法，实现多态。
 
-### 三、类图
+由于每个Tile可以容纳一个Thing2D及其子类的对象，所以在后续的设计中也可以使用多态。
 
-![](classGraph/class.png)
+#### 4.容器
 
-其中，Snake、Heeler、Scorpion、Grandfather、Calabash继承Being
+在Game类中，用ArrayList存放葫芦娃们和小喽啰们，可以动态增长，长度不限，更加灵活。
 
-​			Monsters由Snake、Heeler、Scorpion聚合构成
+### 五、类图
 
-​			CalabashBrothers由Grandfather和Calabash聚合构成
+<img src="pic/class.png" style="zoom:100%;" />
 
-​			Monsters和CalabashBrothers继承Camp
-
-​			Camp由Being、FormationBook和Map聚合构成
-
-​			Formation包含Map
-
-​			FormationBook由Formation构成						
-
-### 四、目录结构和执行过程
-
-#### 1.目录结构：
-
-![](pic/directory_structure.png)
-
-其中，classGraph文件下存放一张类图图片以及生成类图的class.wsd文件
-
-​			code文件夹下存放代码
-
-​			pic文件夹下存放相关图片
-
-#### 2.执行指令：
+### 六、程序执行
 
 ```
-cd code
-javac -encoding utf-8 Commander.java
-java Commander
+cd src
+javac -encoding utf-8 hw3/Main.java
+java hw3/Main
 ```
-
-#### 3.程序执行结果部分效果图如下：
-
-![](pic/result.png)
 
