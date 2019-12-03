@@ -54,7 +54,7 @@ public class Arena {
     }
 
     public static void main(String []args){
-
+        
         Arena arena = new Arena();
         Layout layout = new Layout();
         Sorter rdSorter = new RandomSorter();
