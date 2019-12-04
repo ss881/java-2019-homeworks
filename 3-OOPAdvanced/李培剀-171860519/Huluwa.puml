@@ -1,0 +1,72 @@
+@startuml
+
+class Creature {
+    - int row
+    - int col
+    + Creature()
+    + Creature(int c, int r)
+    + void setRow(int r)
+    + void setCol(int c)
+    + void moveto(int r, int c)
+}
+
+class Hulu {
+    - int color
+    + Hulu()
+    + Hulu(int r, int c, Color _c)
+    + void setColor(Color c)
+    + Color getColor()
+}
+
+class Scorpion {
+    + Scorpion()
+    + Scorpion(int r, int c)
+}
+
+class Creep {
+    + Creep()
+    + Creep(int r, int c)
+}
+
+class Grandpa {
+    + Grandpa()
+    + Grandpa(int r, int c)
+}
+
+class Snake {
+    + Snake()
+    + Snake(int r, int c)
+}
+
+class Generate {
+    + Hulu genHulu(Color color, int[][] ground)
+    + Creep genCreep(int[][] ground)
+}
+
+class Formation {
+    + boolean isHere(Creature c, int index, Vector<Creature>creatures)
+    + void transformToHeyi(Vector<Creature>creatures, int[][] ground)
+    + void transformToYanxing(Vector<Creature>creatures, int[][] ground)
+    + void transformToChonge(Vector<Creature>creatures, int[][] ground)
+    + void transformToChangshe(Vector<Creature>creatures, int[][] ground)
+    + void transformToYulin(Vector<Creature>creatures, int[][] ground)
+    + void transformToFangyuan(Vector<Creature>creatures, int[][] ground)
+    + void transformToYanyue(Vector<Creature>creatures, int[][] ground)
+    + void transformToFengshi(Vector<Creature>creatures, int[][] ground)
+}
+
+class Display {
+    + void displayGround(int[][] ground)
+}
+
+Hulu -up-|> Creature
+Scorpion -up-|> Creature
+Creep -up-|> Creature
+Grandpa -up-|> Creature
+Snake -up-|> Creature
+
+Generate ..> Hulu
+Generate ..> Creep
+Formation ..> Creature
+
+@enduml

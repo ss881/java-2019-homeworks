@@ -1,0 +1,22 @@
+@startuml
+
+class Picture{
+__ private __
++ Image image;
++ Point point;
++ int width;
++ int height;
+__ public __
+- Picture(Point point, Image image);
+
+- Image getImage();
+- Point getPoint();
+- int getWidth();
+- int getHeight();
+- void setPoint(Point point);
+}
+
+Picture "1"-->"1" Image : has
+Picture *-- point: Composition
+
+@enduml

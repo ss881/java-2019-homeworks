@@ -1,0 +1,13 @@
+@startuml
+
+class CalabashTeam{
+__ private __
++ List<Calabash> calabashes;
+__ public __
+- CalabashTeam();
+
+- List<Calabash> getCalabashes();
+}
+
+CalabashTeam "1"-->"7" Calabash : has
+@enduml

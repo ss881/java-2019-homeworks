@@ -1,0 +1,30 @@
+@startuml
+
+class NMap{
+__ private __
++static Lock bufferLock;
++static int[][]NMap;
++Picture picture1;
++Picture picture2;
+__ public __
++static final int N = 10;
+-NMap(String srcPath1, String srcPath2);
+
+-Picture getPicture1();
+-Picture getPicture2();
+
+-static void changeNMapLeft(Point point);
+-static void changeNMapRight(Point point);
+-static void changeNMapUp(Point point);
+-static void changeNMapDown(Point point);
+
+-static boolean notOccupiedLeft(Point point);
+-static boolean notOccupiedRight(Point point);
+-static boolean notOccupiedUp(Point point);
+-static boolean notOccupiedDown(Point point);
+}
+
+NMap "1"-->"1" Lock : has
+NMap "1"-->"2" Picture : has
+
+@enduml

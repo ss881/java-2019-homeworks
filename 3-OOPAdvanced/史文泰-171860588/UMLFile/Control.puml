@@ -1,0 +1,35 @@
+@startuml
+
+class Control
+class CalabashTeam
+class EnemyTeam
+class GrandFather
+class MyPaint
+class NMap
+
+class Control{
+__ private __
++ static final int ALARMGAP = 6000;
++ NMap nMap;
++ CalabashTeam calabashTeam;
++ EnemyTeam enemyTeam;
++ GrandFather grandFather;
++ MyPaint myPaint;
++ int PointIndex = 1;
++ int PointMax = 5;
+
+- void initGrandAndSnake();
+- void setAlarm();
+__ public __
+- Control(double width, double height);
+- MyPaint getCanvas();
+}
+
+Control "1"-->"1" CalabashTeam : has
+Control "1"-->"1" EnemyTeam : has
+Control "1"-->"1" GrandFather : has
+Control *-- MyPaint : Composition
+Control "1"-->"1" NMap : has
+
+
+@enduml
