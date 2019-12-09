@@ -1,0 +1,11 @@
+@startuml
+
+Thread <|-- DrawThread : extends
+OOPAdvance -left-|> Application : extends
+Character <|-- Snake : extends
+Character <|-- SmallEnemy : extends
+Character <|-- Scorpion : extends
+Character <|-- Calabash : extends
+GrandFather -left-|> Character : extends
+
+@enduml

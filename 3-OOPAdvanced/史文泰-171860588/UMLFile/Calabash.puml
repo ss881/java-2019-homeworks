@@ -1,0 +1,24 @@
+@startuml
+
+class Calabash{
+__ private __
++ int id;
++ Color color;
++ Rank rank;
+__ public __
+- Calabash();
+- Calabash(Color color, Rank rank, Image image);
+
+- int getId();
+- Color getColor();
+- Rank getRank();
+
+- void shout(boolean isColor);
+}
+
+Calabash *-- Color: Composition
+Calabash *-- Rank: Composition
+Character <|-- Calabash : extends
+
+
+@enduml
