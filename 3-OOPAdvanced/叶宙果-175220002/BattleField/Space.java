@@ -23,6 +23,12 @@ public class Space
         }
     }
 
+    public Creature getcreature(int i,int j)
+    {
+
+        return this.space[i][j];
+    }
+
     /*public void showthemap(int x,int y)      //输出地图
     {
         for(int i=0;i<x;i++)

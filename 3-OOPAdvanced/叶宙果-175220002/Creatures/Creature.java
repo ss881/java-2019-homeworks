@@ -1,8 +1,9 @@
 package Creatures;
 
 import BattleField.Space;
+import java.lang.reflect.Constructor;
 
-public class Creature 
+public class Creature<T>
 {
     public int x,y;    //位置坐标
     public String name;    //生物名字
@@ -16,7 +17,7 @@ public class Creature
         this.camp=true;
     }
     
-    public Creature(Creature another)   //复制对象坐标构造函数，创建temp用（Java真烦）
+    public Creature(Creature<T> another)   //复制对象坐标构造函数，创建temp用（Java真烦）
     {
         this.x = another.x;  
         this.y = another.y;
