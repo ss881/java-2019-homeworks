@@ -1,4 +1,4 @@
-# 161220028 戴佳宸<br>
+# 161220028 戴佳宸
 ## 设计思路：
 ### 根据问题需求：假设存在一个NxN的二维空间（N>10)，该空间中的任意一个位置坐标上可站立一个生物体（葫芦娃、老爷爷、蛇精、蝎子精、小喽啰均属于生物体）；
 ## 我创建了三个类Creature类（生物体类）和Map类（二维空间类）和Position类（坐标位置类）
@@ -136,7 +136,59 @@ public class Map extends JFrame {
 # 运行效果gif图
 ![运行效果](https://github.com/161220028jcdai/java-2019-homeworks/raw/master/4-Types/戴佳宸-161220028/huluwa3/huluwa.gif)
 
-
-
+# 反射和泛型
+## 将几个生物体对象利用反射来布局
+### 先根据类名返回各个生物体类的对象
+```
+	Class<?> dawa=Class.forName("creature.dawa");
+	Class<?> erwa=Class.forName("creature.erwa");
+	Class<?> sanwa=Class.forName("creature.sanwa");
+	Class<?> siwa=Class.forName("creature.siwa");
+	Class<?> wuwa=Class.forName("creature.wuwa");
+	Class<?> liuwa=Class.forName("creature.liuwa");
+	Class<?> qiwa=Class.forName("creature.qiwa");
+	Class<?> shejing=Class.forName("creature.shejing");
+	Class<?> xiezijing=Class.forName("creature.xiezijing");
+	Class<?> yeye=Class.forName("creature.yeye");
+	private Object one,two,three,four,five,six,seven,boss,sjing,grandpa;//表示七个葫芦娃、蝎子精、蛇精、爷爷
+```
+### 然后获得各个生物体类中构造器相关的方法，并创建各个生物体实例对象
+```
+		one=dawa.getConstructor().newInstance();
+		two=erwa.getConstructor().newInstance();
+		three=sanwa.getConstructor().newInstance();
+		four = siwa.getConstructor().newInstance();;
+		five = wuwa.getConstructor().newInstance();
+		six = liuwa.getConstructor().newInstance();
+		seven = qiwa.getConstructor().newInstance();
+		boss = xiezijing.getConstructor().newInstance();
+		sjing = shejing.getConstructor().newInstance();
+		grandpa = yeye.getConstructor().newInstance();
+```
+### 再获得每个生物体类的公有的setwa方法，传递object对象及参数调用该方法，来设置各个生物体在地图上的位置
+```
+    public void init() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+    	Method setyeye=yeye.getMethod("setwa", Map.class,int.class,int.class);
+    	setyeye.invoke(grandpa, this,10,3);
+    	Method setshejing=shejing.getMethod("setwa", Map.class,int.class,int.class);
+    	setshejing.invoke(sjing, this,10,7);
+    	Method set1=dawa.getMethod("setwa", Map.class,int.class,int.class);
+    	set1.invoke(one, this,2,2);
+    	Method set2=erwa.getMethod("setwa", Map.class,int.class,int.class);
+    	set2.invoke(two, this,3,2);
+    	Method set3=sanwa.getMethod("setwa", Map.class,int.class,int.class);
+    	set3.invoke(three, this,4,2);
+    	Method set4=siwa.getMethod("setwa", Map.class,int.class,int.class);
+    	set4.invoke(four, this,5,2);
+    	Method set5=wuwa.getMethod("setwa", Map.class,int.class,int.class);
+    	set5.invoke(five, this,6,2);
+    	Method set6=liuwa.getMethod("setwa", Map.class,int.class,int.class);
+    	set6.invoke(six, this,7,2);
+    	Method set7=qiwa.getMethod("setwa", Map.class,int.class,int.class);
+    	set7.invoke(two, this,8,2);
+    	Method setboss=xiezijing.getMethod("setwa", Map.class,int.class,int.class);
+    	setboss.invoke(boss, this,5,5);
+    }
+ ```
 
 
