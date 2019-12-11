@@ -131,10 +131,10 @@ public class Map extends JFrame {
 
 ***
 # UML类图
-![class disgram](class diagram.png)
+![class disgram](https://github.com/161220028jcdai/java-2019-homeworks/raw/master/4-Types/戴佳宸-161220028/huluwa3/class_diagram.png)
 
 # 运行效果gif图
-![运行效果](huluwa.gif)
+![运行效果](https://github.com/161220028jcdai/java-2019-homeworks/raw/master/4-Types/戴佳宸-161220028/huluwa3/huluwa.gif)
 
 
 
