@@ -1,75 +1,43 @@
 import java.util.ArrayList;
 import java.util.Collections;
-// ç”Ÿç‰©ç±»
+// ÉúÎïÀà
 class Organism {
 
-    // Point position; //ä½ç½®
-    int flag; // 0è¡¨ç¤ºæ²¡æœ‰ç”Ÿç‰©ï¼Œ1è¡¨ç¤ºæœ‰ç”Ÿç‰©
+    // Point position; //Î»ÖÃ
     String name;
 
     public Organism() {
-        flag = 0;
         name = "";
     }
 
     public Organism(String myname) {
         //this.position = mypos;
         this.name = myname;
-        flag = 1;
     }
 }
 public class homework3 {
 
-    /*
-     * class Point{ private int x; private int y;
-     * 
-     * public Point(int x1,int y1){ this.x = x1; this.y = y1; } public int getX(){
-     * return x; } public int getY(){ return y; }
-     * 
-     * public void setX(int x1){ this.x = x1; } public void setY(int y1){ this.y =
-     * y1; } }
-     */
-    
-
-    /*
-     * class Organism extends Organism {
-     * 
-     * String color; String rank; public Organism(int mynumber, String mycolor,
-     * String myrank) { number = mynumber; color = mycolor; rank = myrank; } public
-     * void init(ArrayList <Organism> bros) { // åˆ›å»ºè‘«èŠ¦å¨ƒå¹¶æ‰“ä¹± Organism brother1 = new
-     * Organism(1, "çº¢è‰²", "è€å¤§"); // Organism brother1 = new Organism(1, "red",
-     * "big"); // brother1.printcolor(); Organism brother2 = new Organism(2, "æ©™è‰²",
-     * "è€äºŒ"); Organism brother3 = new Organism(3, "é»„è‰²", "è€ä¸‰"); Organism brother4 =
-     * new Organism(4, "ç»¿è‰²", "è€å››"); Organism brother5 = new Organism(5, "é’è‰²", "è€äº”");
-     * Organism brother6 = new Organism(6, "è“è‰²", "è€å…­"); Organism brother7 = new
-     * Organism(7, "ç´«è‰²", "è€ä¸ƒ");
-     * 
-     * //ArrayList<Organism> bros = new ArrayList<>(); bros.add(brother1);
-     * bros.add(brother2); bros.add(brother3); bros.add(brother4);
-     * bros.add(brother5); bros.add(brother6); bros.add(brother7);
-     * Collections.shuffle(bros); } }
-     */
     public static void main(String[] args) {
         int N = 20;
         Organism[][] map = new Organism[20][20];
         // Organism []map = new Organism[10];
         for (int i = 0; i < N; i++) {
             for(int j=0;j<N;j++){
-                map[i][j] = new Organism();		// åˆ›å»ºå¯¹è±¡
+                map[i][j] = new Organism();		// ´´½¨¶ÔÏó
             }
 		}
         //for (int i = 0; i < 10; i++) {
            // map[i] = new Organism();
         //}
 
-        // åˆå§‹ä¹±åºçš„ä¸ƒå…„å¼Ÿé•¿è›‡é˜µ
-        Organism brother1 = new Organism("è€å¤§");
-        Organism brother2 = new Organism("è€äºŒ");
-        Organism brother3 = new Organism("è€ä¸‰");
-        Organism brother4 = new Organism("è€å››");
-        Organism brother5 = new Organism("è€äº”");
-        Organism brother6 = new Organism("è€å…­");
-        Organism brother7 = new Organism("è€ä¸ƒ");
+        // ³õÊ¼ÂÒĞòµÄÆßĞÖµÜ³¤ÉßÕó
+        Organism brother1 = new Organism("ÀÏ´ó");
+        Organism brother2 = new Organism("ÀÏ¶ş");
+        Organism brother3 = new Organism("ÀÏÈı");
+        Organism brother4 = new Organism("ÀÏËÄ");
+        Organism brother5 = new Organism("ÀÏÎå");
+        Organism brother6 = new Organism("ÀÏÁù");
+        Organism brother7 = new Organism("ÀÏÆß");
         ArrayList<Organism> bros = new ArrayList<>();
         bros.add(brother1);
         bros.add(brother2);
@@ -84,35 +52,35 @@ public class homework3 {
         {
             map[i][0] = bros.get(i-1);
         }
-        // é›è¡Œé˜µ,ä¸ƒä¸ªå°å–½å•°
+        // ÑãĞĞÕó,Æß¸öĞ¡à¶†ª
         
-        /*Organism badass1 = new Organism("å°å–½å•°");
-        Organism badass2 = new Organism("å°å–½å•°");
-        Organism badass3 = new Organism("å°å–½å•°");
-        Organism badass4 = new Organism("å°å–½å•°");
-        Organism badass5 = new Organism("å°å–½å•°");
-        Organism badass6 = new Organism("å°å–½å•°");
-        Organism badass7 = new Organism("å°å–½å•°");
+        /*Organism badass1 = new Organism("Ğ¡à¶†ª");
+        Organism badass2 = new Organism("Ğ¡à¶†ª");
+        Organism badass3 = new Organism("Ğ¡à¶†ª");
+        Organism badass4 = new Organism("Ğ¡à¶†ª");
+        Organism badass5 = new Organism("Ğ¡à¶†ª");
+        Organism badass6 = new Organism("Ğ¡à¶†ª");
+        Organism badass7 = new Organism("Ğ¡à¶†ª");
         */
 
 
-        //è¿™é‡Œå¯ä»¥æ ¹æ®Nçš„å¤§å°å˜æ¢ï¼Œä½†ä¾¿äºè®¾è®¡ç”¨äº†å…·ä½“æ•°å€¼
+        //ÕâÀï¿ÉÒÔ¸ù¾İNµÄ´óĞ¡±ä»»£¬µ«±ãÓÚÉè¼ÆÓÃÁË¾ßÌåÊıÖµ
         for(int i = 10;i<16;i++)
         {
-            map[17-i][i] = new Organism("å°å–½å•°");
+            map[17-i][i] = new Organism("Ğ¡à¶†ª");
         }
-        Organism scorpion = new Organism("èå­ç²¾");
+        Organism scorpion = new Organism("Ğ«×Ó¾«");
 
         map[1][16] = scorpion;
-        Organism snake = new Organism("è›‡ç²¾");
-        //æ”¾å…¥è›‡ç²¾
+        Organism snake = new Organism("Éß¾«");
+        //·ÅÈëÉß¾«
         map[0][17] = snake;
-        //æ”¾å…¥è€çˆ·çˆ·
-        Organism grandpa = new Organism("è€çˆ·çˆ·");
+        //·ÅÈëÀÏÒ¯Ò¯
+        Organism grandpa = new Organism("ÀÏÒ¯Ò¯");
         map[0][0] = grandpa;
 
 
-        //æ‰“å°
+        //´òÓ¡
         for(int i=0;i<19;i++)
         {
             for(int j=0;j<19;j++){
@@ -124,21 +92,21 @@ public class homework3 {
 
         for(int i = 10;i<16;i++)
         {
-            map[17-i][i] = new Organism();      //æ¸…ç©ºä¹‹å‰çš„
+            map[17-i][i] = new Organism();      //Çå¿ÕÖ®Ç°µÄ
         }
         
         map[1][16] = new Organism();
         map[0][17] = new Organism();
-        //æ¢æˆé¹¤ç¿¼é˜µ
+        //»»³Éº×ÒíÕó
         for(int i=1;i<4;i++)
         {
-            map[i][i+10] = new Organism("å°å–½å•°");
+            map[i][i+10] = new Organism("Ğ¡à¶†ª");
         }
         map[4][14] = scorpion;
         map[5][14] = snake;
         for(int i=1;i<4;i++)
         {
-            map[4-i][i+14] = new Organism("å°å–½å•°");
+            map[4-i][i+14] = new Organism("Ğ¡à¶†ª");
         }
 
         for(int i=0;i<19;i++)
