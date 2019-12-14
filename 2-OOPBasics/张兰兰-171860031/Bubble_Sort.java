@@ -1,10 +1,7 @@
 package com.company;
 
-public class Bubble_Sort {
-    public Bubble_Sort(){
-
-    }
-    public void bubbleSort(Huluwa []brothers,int []arr) {
+public interface Bubble_Sort {
+    public static void bubbleSort(Huluwa []brothers,int []arr) {
         for (int i = 0; i < 7; ++i) {
             boolean flag = false;
             for (int j = 0; j < 7 - i - 1; ++j) {
