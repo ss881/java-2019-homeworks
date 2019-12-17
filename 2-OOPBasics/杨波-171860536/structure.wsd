@@ -1,0 +1,60 @@
+@startuml structure
+class World{
+    {field} enum Topography
+    {field} enum Direction
+    {field} {static} final int WorldSize
+    {field} {static} Topography[] map
+    {field} {static} Creature[] creatureMap
+
+    {method} {static} setCreaturePosition(Creature,int)
+    {method} {static} changeCreaturePosition(Creature,int)
+    {method} {static} exchangePlace(Creature,Creature)
+    {method} {static} whoIsInfront(int)
+    {method} {static} bubbleSort()
+    {method} {static} binaryInsertSort()
+}
+class Creature{
+    {field} int position
+    {field} boolean inMap
+    
+    {method} setPosition(int)
+    {method} walkTo(int)
+    {method} swap(int,World.Direction)
+    {method} getTo(int)
+    {method} lookForward()
+    {method} compareTo(Creature)
+    {method} showOne(int)
+    {method} toBubbleSort()
+}
+class CalabashBrother{
+    {field} {static} String[] statusName
+    {field} {static} String[] colors
+    {field} int idInCalabashBrother
+
+    {method} getTo(int)
+    {method} showName()
+    {method} showColor()
+    {method} showOne(int)
+    {method} lookForward()
+    {method} toBubbleSort()
+    {method} compareTo(Creature)   
+}
+class CalabashBrotherSort{
+    {method} {static} +main(String[])
+    {method} {static} randomizePlace(int[])
+}
+
+Creature <|-- CalabashBrother
+
+note "setPosition(),walkTo(),swap() will send messages to World\nWorld will check creatureMap then send message to Creature to call getTo() to change its position" as C1
+note "bubbleSort(),binarySort() will send message to Creature, then Creature does something" as C2
+note "the overrided getTo() will set creature's positon and print the change of position\nshowOne(int mode) will print name or color according to mode" as O1
+note "the entry, call World's methods to sort" as C3
+World .. C1
+C1 .. Creature
+World .. C2
+C2 .. Creature
+World .. C3
+C3 .. CalabashBrotherSort
+CalabashBrother .. O1
+@enduml

@@ -1,0 +1,112 @@
+@startuml
+skinparam backgroundColor #AAFFFF
+'default
+top to bottom direction
+
+package "creature"{
+    class Creature{
+        -String name;
+        +int x, y;
+
+        #boolean positionTaken(Tile t); 
+        #void leave(Tile t)
+        +void moveTo(Tile t);
+        +String getName();
+        +void randomStand();
+    }
+
+    class Grandpa{
+    +{static}SevenBros bros;
+    +void giveCommand(int cmd);
+    }
+
+    class CalabashBoy{
+    -int Rank;
+
+    -CalabashBoy LookBack();
+    -boolean CmpWithNext();
+    +void SwapWithNext();
+    +void randomStand();
+    }
+
+    class Potato
+    class Scorpion
+    class Snake
+
+    together {
+        class ScorpionField{
+        +Scorpion scorpion
+        +Snake snake
+        +Potato potatoes[]
+        }
+        class SevenBros{
+            +CalabashBoy calaBros[7]
+            -void BubbleSort()
+        }
+    }
+
+    Grandpa*--Creature
+    CalabashBoy*--Creature
+    Potato*--Creature
+    Scorpion*--Creature
+    Snake*--Creature
+}
+
+
+package "command"{
+    interface Style
+    wing ()- Style
+    goose ()- Style
+    punch ()- Style
+    snake ()- Style
+    randomSnake ()- Style
+    fishScale ()- Style
+    square ()- Style
+    moon ()- Style
+    bee ()- Style
+
+    class Command{
+        +{static}RANDOM_SNAKE = 1
+        +{static}SNAKE = 2
+        +{static}WING = 3
+        +{static}GOOSE = 4
+        +{static}PUNCH = 5
+        +{static}FISHSCALE = 6
+        +{static}SQUARE = 7
+        +{static}MOON = 8
+        +{static}BEE = 9
+    }
+}
+
+
+SevenBros-down->command :use
+ScorpionField-down->command:use
+
+package "ground"{
+
+    class Ground{
+        +{static}int sizeOfTiles = 20
+        +{static}Tile tiles[][]
+
+        -{static}void printName(Tile t)
+        +{static}void printToScreen()
+    }
+
+    class Tile{
+        +Creature life
+        +int x, y
+        +boolean isTaken
+        +void welcome(Creature life)
+    }
+        
+}
+
+package "main"{
+
+    class Main{
+
+}
+
+creature-left->ground:use
+
+@enduml

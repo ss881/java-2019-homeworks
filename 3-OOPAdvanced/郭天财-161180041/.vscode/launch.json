@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "main.Main"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "main.Main",
+            "projectName": "郭天财-161180041_db0973a7"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Buttons",
+            "request": "launch",
+            "mainClass": "control.Buttons",
+            "projectName": "郭天财-161180041_db0973a7"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Test",
+            "request": "launch",
+            "mainClass": "main.Test"
+        }
+    ]
+}

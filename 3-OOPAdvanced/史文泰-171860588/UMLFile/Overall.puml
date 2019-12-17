@@ -1,0 +1,38 @@
+@startuml
+
+Thread <|-- DrawThread : extends
+OOPAdvance *-- Control: Composition
+OOPAdvance -left-|> Application : extend
+Control "1"-->"1" CalabashTeam : has
+Control "1"-->"1" EnemyTeam : has
+Control "1"-->"1" GrandFather : has
+Control *-- MyPaint : Composition
+Control "1"-->"1" NMap : has
+MyPaint o-- NMap : Aggregation
+MyPaint o-- CalabashTeam : Aggregation
+MyPaint o-- EnemyTeam : Aggregation
+MyPaint o-- GrandFather : Aggregation
+MyPaint *-- DrawThread : Composition
+MyPaint *-- GraphicsContext : Composition
+NMap "1"-->"1" Lock : has
+NMap "1"-->"2" Picture : has
+EnemyTeam "1"-->"1" Scorpion : has
+EnemyTeam "1"-->"1" Snake : has
+EnemyTeam "1"-->"7" SmallEnemy : has
+CalabashTeam "1"-->"7" Calabash : has
+Picture "1"-->"1" Image : has
+Picture *-- point: Composition
+Character "1"-->"1" Picture : has
+Character *-- Point: Composition
+Character *-- Point: Composition
+Snake "1"-->"1" Picture : has
+Character <|-- Snake : extends
+Character <|-- SmallEnemy : extends
+Character <|-- Scorpion : extends
+Calabash *-- Color: Composition
+Calabash *-- Rank: Composition
+Character <|-- Calabash : extends
+GrandFather -left-|> Character : extend
+GrandFather "1"-->"1" Picture : has
+
+@enduml
