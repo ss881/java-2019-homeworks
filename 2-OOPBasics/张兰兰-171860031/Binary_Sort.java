@@ -1,11 +1,8 @@
 package com.company;
 
-public class Binary_Sort {
-    public Binary_Sort(){
+public interface Binary_Sort {
 
-    }
-    public void binarysort(Huluwa[]brothers, int arr[])
-    {
+    public static void binarysort(Huluwa[]brothers, int arr[]) {
         int i,j,temp;
         int low ,high ,mid;
         for(i=1;i<arr.length;i++)
