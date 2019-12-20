@@ -1,0 +1,139 @@
+@startuml 
+title relationship between class
+
+abstract  Creature{
+-Identity id
++int current_space_x
++int current_space_y   
++void born()    
++Identity get_id()
++void rush_to_somespace(int x,int y)
+{abstract}void follow_orders(Identity id,int x,int y)
+{abstract}void provoke()
+{abstract}void follow_orders(Identity id,Creature creature)
++int get_current_x()
++int get_current_y()
+}
+
+class Grandpa{
+
++final int the_num_of_brotherstandl
++StandLaw military_for_standl
+-int size_of_space_for_battle
+-Direction direction_of_attack
+-int start_coordinate_x
+-int start_coordinate_y
++BrotherStandl []brotherstandls
++void plant_standl()
++void study_military_for_standl()
++void provoke()
+-void make_orders(BrotherStandl brotherStandl,int x,int y)    
++void make_orders(BrotherStandl a,BrotherStandl b)
++void follow_orders(Identity id,int x,int y)
++void follow_orders(Identity id,Creature creature)
++void decide_direction_of_attack(Direction direction)
++void measure_space_for_battle(SpaceForBattle space)
++void decide_start_coordinate(int initial_x,int initial_y)
++boolean choose_stand_type(StandType type)
++void cheer_for_battle()
++void embattle_for_battle(SpaceForBattle space)
++void choose_stand_place(SpaceForBattle space)
+}
+class BrotherStandl {
+-int rank_of_brother;
+-int color;
++BrotherStandl(int initial_rank,int initial_color)
++int report_color()
++int report_rank()
++void provoke()  
++void follow_orders(Identity id,int x,int y)
++void follow_orders(Identity id,Creature brother)
++int look_around_x(Creature brother)
++int look_around_y(Creature brother)
+}
+
+
+class MonsterSaltFish {
++void provoke()
++void follow_orders(Identity id,int x,int y)
++void follow_orders(Identity id,Creature creature)
+}
+class MonsterScorpion<Monster extends Creature>{    
++final int the_num_of_monstersaltfish
++StandLaw military_for_monster
+-int size_of_space_for_battle
+-Direction direction_of_attack
++MonsterSaltFish []monsterSaltFishs
+-Class<Monster> kind;
++MonsterScorpion(Class<Monster> kind)
++void summon_monstersaltfish()
+-void make_orders(Monster saltfish,int x,int y)
+-void make_orders(Monster saltFish)
++void decide_direction_of_attack(Direction direction)
++void measure_space_for_battle(SpaceForBattle space)
++boolean decide_self_coordinate(SpaceForBattle space,int initial_x,int initial_y)
++void study_military_for_monster() 
++void provoke()
++boolean choose_stand_type(StandType type)
++void embattle_for_battle(SpaceForBattle space)
++void change_type_for_battle(SpaceForBattle space)
++void follow_orders(Identity id,int x,int y)
++void follow_orders(Identity id,Creature creature)
+}
+
+class MonsterSnake {
++void provoke()
++void cheer_for_battle() 
++void follow_orders(Identity id,int x,int y)
++void follow_orders(Identity id,Creature creature)
++void choose_stand_place(SpaceForBattle space)
++void leave_for_some_time(SpaceForBattle space)
+}
+class SpaceForBattle{
+-int size_of_space;
+-int [][]space;
+-int identityTomark(Identity id)
++void rebulid_space()
++boolean rush_to_coordinate(Identity id, int x,int y) 
++boolean rush_to_coordinate(BrotherStandl brotherStandl, int x,int y)
++void change_coordinate(Identity id,int x1, int x2, int y1, int y2)
++void overlook_space()
++int get_size()
++void set_space(int chess,int x,int y)
++int read_space(int x,int y)
++boolean check_space(Identity id ,int x ,int y)
+}
+class StandLaw{
++final int chess = 10;
++class Coordinate
++int num_of_creature;
++Direction direction_of_attack;
++SpaceForBattle image_space;
+-Coordinate change_coordinate_by_direction(Coordinate coordinate,Direction direction)
+-Coordinate standard_coordinate_by_direction(Coordinate coordinate,Direction direction)   
+-void change_stand_law_by_direction(SpaceForBattle tmp)
++boolean snake_shape(int start_x,int start_y)
++boolean wings_shape(int start_x,int start_y)
++boolean goose_shape(int start_x,int start_y)
++boolean yoke_shape(int start_x,int start_y)  
++boolean fish_shape(int start_x,int start_y)   
++boolean square_shape(int start_x,int start_y)  
++boolean arrow_shape(int start_x,int start_y)   
++boolean moon_shape(int start_x,int start_y)
+}
+Creature <|--Grandpa
+Creature <|--BrotherStandl
+Creature <|--MonsterSaltFish
+Creature <|--MonsterScorpion
+Creature <|--MonsterSnake
+StandLaw *--SpaceForBattle :contain >
+Grandpa *--BrotherStandl : plant 7 >
+MonsterScorpion *--MonsterSaltFish : summon 15 >
+Grandpa *--StandLaw : study >
+MonsterScorpion *--StandLaw : study >
+
+@enduml
+
+
+
+
