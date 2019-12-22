@@ -1,0 +1,76 @@
+@startuml
+class Main
+class Processor
+class Block
+class Character
+class Eormation
+class Calabash
+class Grandpa
+class Pips
+class Scorpion
+class Snake
+interface Image
+interface SwapEormation
+enum Eorm
+enum Picture
+enum Identity
+enum Color_of_Calabash
+enum State_of_Block
+enum State_of_Character
+
+class Main{
+  + main(String[] args)
+}
+
+class Processor {
+    + N;
+    - [][] block;
+    - Eorm eormation_attack;
+    - num_of_pips;
+
+    + Processor(int n)
+    + start(int num)
+    + init_grandpa()
+    + init_calabash()
+    + init_pips(Eorm eormation)
+    + init_snake()
+    + init_scorpion()
+    + end()
+    + swap_eormation()
+    + change_pips(Eorm pre_eormation, Eorm later_eormation)
+}
+class Block
+class Character
+class Eormation
+interface Image
+interface SwapEormation{
+}
+enum Eorm {
+    Heyi,Yanxing,Hengzhi,Changshe,
+    Yulin,Fangmen,Yanyue,Fengshi;
+}
+
+enum Picture {
+    GR, CA1, CA2,CA3,CA4,
+    CA5, CA6,CA7,SN, SC,PI,BLOCK;
+
+
+}
+enum Identity {
+    GRANDPA,CALABASH,
+    SNAKE,SCORPION,PIPS;
+    }
+
+enum Color_of_Calabash {
+    NO,RED,ORANGE,YELLOW,
+    GREEN,CYAN, BLUE,PURPLE;
+}
+enum State_of_Block {
+    NO,WITHDRAW, EXSIST;
+
+
+}
+enum State_of_Character {
+    WAIT,ALIVE,DEAD;
+}
+@enduml
