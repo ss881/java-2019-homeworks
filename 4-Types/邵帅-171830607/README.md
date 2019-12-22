@@ -14,7 +14,7 @@ ver1.0(作业3)
 之前的实现觉得不太符合面向对象的程序设计思路，因此重新更改了架构。
 
 UML图：
-![](https://github.com/ss881/picture/blob/master/type1_uml.png?raw=true)
+![](https://github.com/ss881/picture/blob/master/type1_uml.png)
 
 首先是对地图类(Map)的实现，地图初定为20*20的二维正方形网格，每个网格内可以仅放置一个生物。一个二维数组能实现基本功能，它应该是空地的集合，但是需要建立生物和空地的联系。这里最终的设计思路是聚集，抽象出来的地图类可以作为生物类的属性之一。毕竟每个生物都可以有它的坐标位置。(只要实体存在)
 
@@ -44,7 +44,7 @@ public <T extends Organism> int godorbad(T x) {
 JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。
 下图所示代码就用到了反射
 
-![](https://github.com/ss881/picture/blob/master/Organism_cheer.png?raw=true)
+![](https://github.com/ss881/picture/blob/master/Organism_cheer.png?)
 
 这个函数可以判断是老爷爷（好人）还是蛇精（坏人）从而说出不同助威的话。
 
