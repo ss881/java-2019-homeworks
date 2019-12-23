@@ -7,6 +7,6 @@
 .DS_Store
 .idea
 
-**/out/*
+*.class
 
 pull.sh
