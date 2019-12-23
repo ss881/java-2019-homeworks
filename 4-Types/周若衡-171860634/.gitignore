@@ -4,11 +4,11 @@
 .html
 
 out/
+*.class
 
 .vscode
 .DS_Store
 .idea
 
-*.class
 
 pull.sh
