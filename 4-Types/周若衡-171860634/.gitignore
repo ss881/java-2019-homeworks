@@ -3,7 +3,7 @@
 .iml
 .html
 
-out/
+out/production/
 *.class
 
 .vscode
