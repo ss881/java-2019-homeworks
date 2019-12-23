@@ -3,6 +3,8 @@
 .iml
 .html
 
+out/
+
 .vscode
 .DS_Store
 .idea
