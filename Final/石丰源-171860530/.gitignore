@@ -3,5 +3,6 @@
 .classpath
 .project
 .idea
+*.iml
 bin
 target
