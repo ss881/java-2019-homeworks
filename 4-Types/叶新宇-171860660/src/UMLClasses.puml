@@ -1,0 +1,30 @@
+@startuml
+class Position
+abstract class Creature
+class CalabashBoy
+class Grandfather
+class Scorpion
+class Snake
+class Minion
+class BattleField
+class Tactic
+abstract class Lineup
+class CalabashLineup
+class ScorpionLineup
+
+
+Creature *-- Position : as a data member
+CalabashBoy <|-- Creature
+Grandfather <|-- Creature
+Scorpion <|-- Creature
+Snake <|-- Creature
+Minion <|-- Creature
+Lineup *-- Creature : as data members
+CalabashLineup <|-- Lineup
+ScorpionLineup <|-- Lineup
+BattleField *-- CalabashLineup : join/withdraw
+BattleField *-- ScorpionLineup : join/withdraw
+BattleField *-- Creature : as data members
+Tactic *-- Position : as a data member
+Lineup *-- Tactic : as a data member
+@enduml

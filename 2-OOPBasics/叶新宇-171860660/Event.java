@@ -22,20 +22,20 @@ class Huluwa {
         this.num = m;
     }
     //构造函数
-    public int getNum() {
-        return this.num;
+    public boolean talk(Huluwa bro) {
+        return this.num > bro.num;
     }
-    //用作外部排序使用
-    public void printName() {
+    //两个葫芦娃之间进行交流，排名大的靠前，排名低的靠后
+    public void sayName() {
         System.out.println(name);
     }
-    public void printColor() {
+    public void sayColor() {
         System.out.println(color);
     }
     public void report(int a, int b) {
         System.out.println(this.name + ":" + a + "->" + b);
     }
-    //打印名称、颜色、报告位置变化
+    //报自己的名称、颜色、报告位置变化
 }
 
 //葫芦娃操作类，描述对葫芦娃进行的打乱和排序操作
@@ -60,7 +60,7 @@ class HuluwaOperation {
         // 冒泡
         for (int i = 0; i < HuluwaBrothers.size(); i++) {
             for (int j = 0; j < HuluwaBrothers.size() - i - 1; j++) {
-                if (HuluwaBrothers.get(j).getNum() > HuluwaBrothers.get(j + 1).getNum()) {
+                if (HuluwaBrothers.get(j).talk(HuluwaBrothers.get(j + 1))) {
                     HuluwaBrothers.get(j).report(j,j + 1);
                     HuluwaBrothers.get(j + 1).report(j + 1, j);
                     Collections.swap(HuluwaBrothers, j, j + 1);
@@ -69,16 +69,16 @@ class HuluwaOperation {
         }
 
         for (Huluwa i : HuluwaBrothers) {
-            i.printName();
+            i.sayName();
         }
     }
 
     private void quickSortPartition(int begin, int end) {
         if(begin >= end) return;
         int i = begin, j = begin;
-        int key = HuluwaBrothers.get(begin).getNum();
+        int key = begin;
         while (i < end) {
-            if(HuluwaBrothers.get(i).getNum() < key) {
+            if(HuluwaBrothers.get(key).talk(HuluwaBrothers.get(i))) {
                 j++;
                 if(i != j) {
                     HuluwaBrothers.get(i).report(i, j);
@@ -102,7 +102,7 @@ class HuluwaOperation {
         //快排
         quickSortPartition(0, HuluwaBrothers.size());
         for (Huluwa i : HuluwaBrothers) {
-            i.printColor();
+            i.sayColor();
         }
     }
 }

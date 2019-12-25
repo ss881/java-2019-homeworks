@@ -1,0 +1,79 @@
+@startuml
+interface IBeing {
+    + void print()
+    + int getRank()
+    + void walkTo(int,int)
+    + String getName()
+}
+interface ICheer {
+    + String cheer()
+}
+class BattleField {
+    {static} final int SIZE = 16;
+    {static} int[][] field = new int[SIZE][SIZE];
+    + {static} void setField(int,int,int)
+    + {static} int getNo(int,int) 
+    + {static} int getXByNo(int)
+}
+class Being implements IBeing {
+    - int rank;
+    - String name;
+    + void print()
+    + void walkTo(int,int)
+    + int getRank()
+    + String getName()
+}
+class Elder implements IBeing, ICheer {
+    - int rank;
+    - String name;
+    + void print()
+    + void walkTo(int,int)
+    + int getRank()
+    + String getName()
+    + String cheer()
+}
+class Snack implements IBeing ,ICheer{
+    - int rank;
+    - String name;
+    + void print()
+    + void walkTo(int,int)
+    + int getRank()
+    + String getName()
+    + String cheer()
+}
+class Huluwa implements IBeing {
+    - int rank;
+    - String name;
+    + void print()
+    + void walkTo(int,int)
+    + int getRank()
+    + String getName()
+}
+class Scorpion implements IBeing{
+    - int rank;
+    - String name;
+    + void print()
+    + void walkTo(int,int)
+    + int getRank()
+    + String getName()
+    + void orderMonsters(int)
+}
+class Involved{
+    - ArrayList<IBeing> a;
+    - BattleField bf；
+    + void huluwaSort()
+    + void huluwaCome()
+    + void elderAndSnackCome()
+    + void scorpionOrder(int)
+    + void cheerTogether()
+    + <T extends ICheer> void cheerGeneric(T)
+    + void printBf()
+    ~ void test()
+}
+class Solution{
+    + {static} void main(String[])
+}
+Involved *-- IBeing
+Involved *- BattleField
+Solution *- Involved
+@enduml
