@@ -4,7 +4,7 @@
 
 运行程序后，游戏界面如上图所示：正反两阵营按照默认阵型在战场中对峙（正方：长蛇阵，反方：鹤翼阵）。  
 
-![开始界面](img\开始页面.png)  
+![开始界面](https://github.com/tmsxk/java-2019-homeworks/blob/master/Final/%E6%96%BD%E8%B6%85%E7%83%9C-171860616/MyHuluwa/img/开始页面.png)  
 
 用户可以通过点击下方的四个按钮控制游戏的进行，点击”改变葫芦娃阵型“的按钮可以将葫芦娃的阵型改变为随机阵型，点击”改变妖精阵型“可以将妖精的阵型改变为随机阵型。选择好双方阵型后，可以点击开始新游戏开始新的战斗，战斗过程中会自动保存游戏的存档并以战斗开始的世界命名。战斗结束后可以点击读取存档进行战斗回放。  
 
@@ -28,7 +28,7 @@
 
 # 基于包的模块划分
 
-![UML类图](img\Huluwa-final.png)
+![UML类图](https://github.com/tmsxk/java-2019-homeworks/blob/master/Final/%E6%96%BD%E8%B6%85%E7%83%9C-171860616/MyHuluwa/img/Huluwa-final.png)
 
 类的基本信息如上UML类图所示，模块划分如package划分所示，主要包括控制生物及其行为的creature包，控制存储信息的history包，控制多线程的thread包以及控制游戏进程的controller包。
 
