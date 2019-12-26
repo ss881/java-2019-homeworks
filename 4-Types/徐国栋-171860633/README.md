@@ -7,21 +7,54 @@
 * 在作业三的基础上，加入反射和泛型  
   
 ## 设计思路  
-  
-* 1、Grid2D使用了泛型，即Grid2D\<T extends Creature\>，地面Ground2D类包含Grid2D类组成的二维数组作为人物位置，通过setCreature(T newCreature)方法将喽啰、葫芦娃、蝎子精等生物布置到地面位置  
-  
-* 2、采用工厂类生成葫芦娃、小喽啰的实例，具体地，CalabashBrotherFactory、EvilLoloFactory实现接口CreatureFactory<T>的抽象方法T create(int rank, Color color)，老爷爷、蝎子精持有CalabashBrotherFactory、EvilLoloFactory类的实例garden和loloFactory，通过garden和loloFactory生成葫芦娃、小喽啰的实例。  
-  
-* 3、反射用在地图人物计数和打印人物拥有的方法上面。设置ReflectionTester类管理反射的使用，通过 Class<?> currentHolder = grids[i][j].getTheCreature().getClass() 获取地图上一个位置上生物T的类型；通过getDeclaredMethods()打印人物拥有的方法。在地图人物计数方面，使用反射不是必须的，通过老爷爷和蝎子精类同样可以获取人物计数。  
 
+### UML图
 
-## 类图  
-  
-* 1、生物类及其继承关系  
-![继承关系](./creature.png)  
-  
-* 2、其他依赖关系  
-![依赖关系](./others.png)  
+![UML](./作业4.png)
+
+### 泛型的运用
+
+作业3的逻辑是，场景类包含一个生物类的二维数组，遍历数组实现打印；作业4增加格子类，生物站在格子Grid2D上，若干格子构成地图Ground2D。这里的格子类Grid2D使用了泛型，即Grid2D\<T extends Creature\>，地面Ground2D类包含Grid2D类组成的二维数组作为人物位置，通过setCreature(T newCreature)方法将喽啰、葫芦娃、蝎子精等生物布置到地面位置  
+```java
+public class Grid2D<T extends Creature> {
+    private boolean occupied = false;
+    ...
+    T theCreature;
+}
+class Ground2D {
+    private int w, h;
+    ...
+    private Grid2D[][] grids;
+    public Grid2D[][] getGrids(){...}
+    private void allocMap() {...}
+    public void clearMap() {...}
+    ...
+    public void displayCli() {...}
+}
+
+```
+
+### 反射的运用
+
+反射用在地图人物计数和打印人物拥有的方法上面。设置ReflectionTester类管理反射的使用，通过 Class<?> currentHolder = grids[i][j].getTheCreature().getClass() 获取地图上一个位置上生物T的类型；通过getDeclaredMethods()打印人物拥有的方法。在地图人物计数方面，使用反射不是必须的，通过老爷爷和蝎子精类同样可以获取人物计数。  
+```java
+//  获取方法
+Class c = Class.forName(className);
+Method m[] = c.getDeclaredMethods();
+//  判别类型
+Class<?> currentHolder = grids[i][j].getTheCreature().getClass();
+if (CalabashBrother.class == currentHolder) {
+      countCalabashBrother++;
+} else if (EvilLolo.class == currentHolder) {
+      countLolo++;
+} else if (ScorpionSperm.class == currentHolder) {
+      countScorpion++;
+}
+```
+
+### 工厂模式
+
+采用工厂类生成葫芦娃、小喽啰的实例，具体地，CalabashBrotherFactory、EvilLoloFactory实现接口CreatureFactory<T>的抽象方法T create(int rank, Color color)，老爷爷、蝎子精持有CalabashBrotherFactory、EvilLoloFactory类的实例garden和loloFactory，通过garden和loloFactory生成葫芦娃、小喽啰的实例。  
   
 ## 运行  
   
@@ -32,15 +65,8 @@
 * clean.bat文件内容: del /s /q *.class && echo clean done. && pause  
   
 ## 结果展示  
-  
-  
-Microsoft Windows [版本 10.0.18363.418]  
-(c) 2019 Microsoft Corporation。保留所有权利。  
-  
-C:\Users\xgd\source\repos\java2019-homework\4-Types\徐国栋-171860633>compile.bat  
-  
-compile done and press enter to run  
-请按任意键继续. . .  
+
+```
 creature.ScorpionSperm拥有的方法：  
 ----------------------------------------  
 public void creature.ScorpionSperm.makeNewFormation(int)  
@@ -226,3 +252,4 @@ EvilLolo：9；
 Scorpion：1；  
 请按任意键继续. . .  
 --------------------------------------- 
+```
