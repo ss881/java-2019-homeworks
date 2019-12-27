@@ -21,17 +21,18 @@ class Huluwa {
     private String name;
     private String color;
     private int num;
+    //葫芦娃具有以上三种标识信息：姓名，颜色及排行(用于确定他们之间的顺序)
     Huluwa(String n, String c, int m);
     //构造函数
-    public int getNum();
-    //获取排行，用作外部排序使用
-    public void printName();
-    public void printColor();
+    public boolean talk(Huluwa bro);
+    //两个葫芦娃之间进行交流，排名大的靠前，排名低的靠后
+    public void sayName();
+    public void sayColor();
     public void report(int a, int b);
-    //打印名称、颜色、报告位置变化
+    //报自己的名称、颜色、报告位置变化
 }
 ```
-葫芦娃类描述了一个葫芦娃的性质以及他与外界交互的方式，是“葫芦娃”作为个体的抽象
+葫芦娃类描述了一个葫芦娃具有的属性以及他与外界交互的方式，是“葫芦娃”作为个体的抽象
 
 ## 葫芦娃操作类
 ```Java
