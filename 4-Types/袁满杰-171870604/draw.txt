@@ -1,5 +1,5 @@
 @startuml
-class command.Command{
+abstract class command.Command{
   Space receiver;
   {abstract} void execute()
 }
@@ -10,7 +10,7 @@ class command.MoveCommand{
   int dy
   void execute()
 }
-class creature.Creature{
+abstract class creature.Creature{
   String name
   Space space
   Tile floor
@@ -34,7 +34,7 @@ class creature.Xiaolouluo{
   int id
   void getId()
 }
-class creature.CreatureFactory{
+abstract class creature.CreatureFactory{
   Space space
   {abstract} Creature create()
 }
@@ -80,7 +80,7 @@ class team.HeroTeam{
   HeroAdapter adapter
   void zhenfa()
 }
-class team.Team{
+abstract class team.Team{
   Space space
   {abstract} void zhenfa()
   void born()
@@ -89,7 +89,7 @@ class team.VillainTeam{
   int[] num_map
   void zhenfa()
 }
-class team.TeamFactory{
+abstract class team.TeamFactory{
   Space space
   {abstract} Team create()
 }
@@ -127,11 +127,11 @@ team.TeamFactory<|--team.VillainTeamFactory
 team.TeamFactory<|--team.HeroTeamFactory
 zhenfa.ZhenfaBook<|--zhenfa.HeroZhenfaBook
 
-space.HuluwaFactory<..creature.Huluwa
-space.LaoyeyeFactory<..creature.Laoyeye
-space.ShejingFactory<..creature.Shejing
-space.XiezijingFactory<..creature.Xiezijing
-space.XiaolouluoFactory<..creature.Xiaolouluo
+creature.HuluwaFactory<..creature.Huluwa
+creature.LaoyeyeFactory<..creature.Laoyeye
+creature.ShejingFactory<..creature.Shejing
+creature.XiezijingFactory<..creature.Xiezijing
+creature.XiaolouluoFactory<..creature.Xiaolouluo
 
 team.HeroTeamFactory<..team.HeroTeam
 team.VillainTeamFactory<..team.VillainTeam
