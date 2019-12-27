@@ -1,0 +1,71 @@
+#rate_label
+{
+	 -fx-font: 20pt blod ;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: green ;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+    -fx-background-color: #DFB951;
+	-fx-radius: 10;
+	
+}
+
+#rate_label:hover
+{
+	    -fx-background-color: lightgreen;
+	    -fx-text-fill:#ff2600;
+}
+#tip
+{
+	-fx-background-color: lightgreen;
+}
+#tip:hover
+{
+	
+  -fx-background-color: lightblue;
+	
+}
+
+.button {
+   /*
+    -fx-font-size:10pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+    
+    -fx-text-fill: #32d74b;
+    -fx-border-color: rgb(49, 89, 23);
+         -fx-border-radius: 10;
+    -fx-padding: 3 6 6 6;
+    */
+     -fx-text-fill: #006464;
+    -fx-background-color: #DFB951;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 5;
+    -fx-effect: dropshadow( one-pass-box , red , 8 , 0.0 , 2 , 0 );
+    
+}
+
+.button:hover
+{
+	    -fx-background-color: lightskyblue;
+	    -fx-text-fill:#ff2600;
+	
+}
+#button11
+{
+	-fx-text-fill: red;
+    -fx-background-color: yellow;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 5;
+    -fx-effect: dropshadow( one-pass-box , red , 8 , 0.0 , 2 , 0 );
+}
+#button11:hover
+{
+	    -fx-background-color: green;
+	    -fx-text-fill:#ff2600;
+	
+}
+
