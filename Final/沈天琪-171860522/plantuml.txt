@@ -1,0 +1,226 @@
+@startuml
+package java.lang{
+    interface Runnable{
+        + {abstract} void run()
+    }
+}
+package top.stqstq.maven_huluwa.being{
+    interface IBeing extends Runnable{
+        + void print()
+        + int getRank()
+        + void walkTo(int,int)
+        + String getName()
+        + int getFightAbility()
+        + int getCombatComp()
+        + void setAliveState(boolean)
+        + boolean getAliveState()
+        + String getSymbol()
+    }
+    interface ICheer {
+        + String cheer()
+    }
+    interface IFighter{
+        + void fightSingleStep()
+    }
+    class Being implements IBeing {
+        - int rank;
+        - int fightAbility;
+        - boolean alive;
+        - final int combatComp;
+        - String name;
+        + void print()
+        + void walkTo(int,int)
+        + void run()
+        + int getRank()
+        + String getName()
+        + int getFightAbility()
+        + int getCombatComp()
+        + void setAliveState(boolean)
+        + boolean getAliveState()
+        + String getSymbol()
+    }
+    class Elder implements IBeing, ICheer, IFighter {
+        - int rank;
+        - int fightAbility;
+        - boolean alive;
+        - final int combatComp;
+        - String name;
+        + void print()
+        + void walkTo(int,int)
+        + int getRank()
+        + String getName()
+        + String cheer()
+        + int getFightAbility()
+        + int getCombatComp()
+        + void setAliveState(boolean)
+        + boolean getAliveState()
+        + String getSymbol()
+        + void run()
+        - int fightWith(int)
+        + void fightSingleStep()
+    }
+    class Snack implements IBeing, ICheer, IFighter{
+        - int rank;
+        - int fightAbility;
+        - boolean alive;
+        - final int combatComp;
+        - String name;
+        + void print()
+        + void walkTo(int,int)
+        + int getRank()
+        + String getName()
+        + String cheer()
+        + int getFightAbility()
+        + int getCombatComp()
+        + void setAliveState(boolean)
+        + boolean getAliveState()
+        + String getSymbol()
+        + void run()
+        - int fightWith(int)
+        + void fightSingleStep()
+    }
+    class Huluwa implements IBeing, IFighter {
+        - int rank;
+        - int fightAbility;
+        - boolean alive;
+        - final int combatComp;
+        - String name;
+        + void print()
+        + void walkTo(int,int)
+        + int getRank()
+        + String getName()
+        + int getFightAbility()
+        + int getCombatComp()
+        + void setAliveState(boolean)
+        + boolean getAliveState()
+        + String getSymbol()
+        + void run()
+        - int fightWith(int)
+        + void fightSingleStep()
+    }
+    class Monsters implements IBeing, IFighter {
+        - int rank;
+        - int fightAbility;
+        - boolean alive;
+        - final int combatComp;
+        - String name;
+        + void print()
+        + void walkTo(int,int)
+        + int getRank()
+        + String getName()
+        + int getFightAbility()
+        + int getCombatComp()
+        + void setAliveState(boolean)
+        + boolean getAliveState()
+        + String getSymbol()
+        + void run()
+        - int fightWith(int)
+        + void fightSingleStep()
+    }
+    class Scorpion implements IBeing, IFighter{
+        - int rank;
+        - int fightAbility;
+        - boolean alive;
+        - final int combatComp;
+        - String name;
+        + void print()
+        + void walkTo(int,int)
+        + int getRank()
+        + String getName()
+        + int getFightAbility()
+        + int getCombatComp()
+        + void setAliveState(boolean)
+        + boolean getAliveState()
+        + String getSymbol()
+        + void run()
+        - int fightWith(int)
+        + void fightSingleStep()
+        + void orderMonsters(int)
+    }
+}
+package top.stqstq.maven_huluwa.battlefiled{
+    class BattleField {
+        + {static} final int SIZE;
+        + {static} int[][] field;
+        + {static} void setField(int,int,int)
+        + {static} int getNo(int,int) 
+        + {static} int getXByNo(int)
+        + {static} int getYByNo(int)
+    }
+}
+package top.stqstq.maven_huluwa.involved{
+    class Involved{
+        - ArrayList<IBeing> a;
+        - BattleField bf£»
+        - MyLock myLock;
+        + void huluwaSort()
+        + void huluwaCome()
+        + void elderAndSnackCome()
+        + void scorpionOrder(int)
+        + void restoreState()
+        + ExecutorService warMultithreading()
+        - String turnMap2String()
+        + void war()
+        + void cheerTogether()
+        + <T extends ICheer> void cheerGeneric(T)
+        + {static} void printBf()
+        + {static} void printBf(int)
+        ~ void test()
+    }
+}
+package top.stqstq.maven_huluwa.lock{
+    class MyLock{
+        + {static} Lock lock;
+        + {static} Lock printLock;
+        + {static} int state;
+        + {static} int updateState;
+    }
+}
+package top.stqstq.maven_huluwa.logger{
+    class Logger{
+        - BufferedWriter out;
+        + void createLoggerFile()
+        + void writeLoggerFile(String)
+        + void closeLoggerFile()
+    }
+}
+package javafx.application{
+    abstract class Application{}
+}
+package top.stpstp.maven_huluwa.gui{
+    class GUIMain extends Application{
+        + final int LIMIT;
+        - Label[][] labels;
+        + static GUIMain guiMain;
+        - Involved involved;
+        - Queue<String> mapQueue;
+        - ExecutorService executorService;
+        - Stage stage;
+        + void start(Stage)
+        - void fightMultithreading()
+        - void fightInFile()
+        - void setKeyEvent(Scene)
+        + {static} void main(String[])
+        - String turnMap2String(int[][])
+        - void updateGui()
+        + void printBfInGui()
+        + void printBfInFile(String)
+        - void innerTest()
+    }
+}
+class Solution{
+    + {static} void main(String[])
+}
+class Main{
+    + {static} void main(String[])
+}
+Involved *-- IBeing
+Involved *-- BattleField
+Involved *-- MyLock
+GUIMain *- Involved
+note "Main launch GUIMain" as N2
+Main .. N2
+N2 .. GUIMain
+note top of Logger #lightgrey: Instantiate and call \nwhen you need to record \nbattlefield information.
+note top of Solution #lightgrey: Obsolete program entry point.
+@enduml
