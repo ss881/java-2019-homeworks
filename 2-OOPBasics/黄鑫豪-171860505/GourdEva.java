@@ -1,20 +1,12 @@
-public class GourdEva {
+public class GourdEva extends Creature {
     private String color, name;
     private int rank, position;
 
-    GourdEva(int rank) {
-        String[] colorRecord = {"红色", "橙色", "黄色", "绿色", "青色", "蓝色", "紫色"};
-        String[] nameRecord = {"老大", "老二", "老三", "老四", "老五", "老六", "老七"};
-
+    public GourdEva(int rank, String color, String name) {
+        super();
         this.rank = rank;
-
-        if (rank <= 6 && rank >= 0) {
-            this.color = colorRecord[rank];
-            this.name = nameRecord[rank];
-        } else {
-            this.color = "未知";
-            this.name = "未知";
-        }
+        this.color = color;
+        this.name = name;
     }
 
     public void saycolor() {
@@ -38,5 +30,10 @@ public class GourdEva {
             return;
         System.out.printf("%s：%d->%d\n", name, position + 1, newPosition + 1);
         position = newPosition;
+    }
+
+    @Override
+    public String describe() {
+        return color.substring(0, 1);
     }
 }
