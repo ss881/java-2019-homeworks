@@ -1,6 +1,6 @@
 # java作业：葫芦娃大战妖精
 
-###游戏功能说明
+### 游戏功能说明
 1. 运行程序
 	主界面显示游戏背景图, 右下角有两个按钮, 分别是回放记录与开始游戏, 对应的快捷键分别是'L'和'空格'.
 	背景图是一个简单的网格图, 也是战场, 使用网格图可以清楚看见每个游戏生物的位置.
@@ -21,7 +21,8 @@
 	之后重现被存储的一场战斗.
 
 ---
-###游戏内容展示
+
+### 游戏内容展示
 1. 游戏主界面
 ![主界面](FinalWork/src/main/resources/markdownImage/gameStart.png "主界面")
 2. 点击开始游戏按钮, 选择存储路径
@@ -32,9 +33,12 @@
 ![结束](FinalWork/src/main/resources/markdownImage/gameEnd.png "结束")
 5.点击回放记录按钮, 选择游戏存档
 ![选择存档](FinalWork/src/main/resources/markdownImage/choseSave.png "选择存档")
+
 ---
-###项目代码结构
-#####代码文件主要包括:
+
+### 项目代码结构
+
+##### 代码文件主要包括:
 
 代码文件|定义的类
 -|-
@@ -48,7 +52,7 @@ Enemy.java | class Enemy;
 World.java | class World;
 Formation.java | class Formation;
 
-#####类的功能说明
+##### 类的功能说明
 1. class Main
 	包含函数start和mian, start函数是运行图形界面的入口, main是程序运行的入口.
 2. class Controller
@@ -112,7 +116,7 @@ die|修改存活状态, 将生物的图片修改为死亡后的图片.
 	
 ---
 
-###用到的编程方法
+### 用到的编程方法
 1. 封装
 	将生物抽象为一个类, 为其定义数据成员代表生物的属性, 定义方法代表生物的行为. 将生物作为一个整体, 而不是将其分割成若干个属性值.
 2. 继承
@@ -125,7 +129,8 @@ die|修改存活状态, 将生物的图片修改为死亡后的图片.
 	使用try catch的方法捕捉可能存在的异常.
 6. 单元测试
 	为class Creature的方法和class Road的寻找最短路的方法编写测试用例.
+	
 ---
 
-###UML类图
+### UML类图
 ！[UML类图](FinalWork/src/main/resources/plantuml/plantuml.png "类图")
