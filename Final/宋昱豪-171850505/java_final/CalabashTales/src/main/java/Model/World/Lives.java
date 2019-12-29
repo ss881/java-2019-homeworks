@@ -149,7 +149,11 @@ public class Lives implements Runnable{
             for(int i=0;i<8;i++)
             {
 
-                if((dst.x+rx[i]>=0)&&(dst.y+ry[i]>=0)&&(dst.y+ry[i]<BattleGround.N)&&(dst.x+rx[i]<BattleGround.M)&&(ground[dst.x+rx[i]][dst.y+ry[i]].GetIsOccupied()==false))
+                if(dst==null)
+                {
+                    System.out.print("NULL\n");
+                }
+                else if((dst.x+rx[i]>=0)&&(dst.y+ry[i]>=0)&&(dst.y+ry[i]<BattleGround.N)&&(dst.x+rx[i]<BattleGround.M)&&(ground[dst.x+rx[i]][dst.y+ry[i]].GetIsOccupied()==false))
                 {
                     System.out.print("x="+(dst.x+rx[i])+" y="+(dst.y+ry[i])+"\n");
                     dst.x=dst.x+rx[i];

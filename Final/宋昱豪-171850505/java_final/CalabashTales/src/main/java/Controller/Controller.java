@@ -16,7 +16,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,12 +55,24 @@ public class Controller {
                 System.out.print(event.getCode());
 
                 if (event.getCode() == KeyCode.SPACE) {
-                    clear();
+                    try {
+                        clear();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                     model.play();
                     exec.execute(model);
                 } else if (event.getCode() == KeyCode.L) {
                     anchorpane.getChildren().clear();
-                    model = new Model(anchorpane, num1, num2);
+                    try {
+                        model = new Model(anchorpane, num1, num2);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                     FileChooser chooser = new FileChooser();
                     chooser.setTitle("打开文件");
                     chooser.getExtensionFilters().addAll(
@@ -85,7 +99,7 @@ public class Controller {
         file = chooser.showSaveDialog(null);
     }
 
-    public void clear() {
+    public void clear() throws FileNotFoundException, UnsupportedEncodingException {
         anchorpane.getChildren().clear();
         setFile();
         model = new Model(anchorpane, num1, num2);
@@ -110,7 +124,7 @@ public class Controller {
         setFile();
     }
 
-    public void fightStart(ActionEvent actionEvent) {
+    public void fightStart(ActionEvent actionEvent) throws FileNotFoundException, UnsupportedEncodingException{
         clear();
         model.play();
         exec.execute(model);

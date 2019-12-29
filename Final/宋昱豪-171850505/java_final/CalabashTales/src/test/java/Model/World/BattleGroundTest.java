@@ -18,11 +18,12 @@ public class BattleGroundTest {
         b=new BattleGround(file);
     }
     @Test
-    public void clear() {
+    public void clear() throws FileNotFoundException, UnsupportedEncodingException {
         System.out.print("clear");
         BattleGround.ground[4][5].SetALL(true,null);
         assertEquals(BattleGround.ground[4][5].GetIsOccupied(),true);
-        b.clear();
+        File file=new File("D://n.txt");
+        b.clear(file);
         assertEquals(BattleGround.ground[4][5].GetIsOccupied(),false);
     }
 
