@@ -1,0 +1,23 @@
+@startuml
+
+class EnemyTeam{
+__ private __
++ Snake snake;
++ Scorpion scorpion;
++ List<SmallEnemy> smallEnemyList;
+__ public __
+- EnemyTeam(List<Point> pointList);
+
+- Scorpion getScorpion();
+- List<SmallEnemy> getSmallEnemyList();
+- Snake getSnake();
+
+- void ChangeFormation(List<Point> pointList);
+- boolean isChangeOver(int movNum);
+}
+
+EnemyTeam "1"-->"1" Scorpion : has
+EnemyTeam "1"-->"1" Snake : has
+EnemyTeam "1"-->"7" SmallEnemy : has
+
+@enduml

@@ -1,0 +1,72 @@
+@startuml
+class Solution{
++ {static} void main(String[] args)
+}
+
+class BattleField{
+~ final int SIZE
+~ int[][] field
++ void setField(int x, int y, int no)
++ int getNo(int x, int y)
++ int getXByNo(int no)
++ int getYByNo(int no)
+}
+
+class Being{
+{static} BattleField bf
+# int rank
++ void print()
++ int getRank()
++ void walkTo(int x, int y)
+}
+
+class Huluwa extends Being{
++ void print()
+}
+
+class Elder extends Being{
++ void print()
++ void cheer()
+}
+
+class Snack extends Being{
++ void print()
++ void cheer()
+}
+
+class Scorpion extends Being{
++ void print()
++ void orderMonsters(int mode)
+}
+
+class Monsters extends Being{
++ void print()
+}
+
+class Involved{
+- ArrayList<Being> a
+- Elder e
+- Snack sn
+- Scorpion sc
++ void huluwaSort()
++ void huluwaCome()
++ void scorpionOrder(int mode)
++ void elderCome()
++ void cheerTogether()
++ void snackCome()
++ void printBf()
+}
+
+Being "many" o- "one" BattleField : "share"
+Involved *-- Being
+note on link
+由于class Huluwa &
+class Monsters没有
+超越Being的数据与方
+法，包含了class Being 
+就是包含了这两者
+end note
+Involved *-- Elder
+Involved *-- Snack
+Involved *-- Scorpion
+@enduml

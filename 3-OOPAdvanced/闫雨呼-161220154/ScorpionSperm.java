@@ -1,24 +1,26 @@
 import java.util.Random;
 
+//小喽啰类
 class BadFollower extends Creature{
     BadFollower(String name){
         super(name,true);
     }
 }
+
+//蝎子精类
 class ScorpionSperm extends Creature{
     private final static int FOLLOWERS_NUM=7;
     private BadFollower[] badFollowers;
-    ScorpionSperm(String name){
+    ScorpionSperm(String name,BadFollower[] badFollowers){
         super(name,true);
-        badFollowers=new BadFollower[FOLLOWERS_NUM];
-        for(int i=0;i<FOLLOWERS_NUM;i++)
-            badFollowers[i]=new BadFollower("F"+(i+1));
+        this.badFollowers=badFollowers;
     }
+    //初始化
     void setBadGuys(){
-        Random rand=new Random();
-        changeFormation(rand.nextInt(Formation.FORMATION_NUM-1));
+        changeFormation(FormationKind.values()[new Random().nextInt(God.FOLLOWERS_NUM)]);
     }
-    void changeFormation(int formation){
+    //变换阵型
+    void changeFormation(FormationKind formation){
         Formation.changeFormation(GameMap.battleField,badFollowers,formation);
     }
 }

@@ -1,18 +1,23 @@
-###ÐÕÃû£ºÎâºèìï    Ñ§ºÅ£º171860677
+#æ€è·¯
 
-### ÃæÏò¶ÔÏó±à³ÌË¼Â·£º
+##ç±»ä»‹ç»
 
-1.¶ÔÓÚÃ¿Ò»¸öºùÂ«ÍÞ£¬ËüÓÐÅÅÐÐºÍÑÕÉ«Á½¸öÊôÐÔ£¬Òò´Ë´´½¨Ò»¸öÀàDollBrother¶ÔºùÂ«ÍÞ½øÐÐÃèÊö£¬Ã¿¸öºùÂ«ÍÞ¿´×÷ÊÇÒ»¸öDollBrother¶ÔÓ¦µÄ¶ÔÏó
+ï¼ˆ1ï¼‰DollBrother: æè¿°å•ä¸ªè‘«èŠ¦å¨ƒçš„ç±»ï¼Œå…·æœ‰rankå’Œcolorä¸¤ä¸ªå±žæ€§ï¼Œè¡¨ç¤ºè‘«èŠ¦å¨ƒçš„é¢œè‰²å’ŒæŽ’è¡Œ
+ï¼Œæž„é€ è‘«èŠ¦å¨ƒæ—¶éœ€è¦æä¾›rankå’Œcolorä¸¤ä¸ªå±žæ€§è¿›è¡Œåˆå§‹åŒ–,DollBrother(int rank,int color)ã€‚è‘«èŠ¦å¨ƒçš„è¡Œä¸ºåŒ…æ‹¬sayRank()å’ŒsayColor()ï¼Œè¡¨ç¤ºå¯ä»¥å¯¹å¤–è¯´æ˜Žè‡ªå·±çš„é¢œè‰²å’ŒæŽ’è¡Œ
 
-2.ÀàDollBrother°üº¬Á½¸öprivateµÄÕûÐÍÊý³ÉÔ±±äÁ¿£ºrankºÍcolor; ±íÊ¾ºùÂ«ÍÞµÄÅÅÐÐºÍÑÕÉ«Á½¸öË½ÓÐÊôÐÔ£¬²¢ÔÚ¶ÔÏó³õÊ¼»¯Ö®ºó²»¿ÉÐÞ¸Ä¡£
-   Í¬Ê±£¬DollBrotherÀàº¬ÓÐÁ½¸ö²Ù×÷º¯ÊýgetRank()ºÍgetColor()£¬¶ÔºùÂ«ÍÞÕâÒ»¶ÔÏó½öÄÜ½øÐÐ¶ÁÈ¡ÅÅÐÐ´óÐ¡ºÍÑÕÉ«£¬ÎÞ·¨½øÐÐÐÞ¸Ä
+ï¼ˆ2ï¼‰GourdDollï¼šæ˜¯è‘«èŠ¦å¨ƒçš„é›†åˆï¼Œç±»ä¼¼äºŽè‘«èŠ¦å¨ƒâ€˜å¤§å®¶åº­â€™çš„æ¦‚å¿µï¼Œåœ¨è¿™ä¸ªç±»ä¸­å¯ä»¥å¯¹
+è‘«èŠ¦å…„å¼Ÿè¿›è¡ŒæŽ’è¡Œæ“ä½œï¼Œæ ¹æ®æŽ’è¡Œè¿›è¡Œå†’æ³¡æŽ’åºå’Œæ ¹æ®é¢œè‰²äºŒåˆ†æŽ’åº
 
-3.¹«¹²ÀàGourdDollÄ£ÄâÆß¸öºùÂ«ÍÞµÄ¡°´ó¼ÒÍ¥¡±£¬ÓÃÀ´ÃèÊöÆß¸öºùÂ«ÍÞµÄ¼¯ºÏ¼°¶ÔÆäµÄÅÅÐò²Ù×÷
+##å®žçŽ°è¿‡ç¨‹
 
-4.ÀàGourdDollÖÐÓÐ³ÉÔ±DollBrother brothers[], ³õÊ¼»¯¸Ã¶ÔÏóÊ±±íÊ¾ÓµÓÐÈô¸É¸öDollBrother£¨ºùÂ«ÍÞ¶ÔÏó£©
+**ï¼ˆ1ï¼‰**
+åœ¨æŽ§åˆ¶å°ä¸­ç”¨æˆ·éšæœºè¾“å…¥7ä¸ªæ•°å­—è¡¨ç¤ºæ‰“ä¹±è‘«èŠ¦å…„å¼Ÿçš„ç«™ä½é¡ºåºï¼Œå¹¶å¯¹è‘«èŠ¦å¨ƒè¿›è¡Œåˆå§‹åŒ–
 
-5.ÀàGourdDollÖÐÓÐÁ½¸öË½ÓÐ³ÉÔ±º¯Êý£ºsayRank(DollBrother brother)ºÍsayColor(DollBrother brother)£¬±íÊ¾»ñÈ¡Ä³¸öºùÂ«ÍÞµÄÅÅÐÐ»òÕßÑÕÉ«£¬Ä£ÄâÅÅÐò
- ¹ý³ÌÖÐºùÂ«ÍÞµÄ±¨¸æÊä³ö
+**ï¼ˆ2ï¼‰**
+è°ƒç”¨å†’æ³¡æŽ’åºå¯¹è‘«èŠ¦å¨ƒæŽ’åºï¼Œåœ¨æŽ’åºçš„è¿‡ç¨‹ä¸­ä¼šä¸æ–­æŠ¥å‘Šäº¤æ¢ä½ç½®çš„ä¸¤ä¸ªè‘«èŠ¦å¨ƒçš„æŽ’è¡Œå’Œå½“å‰ä½ç½®
 
-6..ÀàGourdDollÖÐÓÐÁ½¸ö¹«¹²³ÉÔ±º¯Êý£ºbubblesort()ºÍdichotomysort()£¬Ç°ÕßÓÃÃ°ÅÝÅÅÐò¸ù¾ÝºùÂ«ÍÞµÄÅÅÐÐ´óÐ¡½øÐÐÅÅÐò£¬ºóÕßÓÃ¶þ·Ö·¨°´ÕÕÑÕÉ«½øÐÐÅÅÐò£¬
- ÅÅÐòÇ°ÓÉÓÃ»§ÊäÈëÊý×Ö±íÊ¾ÆßÐÖµÜµÄÕ¾¶Ó
+**ï¼ˆ3ï¼‰**
+äºŒåˆ†æŽ’åºåŒç†
+
+**ï¼ˆ4ï¼‰**
+åœ¨æŽ’åºç»“æŸä¹‹åŽä¼šè°ƒç”¨è‘«èŠ¦å¨ƒçš„sayColoræ–¹æ³•æ¥æŠ¥å„è‡ªçš„é¢œè‰²
