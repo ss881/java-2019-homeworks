@@ -16,6 +16,7 @@
 
   在战场BattleField类的print函数中，每个生物不再使用的动态绑定的方式getName()输出对应名字，而是使用instanceof关键字判断对象所属的类并进行对应输出。
   
+  
   >void print() {
   
   >      for (int i = 0; i < SIZE; i++) {
