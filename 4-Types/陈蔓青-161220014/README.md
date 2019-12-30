@@ -68,3 +68,9 @@
   > public class Creature <T> 
 
 
+## UML类图
+
+!(https://github.com/Dantelian277/java-2019-homeworks/blob/master/4-Types/%E9%99%88%E8%94%93%E9%9D%92-161220014/UML.png)
+
+
+
