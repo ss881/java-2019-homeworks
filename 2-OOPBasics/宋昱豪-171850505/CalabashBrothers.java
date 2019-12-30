@@ -1,25 +1,9 @@
 
 public class CalabashBrothers {
     int Number;
-    color MyColor;
+    Color MyColor;
     double position;
     double Height;
-    void ChangeMyColorByNumber(int Num)
-    {
-        Number=Num;
-        switch(Number)
-        {
-            case 1:MyColor=color.RED; break;
-            case 2:MyColor=color.ORANGE;break;
-            case 3:MyColor=color.YELLOW;break;
-            case 4:MyColor=color.GREEN;break;
-            case 5:MyColor=color.CYAN;break;
-            case 6:MyColor=color.BLUE;break;
-            case 7:MyColor=color.PURPLE;break;
-            default:System.out.println("妖怪放了我爷爷");break;
-        }
-    }
-
     void GetMyColor()
     {
         switch(MyColor)
@@ -88,22 +72,12 @@ public class CalabashBrothers {
         }
         position=dest;
     }
-    public CalabashBrothers(int Who,double ToPosition)
+    public CalabashBrothers(int Who,double ToPosition,Color x)
     {
         Number=Who;
         position=ToPosition;
         Height=1.8;
-        switch(Number)
-        {
-            case 1:MyColor=color.RED; break;
-            case 2:MyColor=color.ORANGE;break;
-            case 3:MyColor=color.YELLOW;break;
-            case 4:MyColor=color.GREEN;break;
-            case 5:MyColor=color.CYAN;break;
-            case 6:MyColor=color.BLUE;break;
-            case 7:MyColor=color.PURPLE;break;
-            default:System.out.println("妖怪放了我爷爷");break;
-        }
+        MyColor=x;
     }
 
 }
