@@ -1,50 +1,6 @@
 import java.util.Random;
 
-//enum HuluwaNames {大娃, 二娃, 三娃, 四娃, 五娃, 六娃, 七娃}
-
-
-/*class Creature{                                         //所有生物
-
-    private String name;
-    private String type;
-    public String getName() { return name; }
-
-    Creature(String name, String type){                 //构造函数
-        this.name = name;
-        this.type = type;
-    }
-}*/
-
-
-/*class Grandpa extends Creature{                         //爷爷
-    Grandpa(){
-        super("爷爷", "人类");
-    }
-}*/
-
-
-/*class SheJing extends Creature{                         //蛇精
-    SheJing(){
-        super("蛇精", "蛇妖");
-    }
-}*/
-
-
-/*class Huluwa extends Creature{                          //葫芦娃
-    Huluwa(int i){
-        super(HuluwaNames.values()[i].toString(), "葫芦娃");
-    }
-}*/
-
-
-/*class Monster extends Creature{                         //小妖怪
-    Monster(){
-        super("妖怪", "小妖怪");
-    }
-}*/
-
-
-/*class BattleWorld{
+public class BattleWorld {
 
     private final int SIZE = 12;                        //NxN
     private int [][]map;                                //战场
@@ -68,13 +24,13 @@ import java.util.Random;
         }
     }
 
-    private void clean(){                               //清空战场
+    /*private void clean(){                               //清空战场
         for (int i = 1; i < SIZE; i++) {
             for (int j = 4; j < SIZE; j++) {
                 map[i][j] = -1;
             }
         }
-    }
+    }*/
 
     void CalabashBroRandom(){                           //葫芦娃的长蛇阵
         for (int i = 0; i < SIZE; i++) {
@@ -98,7 +54,7 @@ import java.util.Random;
     }
 
     void RandomSheJing(){
-        for (int i = 0, j = 0; ; ) {
+        /*for (int i = 0, j = 0; ; ) {
             Random randomGenerator = new Random();
             i = 3 + randomGenerator.nextInt(8);
             j = randomGenerator.nextInt(11);
@@ -106,7 +62,7 @@ import java.util.Random;
                 map[i][j] = 8;
                 break;
             }
-        }
+        }*/
         map[0][10] = 8;
     }
 
@@ -217,50 +173,6 @@ import java.util.Random;
             }
             System.out.print("\n");
         }
-    }
-}*/
-
-
-public class hw3{
-
-    public static void main(String[] args){
-
-        BattleWorld battle = new BattleWorld();
-
-        System.out.println("\n鹤翼\n");
-        battle.CalabashBroRandom();
-        battle.heyi();
-        battle.print();
-
-        System.out.println("\n雁行\n");
-        battle.CalabashBroRandom();
-        battle.yanxing();
-        battle.print();
-
-        System.out.println("\n衡轭\n");
-        battle.CalabashBroRandom();
-        battle.henge();
-        battle.print();
-
-        System.out.println("\n鱼鳞\n");
-        battle.CalabashBroRandom();
-        battle.yulin();
-        battle.print();
-
-        System.out.println("\n方円\n");
-        battle.CalabashBroRandom();
-        battle.fangyuan();
-        battle.print();
-
-        System.out.println("\n偃月\n");
-        battle.CalabashBroRandom();
-        battle.yanyue();
-        battle.print();
-
-        System.out.println("\n锋矢\n");
-        battle.CalabashBroRandom();
-        battle.fengshi();
-        battle.print();
     }
 
 }
