@@ -169,7 +169,18 @@ public class BattleField {
                 if (map[i][j] == -1){
                     System.out.print("    ");
                 }else{
-                    System.out.print(creatures[map[i][j]].getName());
+                    //System.out.print(creatures[map[i][j]].getName());
+                    if(creatures[map[i][j]] instanceof CalabashBrother)
+                        //System.out.print("葫芦娃");
+                        System.out.print(creatures[map[i][j]].getName());
+                    else if(creatures[map[i][j]] instanceof Grandpa)
+                        System.out.print("爷爷");
+                    else if(creatures[map[i][j]] instanceof Snake)
+                        System.out.print("蛇精");
+                    else if(creatures[map[i][j]] instanceof Monster)
+                        System.out.print("妖怪");
+                    else
+                        System.out.print("未知");
                 }
             }
             System.out.print("\n");
