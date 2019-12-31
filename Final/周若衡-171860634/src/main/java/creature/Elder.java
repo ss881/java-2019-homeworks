@@ -24,7 +24,7 @@ public class Elder extends GoodCreature {
     public boolean callMonster(ChessBoard board, MyTextArea textArea, boolean isAddCommand) {
         synchronized (board){
             if(board.canPutCreature(x,y+1)==true){
-                Pangolin peaPod=new Pangolin(x,y+1, ImageType.PEA_POD,50,true,0,"pangolin",100,20);
+                Pangolin peaPod=new Pangolin(x,y+1, ImageType.PEA_POD,50,true,0,"穿山甲",100,20);
                 Cell temp=board.getSquare(x,y+1);
                 temp.setBeing(peaPod);
                 board.setSquare(temp);

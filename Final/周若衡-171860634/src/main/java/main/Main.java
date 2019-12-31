@@ -52,6 +52,7 @@ public class Main extends Application {
         textArea.appendText("       按Enter键运行游戏\n");
         textArea.appendText("       按F键选择记录回放\n");
         textArea.appendText("       按R键进行新一轮\n");
+        textArea.appendText("       游戏结束按Enter保存回放\n");
         textArea.appendText("++++++++++++++++++++++++++++++++++\n");
     }
 
@@ -106,7 +107,7 @@ public class Main extends Application {
                     else if(chessBoard.getGameStatus()== GAME_OVER){
                         FileChooser fileChooser = new FileChooser();
                         fileChooser.getExtensionFilters().addAll(
-                                new FileChooser.ExtensionFilter("Binary", "/*.dat")
+                                new FileChooser.ExtensionFilter("Binary", "*.dat")
                         );
                         fileChooser.setTitle("保存战斗记录");
                         File file = fileChooser.showSaveDialog(stage);
@@ -132,7 +133,7 @@ public class Main extends Application {
                     if(chessBoard.getGameStatus()==READY){
                         FileChooser fileChooser = new FileChooser();
                         fileChooser.getExtensionFilters().addAll(
-                                new FileChooser.ExtensionFilter("Binary", "/*.dat")
+                                new FileChooser.ExtensionFilter("Binary", "*.dat")
 
                         );
                         fileChooser.setTitle("选择战斗记录回放");
