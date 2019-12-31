@@ -2,7 +2,7 @@
 
 ## UML 一览
 
-![a](src/uml.png)
+![a](uml.png)
 
 
 
@@ -197,7 +197,7 @@ public static void main(String[] args) {
 
 可以观察到尽管葫芦娃在进入格子中被替换成了边界类型，set函数中任然触发了输出语句，可见其本质依然是引用指向葫芦娃原来的存储空间：
 
-![z](src/reflecting.png)
+![z](reflecting.png)
 
 
 
