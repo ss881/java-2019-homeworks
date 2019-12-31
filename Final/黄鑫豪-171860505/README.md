@@ -11,7 +11,7 @@
 
 ### 项目效果图
 
-![](pic\formation.png)
+![](pic/formation.png)
 
 
 
