@@ -1,0 +1,44 @@
+@startuml
+interface Runnable
+interface Serializable
+
+package battle{
+    class Bullet implements Runnable, Serializable
+    class Cell
+    class Formation
+    class Ground
+}
+package config{
+    class Config
+}
+
+package controllers{
+    class Controller
+}
+
+package creature{
+    abstract class Creature implements Runnable, Serializable
+    abstract class Good extends Creature
+    abstract class CalabashBros extends Good
+    abstract class Bad extends Creature
+
+    class First extends CalabashBros
+    class Second extends CalabashBros
+    class Third extends CalabashBros
+    class Fourth extends CalabashBros
+    class Fifth extends CalabashBros
+    class Sixth extends CalabashBros
+    class Seventh extends CalabashBros
+    class Grandpa extends Good
+    class Scorpion extends Bad
+    class Lackey extends Bad
+    class Snake extends Bad
+}
+
+package team{
+    abstract class Team implements Runnable
+    class GoodTeam implements Team
+    class BadTeam implements Team
+}
+class Main
+@enduml
