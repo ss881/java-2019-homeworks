@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane onKeyReleased="#typeSPACE" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameController">
+    <children>
+        <Button fx:id="control" layoutX="160.0" layoutY="796.0" mnemonicParsing="false" onAction="#buttonClick" text="暂停\继续（空格）" />
+        <Button fx:id="back" layoutX="1296.0" layoutY="796.0" mnemonicParsing="false" onAction="#buttonClick" text="返回主界面" />
+    </children>
+</AnchorPane>
