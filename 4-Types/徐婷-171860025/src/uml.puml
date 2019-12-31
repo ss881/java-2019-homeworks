@@ -1,0 +1,140 @@
+
+@startuml
+package creatures{
+abstract class Creature{
+	# int coordX
+	# int coordY
+	# State state
+	# String name
+	+ Creature()
+	+ Creature(String name)
+	+ Creature(String name, int x, int y)
+    	+ void setPos()
+        	+ int getCoordX()
+        	+ int getCoordY()
+        	+ String getName()
+        	+ State getState()
+	+ void setState(State state)
+}
+abstract class HuluwaSide{
+	+ HuluwaSide()
+	+ HuluwaSide(String name)
+	+ HuluwaSide(String name, int x, int y）
+}
+
+class Huluwa{
+    	- int rank
+    	+ Huluwa()
+	+ Huluwa(String name)
+	+ Huluwa(String name, int x, int y)
+	+ Huluwa(int rank)
+	+ void setName()
+	+ int getRank()
+
+}
+
+class Grandpa{
+	+ Grandpa()
+	+ Grandpa(String name, int x, int y)
+	+ Grandpa(String name)
+}
+
+abstract class SnakeSide{
+	+ SnakeSide()
+	+ SnakeSide(String name)
+	+ SnakeSide(String name, int x, int y)
+}
+
+class Damon{
+	+ Damon()
+	+ Damon(String name)
+	+ Damon(String name, int x, int y)
+}
+
+class Snake{
+	+ Snake()
+	+ Snake(String name)
+	+ Snake(String name, int x, int y)
+}
+
+class SnakeTeam{
+    	- Snake snake
+	- List<Damon> damons
+	- ArrangeMent arrangement
+	+ SnakeTeam()
+	+ void arrange()
+    	+ List<SnakeSide> getTeamMembers()
+}
+
+class HuluwaTeam{
+    	- Grandpa grandpa
+	- List<Huluwa>huluwaList
+       	+ HuluwaTeam()
+       	 - void swap(int i, int j)
+        	+ void Sort(Ground ground)
+        	+ List<HuluwaSide> getTeamMembers()
+}
+interface Cheerer{
+	+ void cheer()
+}
+}
+package formation{
+	class Formation{
+		- {static} <T extends Creature>void preprocess(List<T>list, int x, int y)
+		+ {static} <T extends Creature>void heYi(List<T>list, int x, int y)
+		+ {static} <T extends Creature> void yanXing(List<T>list, int x, int y)
+		+ {static} <T extends Creature> void hengE(List<T> list, int x, int y)
+		+ {static} <T extends Creature> void yuLing(List<T>list, int x, int y)
+		+ {static} <T extends Creature> void fangYuan(List<T>list, int x, int y)
+		+ {static} <T extends Creature> void yanYue(List<T>list, int x, int y)
+		+ {static} <T extends Creature> void fengShi(List<T>list, int x, int y)
+		+ {static} <T extends Creature> void changShe(List<T>list, int x, int y)
+	}	
+}
+package ground{
+    	class Cell{
+  		- Creature creature
+		+ Cell()
+		+ Cell(Creature creature)
+		+ void setCreature(Creature creature)
+		+ String getName()
+    	}
+    	class Ground{
+       		- {static} final int N=13
+        		- Cell[][]cells
+		- HuluwaTeam huluwaTeam
+		- SnakeTeam snakeTeam
+		+ Ground(HuluwaTeam huluwaTeam, SnakeTeam snakeTeam)
+		- void setCellNull()
+		+ void update()
+		+ void printGround()
+
+    	}
+}
+class Main{
+	+ {static} void main(String []args)
+}
+HuluwaSide--|> Creature
+SnakeSide--|> Creature
+Huluwa --|>HuluwaSide
+Grandpa--|>HuluwaSide
+Snake --|> SnakeSide
+Damon --|> SnakeSide
+Grandpa..|> Cheerer
+Snake..|>Cheerer
+
+
+Snake --o SnakeTeam
+Damon --o SnakeTeam
+
+Huluwa--o HuluwaTeam
+Grandpa --o HuluwaTeam
+
+HuluwaTeam--o Ground
+SnakeTeam--o Ground
+Cell--o Ground
+
+HuluwaTeam -> Formation
+SnakeTeam -> Formation
+
+@enduml

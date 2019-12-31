@@ -1,0 +1,10 @@
+@startuml
+
+
+class Scorpion{
+__ public __
+- Scorpion(int px, int py, Image image);
+}
+Character <|-- Scorpion : extends
+
+@enduml
