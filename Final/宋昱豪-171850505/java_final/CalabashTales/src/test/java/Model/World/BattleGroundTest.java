@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import static org.junit.Assert.*;
@@ -18,7 +19,7 @@ public class BattleGroundTest {
         b=new BattleGround(file);
     }
     @Test
-    public void clear() throws FileNotFoundException, UnsupportedEncodingException {
+    public void clear() throws FileNotFoundException, UnsupportedEncodingException , IOException {
         System.out.print("clear");
         BattleGround.ground[4][5].SetALL(true,null);
         assertEquals(BattleGround.ground[4][5].GetIsOccupied(),true);

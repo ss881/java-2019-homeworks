@@ -82,7 +82,7 @@ public class Model implements Runnable {
     private Good good;
     private Bad bad;
     private AnchorPane pane;
-    public Model(AnchorPane p,int num1,int num2) throws FileNotFoundException, UnsupportedEncodingException {
+    public Model(AnchorPane p,int num1,int num2) throws IOException {
         battleGround.clear(Controller.file);
         Lives.init(battleGround.ground);
         bad = new Bad(battleGround.ground,num1);
