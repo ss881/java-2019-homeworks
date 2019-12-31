@@ -126,7 +126,7 @@ public void closeFile() {
 
 生物类均通过 `implements Runnable` 实现。
 
-![](pic/runnable.png)
+![](pic/Runnable.png)
 
 后期准备战斗时，会将每个生物装进一个线程中运行。
 
