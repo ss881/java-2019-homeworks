@@ -2,14 +2,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import SWT.*;
 
 public class CalabashTeam {
     private List<Calabash> calabashes;
 
-    public CalabashTeam() {
+    public CalabashTeam(){
         this.calabashes = new ArrayList<>();
         for(int i = 0; i < 7; ++i){
-            Calabash calabash = new Calabash(i);
+            Calabash calabash = new Calabash(Color.values()[i], Rank.values()[i]);
             calabashes.add(calabash);
         }
     }

@@ -1,0 +1,89 @@
+@startuml
+
+abstract class Unit {
+    - int x
+    - int y
+    + void set()
+    + int getX()
+    + int getY()
+    + {abstract} String getName()
+}
+
+class GrandFather {
+    - String name
+    + String getName()
+    + void cheer()
+    + void instruction()
+}
+
+class CalabashBrother {
+    - String name
+    - String color
+    - int seq
+    + String getName()
+    + String getColor()
+    + int getSeq()
+}
+
+class Snake {
+    - String name
+    + String getName()
+    + void cheer()
+    + void instruction()
+}
+
+class Scorpion {
+    - String name
+    + String getName()
+}
+
+class Monster {
+    - String name
+    + String getName()
+}
+
+class Battle {
+    - Unit[][] battle
+    - int row, col
+    + void setUnit()
+    + void showBattle()
+}
+
+class Camp {
+    - ArrayList<Unit> soldiers
+    - T leader
+    + T getLeader()
+    + ArrayList<Unit> getSoldiers()
+    + void AddUnit()
+}
+
+class Controller {
+    + {static} void BubbleSort()
+    + {static} void HeYi()
+    + {static} void YanXing()
+    + {static} void HengE()
+    + {static} void ChangShe()
+    + {static} void YuLing()（该阵型未实现）
+    + {static} void FangYuan()（该阵型未实现）
+    + {static} void YanYue()（该阵型未实现）
+    + {static} void FengShi()
+}
+
+class Main {
+    + {static} void main()
+}
+
+interface leader {
+    void cheer()
+    void instruction()
+}
+
+GrandFather --|> Unit
+CalabashBrother --|> Unit
+Snake --|> Unit
+Scorpion --|> Unit
+Monster --|> Unit
+GrandFather ..> leader
+Snake ..> leader
+
+@enduml
