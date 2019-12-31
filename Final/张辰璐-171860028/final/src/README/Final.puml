@@ -1,0 +1,62 @@
+@startuml
+interface Runnable
+abstract class chessman.ChessInfo
+abstract class chessman.Creature
+class chessman.FindPath
+chessman.Creature --|> chessman.ChessInfo
+chessman.Creature ..|>Runnable
+chessman.Creature ..|>chessman.Constants
+chessman.Creature -->chessman.CreatureState
+chessman.Creature --> chessman.FindPath
+
+abstract class chessman.Justice
+chessman.Justice --|> chessman.Creature
+class chessman.Huluwa
+chessman.Huluwa --|>chessman.Justice
+class chessman.Grandpa
+chessman.Grandpa --|> chessman.Justice
+class chessman.JusticeList
+chessman.JusticeList --> chessman.Grandpa
+chessman.JusticeList --> chessman.Huluwa
+
+abstract class chessman.evil
+chessman.evil --|> chessman.Creature
+class chessman.Pawn
+chessman.Pawn --|> chessman.evil
+class chessman.MonsterList
+chessman.MonsterList --> chessman.Pawn
+
+interface Initializable
+class gui.GuiPainter
+gui.GuiPainter ..|>Runnable
+class gui.MainController
+gui.MainController ..|> Initializable
+class gui.StartPageController
+gui.StartPageController --> gui.MainController
+gui.MainController --> chessboard.HuluWorld
+
+class chessboard.Position
+class chessboard.HuluWorld
+class chessboard.Grid
+class chessboard.Formation
+interface chessboard.Constants
+class chessboard.BattleField
+class chessboard.BattleEvent
+
+chessboard.BattleEvent ..|> Runnable
+chessboard.BattleEvent --> chessman.Creature
+chessboard.BattleField ..|> chessboard.Constants
+chessboard.BattleField -->chessboard.Grid
+chessboard.BattleField ..>chessboard.BattleEvent
+chessboard.HuluWorld ..|> Runnable
+chessboard.HuluWorld ..|>chessboard.Constants
+chessboard.HuluWorld -->chessboard.BattleField
+chessboard.HuluWorld -->chessman.JusticeList
+chessboard.HuluWorld -->chessman.MonsterList
+chessboard.HuluWorld -->chessboard.Formation
+chessboard.HuluWorld --> gui.GuiPainter
+
+class Main
+Main --> gui.MainController
+
+@enduml
