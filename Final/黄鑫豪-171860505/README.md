@@ -126,7 +126,7 @@ public void closeFile() {
 
 生物类均通过 `implements Runnable` 实现。
 
-![](pic\runnable.png)
+![](pic/runnable.png)
 
 后期准备战斗时，会将每个生物装进一个线程中运行。
 
@@ -136,7 +136,7 @@ public void closeFile() {
 
 在程序中则是通过 `synchronized` 修饰战斗和移动函数，来确保多线程的安全。
 
-![](pic\synchronization.png)
+![](pic/synchronization.png)
 
 
 
