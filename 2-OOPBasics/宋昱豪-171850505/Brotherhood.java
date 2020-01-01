@@ -10,7 +10,19 @@ public class Brotherhood {
         Integer[] random=Sf();
         for(int i=1;i<8;i++)
         {
-            CB[i-1]=new CalabashBrothers(random[i-1],i);
+            Color MyColor;
+            switch(random[i-1])
+            {
+                case 1:MyColor=Color.RED; break;
+                case 2:MyColor=Color.ORANGE;break;
+                case 3:MyColor=Color.YELLOW;break;
+                case 4:MyColor=Color.GREEN;break;
+                case 5:MyColor=Color.CYAN;break;
+                case 6:MyColor=Color.BLUE;break;
+                case 7:MyColor=Color.PURPLE;break;
+                default:MyColor=Color.BLACK;System.out.println("妖怪放了我爷爷");break;
+            }
+            CB[i-1]=new CalabashBrothers(random[i-1],i,MyColor);
         }
     }
     void disorder()
@@ -18,7 +30,7 @@ public class Brotherhood {
         Integer[] random=Sf();
         for(int i=0;i<7;i++)
         {
-            CB[i].ChangeMyColorByNumber(random[i]);
+            CB[i].ChangePosition(random[i]);
         }
     }
     public static  void main(String[] args)

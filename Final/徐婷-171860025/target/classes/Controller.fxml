@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="793.0" prefHeight="793.0" prefWidth="1440.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.Controller">
+  <children>
+    <VBox layoutX="1106.0" layoutY="68.0" prefHeight="408.0000999999975" prefWidth="127.0" spacing="80.0">
+      <children>
+        <Button fx:id="startButton" mnemonicParsing="false" onAction="#pressStartButton" text="开始战斗" />
+        <Button fx:id="replayButton" mnemonicParsing="false" onAction="#pressReplayButton" text="重放" />
+        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#pressSaveButton" text="保存文件" />
+      </children>
+      <padding>
+        <Insets bottom="15.0" left="10.0" top="15.0" />
+      </padding>
+    </VBox>
+    <Canvas fx:id="canvas" height="720.0" layoutX="-91.0" layoutY="-47.0" scaleX="0.747696630831078" scaleY="0.7338617033923894" width="1200.0" />
+  </children>
+</AnchorPane>
