@@ -1,0 +1,23 @@
+@startUML
+Fight *-- Grandpa
+Fight *-- Snake
+Fight *-- Scorpion
+
+Grandpa *-- CalabashBroSet
+Grandpa *-- Formation
+
+CalabashBroSet *-- CalabashBro
+
+Scorpion *-- Minions
+Scorpion *-- Formation
+
+Creature <|-- Grandpa
+Creature <|-- Scorpion
+Creature <|-- Snake
+Creature <|-- Minions
+Creature <|-- CalabashBro
+
+Battle *-- Position
+Creature - Position : < hold
+
+@endUML

@@ -1,0 +1,27 @@
+@startUML
+
+class Grandpa{
+    - {static} int numOfCalabash
+    - CalabashBrosSet calabashBrosSet
+    - Formation formation
+    + Grandpa()
+    + void init()
+    + void longsnake()
+    + void set()
+    + void print()
+}
+
+class CalabashBrosSet{
+    - {static} int numOfCalabash
+    - CalabashBros[] calabashBrosVector
+    + CalabashBrosSet()
+    + void init()
+    + void longsnake(Vector<Pair<Integer, Integer>>p)
+    + void queue()
+    + void swap(int i, int j)
+    + boolean cmp(CalabashBros a, CalabashBros b)
+    - CalabashBros getCalBro(int i)
+    - void setCalBro(CalabashBros c, int i)
+}
+
+@endUML

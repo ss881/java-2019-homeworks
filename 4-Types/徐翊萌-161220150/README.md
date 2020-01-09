@@ -1,7 +1,7 @@
 # 第四次作业代码说明
 
 ## Ver2（相对于第三次作业的更新）
-* 1、将Battle类的Unit[][]成员改为Plot[][]，每一个Plot对象表示场地上的一块区域，分离生物体和场地<br>
+* 1、将Battle类的Unit[][]成员改为Plot[][]，每一个Plot对象表示一块区域，分离生物体和场地<br>
 * 2、在妖怪侧的变阵过程中使用反射，从而可以使用循环，减少代码量
 ```Java
 Class ctrl = Class.forName("Controller");

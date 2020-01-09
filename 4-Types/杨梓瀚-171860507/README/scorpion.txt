@@ -1,0 +1,16 @@
+@startUML
+
+class Scorpion{
+    - Vector<Minions>MinionsVector;
+    - int indexOfFormation
+    - Formation Formation
+    + Scorpion()
+    + void go()
+    + void print()
+}
+
+class Minions{
+    + void print()
+}
+
+@endUML

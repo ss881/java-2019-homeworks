@@ -1,0 +1,85 @@
+ /*
+ .alert {
+    -fx-font-size: 24px;
+    -fx-text-fill: blue;
+    -fx-background-color: indianred;
+    -fx-font-family: "Andalus";
+    -fx-background-color: greenyellow;
+}
+*/
+
+.dialog-pane{
+  -fx-border-color:blue;
+  -fx-border-width:1.0px;
+ }
+
+/**Costumization of The Bar where the buttons are located**/
+.dialog-pane > .button-bar > .container {
+  -fx-background-color:black;
+}
+
+.dialog-pane > .content.label {
+   -fx-padding: 0.5em 0.5em 0.5em 0.5em;
+   -fx-background-color: gray;
+   -fx-text-fill:blue;
+   -fx-font-size:34.0px;
+  /* -fx-fill: FIREBRICK;
+  -fx-font-weight: bold;
+  -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );*/
+}
+
+/**Costumization of DialogPane Header**/
+.dialog-pane:header .header-panel {
+  -fx-background-color: yellow;
+}
+
+.dialog-pane:header .header-panel .label{
+  -fx-background-color: black;
+  -fx-background-radius:10px;
+  -fx-text-alignment: center;
+  -fx-text-fill:green;
+  -fx-font-size:30.0px;
+}
+
+
+/**Costumization of Buttons**/
+.dialog-pane .button{
+   -fx-background-color:black;
+   -fx-text-fill:white;
+   -fx-wrap-text: true;
+   -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+   -fx-cursor:hand;
+ }
+
+.dialog-pane .button:hover{     
+  -fx-background-color:white;
+  -fx-text-fill:black;
+  -fx-font-weight:bold; 
+ }
+.button {
+   /*
+    -fx-font-size:10pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+    
+    -fx-text-fill: #32d74b;
+    -fx-border-color: rgb(49, 89, 23);
+         -fx-border-radius: 10;
+    -fx-padding: 3 6 6 6;
+    */
+     -fx-text-fill: #006464;
+    -fx-background-color: #DFB951;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 5;
+    -fx-effect: dropshadow( one-pass-box , red , 8 , 0.0 , 2 , 0 );
+    
+}
+
+.button:hover
+{
+	    -fx-background-color: lightskyblue;
+	    -fx-text-fill:#ff2600;
+	
+}
