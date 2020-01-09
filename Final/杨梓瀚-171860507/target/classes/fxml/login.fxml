@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane id="pane" prefHeight="320" prefWidth="640" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.StartController">
-        <Button fx:id="buttonStart" layoutX="300.0" layoutY="160.0" onAction="#handleActionStart" prefHeight="23.0" prefWidth="64.0" text="开始游戏" />
-        <Button fx:id="buttonExit" layoutX="300.0" layoutY="206.0" onAction="#handleActionExit" prefHeight="23.0" prefWidth="64.0" text="退出" />
-</AnchorPane>

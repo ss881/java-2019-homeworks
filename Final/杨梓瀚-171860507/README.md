@@ -3,18 +3,18 @@
 
 ## 程序运行
 程序入口为`Main`类，并有背景音乐。  
-![](out/1.png)  
+![](readme_pic/1.png)  
 点击**开始游戏**后，弹出游戏主界面。按下空格，游戏开始。其中，阵型是随机选择的。  
-![](out/2.png)  
+![](readme_pic/2.png)  
 在游戏未开始或者结束时，可以点击上面的**文件**菜单中的打开选项，选择存档(.xml)文件，可以进行战斗回放。  
 
 ## 总体框架
-![](out/uml/uml.png)  
+![](readme_pic/uml/uml.png)  
   
 
 ## 主要类
 ### 生物  
-![](out/detail/detail.png)  
+![](readme_pic/detail/detail.png)  
 所有生物都有一个共同的基类`Creature`。因为不同的生物都有类似的行为和属性，其相同点都在基类中实现。  
 `Creature`实现了`Runnable`接口，表示一个生物体是一个线程。其中的`run`方法由子类重写，因为`Grandpa`和`Snake`类并不参与战斗。  
 `Attribute`类描述了各个生物体的生命值(HP)和攻击力(BD)，主要是方便修改人物属性。  
@@ -30,7 +30,7 @@
 运行过程:创建一个生物，调用重写后的`run`方法，该生物体调用`findNearestEnemy()`方法找最近的敌人。若该敌人在其上下左右四个方位，则攻击，否则则向其移动。若无法移动，则重新随机选择一个方位进行移动，重复N次后若仍无法移动则跳过该线程。 
 
 ### 战场  
-![](out/battle/battle.png)  
+![](readme_pic/battle/battle.png)  
 `Battle`类为战场类，描述一个以`Position`为单元的二维平面，其中`holder`表示一个生物体，`x`和`y`为坐标。  
 `Battle`类中的`N`和`M`表示其长和宽，`positionArrayList`为"战场"。  
 部分方法介绍:  
@@ -41,7 +41,7 @@
 + clearBattle():清空二维平面  
 
 ### 阵型类  
-![](out/formation/formation.png)  
+![](readme_pic/formation/formation.png)  
 每个阵型为一个单独的类，在枚举类型`Type`中有一个变量与之对应，并且继承了`Loadable`接口。这样做的好处是增加阵型时只要增加新的类，并重写接口方法和在`Type`类中增加新的变量即可，减少了对代码的修改量。  
 运行流程为:从配置文件中读取阵型信息，利用JAVA**反射**机制来填充对应的阵型类。   
 
@@ -61,7 +61,7 @@
 + `character`:阵型是否适用于葫芦娃(因为某些阵型所需要的生物体个数不足7个)  
 
 ### 存档与回放
-![](out/record/record.png)  
+![](readme_pic/record/record.png)  
 存档文件的格式为**.xml**文件，这样的好处是方便利用现有的工具进行格式化读取和写入，不易出错。  
 
 存档类`Record`以当前系统时间为文件名建立存档文件。  
