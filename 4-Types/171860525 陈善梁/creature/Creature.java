@@ -1,29 +1,11 @@
-class Position{
-    public int x;
-    public int y;
-    public Position(){
-        x = -1;
-        y = -1;
-    }
-    public Position(int x,int y){
-        this.x = x;
-        this.y = y;
-    }
-    public Position(Position p){
-        this.x=p.x;
-        this.y=p.y;
-    }
+package creature;
 
-    public boolean myEualsTo(Position p){
-        return (this.x==p.x&&this.y==p.y);
-    }
-}
-
-public class Creature {
-    protected Position previousPosition;//previous position
-    protected Position currentPosition;//current position
+public class Creature implements Moveable,Swapable<Creature> {//Generices
+    public Position previousPosition;//previous position
+    public Position currentPosition;//current position
     static final int N=12;
 
+    @Override
     public void moveTo(int x,int y){
         //set prepos and curpos
         setPreviousPosition(currentPosition.x,currentPosition.y);
@@ -45,9 +27,10 @@ public class Creature {
         this.currentPosition.y=y;
     }
 
+    @Override
     public void swapPosition(Creature creature){
-        Position temp=this.currentPosition;
-        this.currentPosition=creature.currentPosition;
+        Position temp=new Position(this.currentPosition);
+        this.currentPosition=new Position(creature.currentPosition);
         creature.currentPosition=temp;
     }
 
@@ -64,7 +47,7 @@ public class Creature {
         return previousPosition.x!=-1&&previousPosition.y!=-1;
     }
 
-    public char getSymbol(){
-        return 'C';
-    }
+//    public char getSymbol(){
+//        return 'C';
+//    }
 }

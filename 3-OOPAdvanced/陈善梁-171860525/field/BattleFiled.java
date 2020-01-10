@@ -1,6 +1,6 @@
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+package field;
+
+import creatures.*;
 
 class Tile{
     char ch1;
@@ -28,30 +28,31 @@ public class BattleFiled {
         }
     }
 
-    public void setGoodTeam(GoodTeam goodTeam){
-        GrandPa grandPa=goodTeam.getGrandPa();
-        for(Huluwa huluwa:goodTeam.getHuluwas()){
+    public  void setHuluwas(Huluwa[]huluwas,GrandPa grandPa){
+        for(Huluwa huluwa:huluwas){
             //for huluwa,must be only one creature on one tile
-            Position curPos=huluwa.currentPosition;
+            Position curPos=huluwa.getCurrentPosition();
             map[curPos.x][curPos.y].ch1=huluwa.getSymbol();
             map[curPos.x][curPos.y].count=1;
             map[curPos.x][curPos.y].changed=true;
             draw();
         }
-        map[grandPa.currentPosition.x][grandPa.currentPosition.y].ch1='G';
-        map[grandPa.currentPosition.x][grandPa.currentPosition.y].changed=true;
+        Position currentPosition=grandPa.getCurrentPosition();
+        map[currentPosition.x][currentPosition.y].ch1='G';
+        map[currentPosition.x][currentPosition.y].changed=true;
         draw();
     }
 
     public void removeEvial(Evial evial){
-        if(map[evial.previousPosition.x][evial.previousPosition.y].count==1){
-            map[evial.previousPosition.x][evial.previousPosition.y].ch1=' ';
-            map[evial.previousPosition.x][evial.previousPosition.y].count--;
+        Position previousPosition=evial.getPreviousPosition();
+        if(map[previousPosition.x][previousPosition.y].count==1){
+            map[previousPosition.x][previousPosition.y].ch1=' ';
+            map[previousPosition.x][previousPosition.y].count--;
         }
-        else if(map[evial.previousPosition.x][evial.previousPosition.y].count==2){//count==2
-            map[evial.previousPosition.x][evial.previousPosition.y].ch1=
-                    map[evial.previousPosition.x][evial.previousPosition.y].ch2;
-            map[evial.previousPosition.x][evial.previousPosition.y].count--;
+        else if(map[previousPosition.x][previousPosition.y].count==2){//count==2
+            map[previousPosition.x][previousPosition.y].ch1=
+                    map[previousPosition.x][previousPosition.y].ch2;
+            map[previousPosition.x][previousPosition.y].count--;
         }
         else{
             throw new RuntimeException("error! cannot remove nothng!");
@@ -60,27 +61,25 @@ public class BattleFiled {
     }
 
     public void placeEvial(Evial evial){
-        if(map[evial.currentPosition.x][evial.currentPosition.y].count==0){
-            map[evial.currentPosition.x][evial.currentPosition.y].ch1=evial.getSymbol();
+        Position currentPosition=evial.getCurrentPosition();
+        if(map[currentPosition.x][currentPosition.y].count==0){
+            map[currentPosition.x][currentPosition.y].ch1=evial.getSymbol();
         }
-        else if(map[evial.currentPosition.x][evial.currentPosition.y].count==1){
+        else if(map[currentPosition.x][currentPosition.y].count==1){
             //in fact ,no need "if"
-            map[evial.currentPosition.x][evial.currentPosition.y].ch2=evial.getSymbol();
+            map[currentPosition.x][currentPosition.y].ch2=evial.getSymbol();
         }
-        if(map[evial.currentPosition.x][evial.currentPosition.y].count==2){
+        if(map[currentPosition.x][currentPosition.y].count==2){
             throw new RuntimeException("error!connot put more than 2 on one tile!");
         }
         else{//must
-            map[evial.currentPosition.x][evial.currentPosition.y].changed=true;
+            map[currentPosition.x][currentPosition.y].changed=true;
         }
-        map[evial.currentPosition.x][evial.currentPosition.y].count++;
+        map[currentPosition.x][currentPosition.y].count++;
 //        draw();
     }
 
-    public void setBadTeam(BadTeam badTeam){
-        Scorpion scorpion=badTeam.getScorpion();
-        Evial[]evials=badTeam.getEvials();
-        Snake snake=badTeam.getSnake();
+    public void setEvils(Scorpion scorpion,Snake snake,Evial[]evials){
         //remove previous positions
         for(Evial evial:evials){
             boolean change=false;
@@ -110,7 +109,7 @@ public class BattleFiled {
 
         if(snake.inMapBefore()){
             //remove if in map
-           removeEvial(snake);
+            removeEvial(snake);
         }
         placeEvial(snake);
         draw();
@@ -131,24 +130,25 @@ public class BattleFiled {
         }
     }
 
-    public static void main(String[]args) throws InterruptedException, FileNotFoundException {
+    public static void main(String[]args) throws InterruptedException {
 
-        GoodTeam goodTeam=new GoodTeam();
-        goodTeam.sortHuluwa();
+        GrandPa grandPa=new GrandPa();
+        Huluwa[]huluwas=grandPa.initialize();
+        grandPa.sort(huluwas);
 
-        BadTeam badTeam=new BadTeam();
-
+        Scorpion scorpion = new Scorpion();
+        Snake snake=new Snake();
+        Evial []evials=scorpion.initialize(snake);
+        snake.setCurrentPosition(new Position (4,7));
 
 
 
         BattleFiled battleFiled=new BattleFiled();
-        battleFiled.setGoodTeam(goodTeam);
-        battleFiled.setBadTeam(badTeam);
-
+        battleFiled.setHuluwas(huluwas,grandPa);
+        battleFiled.setEvils(scorpion,snake,evials);
         Thread.sleep(500);
-        badTeam.changeRandomly();
-        battleFiled.setBadTeam(badTeam);
-
+        scorpion.changeRandomly(evials,snake);
+        battleFiled.setEvils(scorpion,snake,evials);
 
     }
 }

@@ -1,0 +1,164 @@
+@startuml
+class Creature{
+    - Position previousPosition
+    - Position currentPosition
+    {static}- int N=12
+    + Creature()
+    + void moveTo(int x,int y)
+    + void setPreviousPosition(int x,int y)
+    + void setCurrentPosition(int x,int y)
+    + void swapPosition(Creature creature)
+    + boolean notInMap()
+    + boolean inMapBefore()
+}
+
+interface Moveable {
+    + void moveTo(int x,int y);
+}
+
+interface Swapable<T> {
+    void swapPosition(T t);
+}
+
+Creature ..|> Moveable
+Creature ..|> Swapable
+
+class Evial{
+}
+
+Evial --|> Creature
+
+
+class GrandPa{
+    + ArrayList<Creature> initialize()
+    + void shuffle(ArrayList<Creature> huluwas)
+    + void sortHuluwa(ArrayList<Creature> huluwas)
+}
+
+GrandPa --> Huluwa
+GrandPa --|> Creature
+
+class Scorpion{
+    - static int NUM_EVILS=20
+    - static int N=12
+    + Evial[] initialize()
+    + void changeForm(Evial[] evials)
+    + void changeToXXX(Evial[]evials)
+}
+
+Scorpion --> Evial
+
+class Snake{
+}
+Snake --|> Evial
+
+class Position{
+    + int x
+    + int y
+    + Position(int x,int y)
+}
+
+Creature *--> Position
+
+class Tile{
+    + char ch1
+    + char ch2
+    + int count
+    + boolean changed
+}
+
+class BattleFiled{
+    - {static }int N=12
+    - Tile[][] nmap
+    + void removeCreature(Creature creature)
+    + void placeCreature(Creature creature)
+    + void setCreature(Creature creature)
+    + void draw()
+    + static void main(String[]args)
+}
+
+BattleFiled "1" o--> "many" Tile
+BattleFiled <--> Huluwa
+BattleFiled <--> GrandPa
+BattleFiled <--> Evial
+BattleFiled <--> Snake
+BattleFiled <--> Scorpion
+BattleFiled --> Formation
+
+class Factory<T>{
+    + {abstract} T generate()
+}
+
+Class HuluwaFactory{
+    + Huluwa generate()
+    + Huluwa generate(int rank,String name,String color)
+}
+
+HuluwaFactory --|> Factory
+HuluwaFactory --> Huluwa
+
+class GrandPaFactory{
+    + GrandPa generate()
+}
+GrandPaFactory --|> Factory
+GrandPaFactory --> GrandPa
+
+class EvialFactory {
+    + Evial generate()
+}
+EvialFactory --|> Factory
+EvialFactory --> Evial
+
+class ScorpionFactory{
+    + Scorpion generate()
+}
+ScorpionFactory --|> Factory
+ScorpionFactory -->Scorpion
+
+class SnakeFactory{
+    + Snake generate()
+}
+SnakeFactory --|> Factory
+SnakeFactory -->Snake
+
+Class Formation<T>{
+    {static} int N=12
+    {abstract} void changeForm(T leader, ArrayList<T> followers)
+}
+
+Class Arrow{
+    + void changeForm(Creature leader, ArrayList<Creature> followers)
+}
+Arrow --|> Formation
+Arrow --> Creature
+
+Class Car{
+    + void changeForm(Creature leader, ArrayList<Creature> followers)
+}
+Car --|> Formation
+Car --> Creature
+
+Class Crane{
+    + void changeForm(Creature leader, ArrayList<Creature> followers)
+}
+Crane --|> Formation
+Crane --> Creature
+
+Class Goose{
+    + void changeForm(Creature leader, ArrayList<Creature> followers)
+}
+Goose --|> Formation
+Goose --> Creature
+
+Class Moon{
+    + void changeForm(Creature leader, ArrayList<Creature> followers)
+}
+Moon --|> Formation
+Moon --> Creature
+
+Class Square{
+    + void changeForm(Creature leader, ArrayList<Creature> followers)
+}
+Square --|> Formation
+Square --> Creature
+@enduml
