@@ -26,4 +26,4 @@
 在前期实验的基础上完成，第四次实验实现静态的排列，于是最终实验先调用第四次实验的类实现静态排列，再开始对战
 ## 图形化界面
 图形化界面暂未实现，先提交中间版本，实验输出是类似前面实验的输出，先输出排列好，对战前的棋盘，最后输出战斗结束后的棋盘剩余角色。图形化的实现仍在开发中
-![image](https://github.com/wwuuhan/java-2019-homeworks/blob/master/4-Types/吴晗-161220138/plantUMLclass_homework4.png)
+![image](https://github.com/wwuuhan/java-2019-homeworks/blob/master/Final/吴晗-161220138/plantUMLclass.png)
