@@ -34,7 +34,7 @@
 | class ColorDictionary     | 无              | 颜色词典，查阅葫芦娃的可取颜色                               |
 | class NameDictionary      | 无              | 名字词典，查阅葫芦娃的可取名字                               |
 | class FormationDictionary | 无              | 阵型字典，查阅阵型的可取名字                                 |
-| class Formation           | 无              | 阵型抽象类，为各种阵型的父类；存储该阵型的图谱map，用来安放Thing2D的位置 |
+| class Formation           | 无              | 阵型抽象类，为各种阵型的父类；存储该阵型的图谱map，用来安放Thing2D的位置;与第三次作业相比，可以容纳Creature不同的不同子类对象，实现泛型。 |
 | class FormationChangshe   | class Formation | 长蛇阵                                                       |
 | class FormationFangyuan   | class Formation | 方圆阵                                                       |
 | class FormationFengshi    | class Formation | 锋矢阵                                                       |
@@ -80,6 +80,71 @@
 
 在Game类中，用ArrayList存放葫芦娃们和小喽啰们，可以动态增长，长度不限，更加灵活。
 
+#### 5.泛型
+
+在第三次作业的基础上将Fromation类从只负责提供安放位置改成队伍。存储阵型图谱的同时，可以容纳成员并安放成员的位置
+
+```java
+public abstract class Formation {
+    private static int N = 12;
+    protected int numberOfMembers = 0;
+    protected boolean[][] map = new boolean[N][N];
+    protected ArrayList<? extends Creature> members;
+    protected Creature leader;
+    protected Creature cheeuper;
+    protected Field field;
+	
+    //部分方法省略
+    public void setTeam(ArrayList<? extends Creature> t){
+        members = t;
+    }
+}
+```
+
+通过通配符容纳不同类型的成员(葫芦娃或小喽啰)
+
+#### 6.反射
+
+修改Game类中的play方法和changeFormation方法，原来是通过传入参数int i，通过判断i的值创建具体的Formation子类(如FormationFangyuan)，这里传入类的名称，使用反射机制得到类的构造函数并创建相应类型的对象。
+
+```java
+public void play(){
+        for(int i = 1; i <= 8; i++){
+            String className = FormationDictionary.getName(i);
+            try {
+                Class<?> FormationClass = Class.forName("hw4.Formation." + className);
+                Formation f = (Formation) FormationClass.getDeclaredConstructor().newInstance();
+
+                goodTeam = new FormationChangshe();
+                goodTeam.setField(field);
+                goodTeam.setTeam(calabashes);
+                goodTeam.setCheeuper(grandpa);
+                goodTeam.setLeader(null);
+
+                badTeam = f;
+                badTeam.setField(field);
+                badTeam.setTeam(heelers);
+                badTeam.setCheeuper(snake);
+                badTeam.setLeader(scorpion);
+
+                changeFormation();
+                show();
+            }
+            catch (ClassNotFoundException | NoSuchMethodException e){
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+```
+
+
+
 ### 五、类图
 
 <img src="pic/class.png" style="zoom:100%;" />
@@ -88,7 +153,8 @@
 
 ```
 cd src
-javac -encoding utf-8 hw3/Main.java
-java hw3/Main
+javac -encoding utf-8  hw4/Formation/*.java
+javac -encoding utf-8  hw4/Main.java
+java hw4/Main
 ```
 
