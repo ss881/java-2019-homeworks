@@ -1,0 +1,15 @@
+huluwa\GoodCreature.class
+huluwa\RecordPlayer.class
+huluwa\Creature.class
+huluwa\Formation.class
+huluwa\Follower.class
+huluwa\Grandpa.class
+huluwa\Condition.class
+huluwa\HuluWa.class
+huluwa\BadCreature.class
+huluwa\BattleMap.class
+huluwa\position\Position.class
+huluwa\Scorpion.class
+huluwa\Snake.class
+huluwa\Main.class
+huluwa\GameController.class
