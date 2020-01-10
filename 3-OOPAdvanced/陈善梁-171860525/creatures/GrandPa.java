@@ -1,8 +1,13 @@
+package creatures;
+
+import interfaces.Shuffleable;
+import interfaces.Sortable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class GrandPa extends Creature {
+public class GrandPa extends Creature implements Sortable<Huluwa>, Shuffleable<Huluwa> {
     static final int N=12;//size of map
 
     public Huluwa[] initialize(){//返回葫芦娃数组
@@ -16,6 +21,7 @@ public class GrandPa extends Creature {
         return huluwas;
     }
 
+    @Override
     //shuffle huluwas,and set their posotions(according to their index in shuffled array)
     public void shuffle(Huluwa[]huluwas){
         ArrayList<Huluwa> list=new ArrayList<>(Arrays.asList(huluwas));
@@ -27,12 +33,13 @@ public class GrandPa extends Creature {
         for(Huluwa h:list){
             huluwas[i]=h;
             huluwas[i].setIndex(i);//index in array
-            huluwas[i].setCurrentPosition(spaceUpY+i,N/6);//N/6=2
+            huluwas[i].setCurrentPosition(new Position (spaceUpY+i,N/6));//N/6=2
             ++i;
         }
     }
 
-    public void sortHuluwa(Huluwa[]huluwas){
+    @Override
+    public void sort(Huluwa[]huluwas){
         for(int i=huluwas.length-1;i>=1;--i){//put ith huluwa in the right place
             for(int j=0;j<i;++j){
                 Huluwa nextHuluwa=huluwas[j].lookBack(huluwas);//get next  huluwa
@@ -45,7 +52,7 @@ public class GrandPa extends Creature {
             }
         }
         //set self
-        setCurrentPosition(6,1);
+        setCurrentPosition(new Position (6,1));
     }
 
     @Override
