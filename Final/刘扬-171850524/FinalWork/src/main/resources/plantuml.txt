@@ -1,0 +1,148 @@
+@startuml
+
+class Controller {
+    + static BorderPane myPane;
+    + Background backGround;
+    + Stage Stage;
+    + String savePath;
+    + static boolean isReplay;
+    + Controller(Stage stage);
+    + void initBorderPane();
+    + ArrayList<Creature> gameStart();
+    + void gameRun(ArrayList<Creature> creatures);
+    + void replay();
+    - void setButtons();
+    - void getSavePath();
+    - void getLoadPath();
+}
+class God {
+    - static int justCampCnt;
+    - static int evilCampCnt;
+    - static boolean showResult;
+    + static synchronized void justInc();
+    + static synchronized void justDec();
+    + static synchronized void evilInc();
+    + static synchronized void evilDec();
+    + static synchronized boolean isEnd();
+    + static synchronized boolean isShowed();
+    + static synchronized void setShowResult(boolean flag);
+    + static void init();
+    + static void makeFormation(ArrayList<Creature> queue, String formationName, int x, int y);
+    + static ArrayList<Creature> getCreatures(String[] names);
+    + static Creature getCreature(String name);
+}
+class Formation {
+    + static void snake(ArrayList<Creature> queue, int x, int y);
+    + static void wing(ArrayList<Creature> queue, int x, int y);
+    + static void goose(ArrayList<Creature> queue, int x, int y);
+    + static void yoke(ArrayList<Creature> queue, int x, int y);
+    + static void scale(ArrayList<Creature> queue, int x, int y);
+    + static void square(ArrayList<Creature> queue, int x, int y);
+    + static void moon(ArrayList<Creature> queue, int x, int y);
+    + static void arrow(ArrayList<Creature> queue, int x, int y);
+}
+class Creature {
+    # String name;
+    # int x, y;
+    # ImageView creatureIMG;
+    # int HP;
+    # int damage;
+    # boolean alive;
+    # int camp;
+    - static final int eyesignt = 15;
+    + static World world;
+    + static BorderPane pane;
+    + static String savePath;
+    + Creature();
+    + void run();
+    + synchronized boolean action();
+    + synchronized Node findEnemy();
+    + synchronized void attack(Creature enemy);
+    + synchronized boolean walk(int x, int y);
+    + synchronized void randomWalk();
+    + synchronized void die();
+    + synchronized void save(int x1, int y1, int x2, int y2);
+    + String tellName();
+    + void setName(String name);
+    + int tellCamp();
+    + void setCamp(int camp);
+    + int tellHP();
+    + void setHP(int hp);
+    + int tellDamage();
+    + void setDamage(int d);
+    + int getX();
+    + int getY();
+    + ImageView getCreatureIMG();
+    + void setCreatureIMG(ImageView img);
+}
+class ImageTranslation implements Runnable {
+    - ImageView img;
+    - int x1, y1, x2, y2;
+    - int gap;
+    + ImageTranslation(ImageView creatureIMG, int x1, int y1, int x2, int y2);
+    + void run();
+    + static void translation(Timeline timeline, ImageView img, int x1, int y1, int x2, int y2, int startTime);
+}
+class ImageToDead implements Runnable {
+    - ImageView imgDead;
+    - Creature creature = null;
+    - int x, y;
+    + ImageToDead(Creature creature);
+    + void run();
+    + static void dead(Timeline timeline, Creature creature, int x, int y, int startTime);
+}
+class Road {
+    - Node[][] graph = null;
+    - int N = 0;
+    + World world = null;
+    + Road(World world);
+    + ArrayList<Node> findRoad(Node node1, Node node2);
+    - int check(int x, int y, Node end);
+    - void fillRoad(ArrayList<Node> road, Node node);
+    - void fillGraph(int x, int y, Node node, Queue<Node> queue);
+}
+class Node {
+    - int x;
+    - int y;
+    - int distance;
+    + Node(int x, int y) { this.x = x; this.y = y; }
+}
+class Boy extends Creature {
+    - String color;
+    - int rank;
+    + Boy(String name, String color, int rank);
+    + void setRank(int rank);
+    + void setColor(String color);
+    + int tellRank();
+    + String tellColor();
+}
+class Enemy extends Creature {
+    + Enemy(String name);
+}
+class Grandpa extends Creature{
+    + Grandpa();
+}
+class World {
+    + Creature[][] map;
+    + static final int N;
+    + World();
+    + int getSize();
+}
+Creature o-- World : Aggregation
+God <.. Formation : Dependency
+God <.. Creature : Dependency
+God <.. Boy : Dependency
+God <.. Grandpa : Dependency
+God <.. Enemy : Dependency
+Controller <.. God : Dependency
+Controller <.. World : Dependency
+Controller <.. Creature : Dependency
+Controller <.. Boy : Dependency
+Controller <.. Grandpa : Dependency
+Controller <.. Enemy : Dependency
+Creature <.. Road : Dependency
+Creature <.. Node : Dependency
+Creature <.. ImageToDead : Dependency
+Creature <.. ImageTranslation : Dependency
+Road <.. Node : Dependency
+@enduml
