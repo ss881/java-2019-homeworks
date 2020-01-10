@@ -167,6 +167,7 @@ final class Grandpa extends Conductor{     //爷爷类
     public void Cheer(){
         Random r = new Random();
         int i = r.nextInt(5);
+        Calabash.morale += i;   //随机提升士气值
         switch (i){
             case 0:Talk("加油！孩儿们！");break;
             case 1:Talk("稳住，我们能赢！");break;
@@ -176,11 +177,15 @@ final class Grandpa extends Conductor{     //爷爷类
         }
     }
 
-    /*//! @Override   错误！参数、返回值不同是重载(Overload)，不是重写(Override)！
+    //！ @Override   //错误！参数、返回值不同不是重写(Override)！
+    /*
     public void Conduct(Calabash c, int nx, int ny){     //指挥葫芦娃排兵布阵
         c.Goto(nx, ny);
-    }*/
+    }
+    */
     //注意：此处有误！若按这种方式重载则不能正确调用！
+    //10.15补充：错误的原因是，这种写法因为参数不同，并没有覆盖父类中的方法！实际上是类似重载，定义了一个全新的方法！
+    //而调用时，由于从map中取到的是Creature元素，所以匹配到了父类的方法！这个方法自然被悬空！
 }
 
 class Leprechaun extends Creature{    //妖精类
@@ -209,6 +214,7 @@ final class Snake extends Conductor{     //蛇精类
     public void Cheer(){    //Cheer方法，加油助威
         Random r = new Random();
         int i = r.nextInt(5);
+        Leprechaun.morale += i; //随机提升士气值
         switch (i){
             case 0:Talk("加油！小的们！");break;
             case 1:Talk("猥琐发育，别浪！");break;
@@ -218,10 +224,12 @@ final class Snake extends Conductor{     //蛇精类
         }
     }
 
-    /*public void Conduct(Leprechaun l, int nx, int ny){     //指挥小喽啰排兵布阵
+    /*
+    public void Conduct(Leprechaun l, int nx, int ny){     //指挥小喽啰排兵布阵
         l.Goto(nx, ny);
-    }*/
-    //注意：此处有误！若按这种方式重载则不能正确调用！
+    }
+    */
+    //注意：此处有误！若按这种方式则不能正确调用！
 }
 
 class Map{  //地图类
@@ -237,7 +245,7 @@ class Map{  //地图类
                 }
                 else
                 {
-                    String b = String.format("%s\t\t", "0");//为了体现战场区块的量子化，再没有站生物的地方输出0，用制表符对齐
+                    String b = String.format("%s\t", "0");//为了体现战场区块的量子化，再没有站生物的地方输出0，用制表符对齐
                     System.out.print(b);
                 }
             }

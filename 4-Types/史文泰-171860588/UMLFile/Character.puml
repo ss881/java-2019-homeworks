@@ -1,0 +1,39 @@
+@startuml
+
+class Character{
+__ private __
++ Picture picture;
++ Point point;
++ Point destPoint;
++ MoveLeft moveLeft;
++ MoveRight moveRight;
++ MoveUp moveUp;
++ MoveDown moveDown;
++ MoveServer moveServer;
+
+__ public __
+- Character();
+- Character(int px, int py, Image image);
+
+- int getPx();
+- int getPy();
+- Image getImage();
+- Picture getPicture();
+- Point getDestPoint();
+- void setDestPoint(int destPx, int destPy);
+
+- void changePosition();
+- boolean moveIsOver();
+}
+
+Character "1"-->"1" Picture : has
+Character *-- Point: Composition
+Character *-- Point: Composition
+Character *-- MoveLeft: Composition
+Character *-- MoveRight: Composition
+Character *-- MoveUp: Composition
+Character *-- MoveDown: Composition
+Character *-- MoveServer: Composition
+
+
+@enduml

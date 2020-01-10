@@ -19,26 +19,22 @@
             属性：一个葫芦娃队伍
             方法：main方法，发出指令  
 
-# **二、代码设计**
-## **类图**
-(建议使用vscode安装Markdown Preview Mermaid Support插件观看)
-``` mermaid
-classDiagram
-CalabashbBrothers *-- Row
-Row *-- Grandfather
-CalabashbBrothers: name
-CalabashbBrothers: color
-CalabashbBrothers: position
-CalabashbBrothers: numberOffName()
-CalabashbBrothers: numberOffColor()
-CalabashbBrothers: move()
-Row: row
-Row: randomRow()
-Row: bubbleSort()
-Row: binarySort()
-Row: binarySearch()
-Row: numberOffName()
-Row: numberOffColor()
-Grandfather: main()
-```
-具体方法实现请查看Grandfather.java文件
+
+
+# 二、版本更新
+
+### 1.类图修改：
+
+![](class.png)
+
+### 2.模块化和封装
+
+(1)模块化：与第一个版本相比，此次更新根据对象划分模块，将原来的单个文件拆分成多个文件。
+
+(2)封装：理清对象具有的属性和方法，提供给外部合适的接口。
+
+### 3.设计思路的改良
+
+(1)class Grandfather充当上帝的角色。可以创建葫芦娃，为葫芦娃赋予姓名、颜色和排行(giveBirth方法)；创建葫芦娃队伍，将葫芦娃添加进葫芦娃队伍；指挥葫芦娃队伍打乱队列、排序和报数。
+
+(2)第一版中将所有的name和color作为葫芦娃类的静态属性，这是不合理的，更贴近现实的应该是有一本取名和取颜色的词典，通过查阅词典获得名字和颜色，因此设计了NameDictionary和ColorDictionary两个类；同时第一版中葫芦娃的构造方法需要输入int i，在构造函数中根据i获得名字和颜色，这也是不合理的，葫芦娃出生应该是直接赋予名字和颜色，而不是让葫芦娃自己找属于自己的名字和颜色，因此修改了葫芦娃的构造方法，并通过Grandfather的giveBirth方法创造葫芦娃。

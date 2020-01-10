@@ -1,0 +1,10 @@
+@startuml
+
+class SmallEnemy{
+__ public __
+- SmallEnemy(int px, int py, Image image);
+}
+
+Character <|-- SmallEnemy : extends
+
+@enduml

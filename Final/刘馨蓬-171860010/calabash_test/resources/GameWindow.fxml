@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="422.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game">
+   <children>
+      <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#oneChooseHY" text="鹤翼" />
+      <Button layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#oneChooseYX" text="雁行" />
+      <Button layoutX="14.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#oneChooseHG" text="横轭" />
+      <Button layoutX="14.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#oneChooseCS" text="长蛇" />
+      <Button layoutX="14.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#oneChooseYL" text="鱼鳞" />
+      <Button layoutX="14.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#oneChooseFM" text="方门" />
+      <Button layoutX="14.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#oneChooseYY" text="偃月" />
+      <Button layoutX="14.0" layoutY="265.0" mnemonicParsing="false" onMouseClicked="#oneChooseFS" text="锋矢" />
+      <Button layoutX="540.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#twoChooseHY" text="鹤翼" />
+      <Button layoutX="540.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#twoChooseYX" text="雁行" />
+      <Button layoutX="540.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#twoChooseHG" text="横轭" />
+      <Button layoutX="540.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#twoChooseCS" text="长蛇" />
+      <Button layoutX="540.0" layoutY="159.0" mnemonicParsing="false" onMouseClicked="#twoChooseYL" text="鱼鳞" />
+      <Button layoutX="540.0" layoutY="195.0" mnemonicParsing="false" onMouseClicked="#twoChooseFM" text="方门" />
+      <Button layoutX="540.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#twoChooseYY" text="偃月" />
+      <Button layoutX="540.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#twoChooseFS" text="锋矢" />
+      <Label layoutX="14.0" layoutY="308.0" prefHeight="15.0" prefWidth="55.0" text="     P1" />
+      <Label layoutX="540.0" layoutY="308.0" prefHeight="15.0" prefWidth="55.0" text="     P2" />
+      <Button layoutX="145.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#GameStart" prefHeight="23.0" prefWidth="116.0" text="GameStart" />
+      <Button layoutX="346.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#GameReplay" prefHeight="23.0" prefWidth="116.0" text="GameRecord" />
+      <Button layoutX="279.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#GameRestart" text="Restart" />
+   </children>
+</AnchorPane>

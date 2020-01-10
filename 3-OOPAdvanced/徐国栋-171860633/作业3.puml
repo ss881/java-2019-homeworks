@@ -1,0 +1,128 @@
+@startuml "作业3"
+class XPoint2D {
+    - int x, y;
+    + XPoint2D()
+    + XPoint2D(int _x, int _y)
+    - void setX(int _x)
+    - void setY(int _y)
+    + int getX()
+    + int getY()
+}
+class BioAppearance {
+    + Color color;
+    + BioAppearance()
+    + BioAppearance(Color _color)
+    + String color2String()
+    + int color2intForSort()
+}
+
+class Creature {
+    - int id;
+    + String name;
+    + BioAppearance apperrance;
+    + Creature()
+    + int getId()
+    - XPoint2D position;
+    + XPoint2D getPosition()
+    + void setPosition(XPoint2D _position)
+    - void setId(int _id)
+}
+class GrandPa {
+    - PretrainedFormation formationCtrl;
+    - CalabashBrother[] players;
+    - int aliveCounter;
+    - int getAliveCounter()
+    + GrandPa()
+    + void sayComeOn()
+    - Creature[] getCalabashBrothers()
+    + void callCalabashBrothers()
+    - void assignCoordinate()
+    + void callCalabashBrothersLineUp()
+    - void playRankBubbleSort()
+
+    - void randomShuffle()
+}
+class CalabashBrother{
+    +int rank;
+    +String rank2String(int _rank)
+    +CalabashBrother(int _rank, Color _color)
+    +void printRank()
+    +void printColor()
+}
+class ScorpionSperm {
+    - EvilLolo[] players;
+    - int loloNumbers;
+    - int loloCounter;
+    - PretrainedFormation formationCtrl;
+    + ScorpionSperm()
+    + void callEvilLolos(int _loloNumbers)
+    + void makeNewFormation(int index)
+    + int getLoloNumbers()
+    + int getLoloCounter()
+    - Creature[] getEvilLolos()
+}
+class EvilLolo  {
+    + EvilLolo()
+}
+class SnakeEssence {
+    + SnakeEssence()
+    + void sayComeOn()
+}
+class PretrainedFormation {
+    - ArrayList<XPoint2D> minimizedExpansion;
+    - int getSize()
+    - XPoint2D getCoordinate(int i)
+    - int getX(int i)
+    - int getY(int i)
+
+    + PretrainedFormation()
+    - XPoint2D loadHeyi()
+    - XPoint2D loadYanhang()
+    - XPoint2D loadHengzhi()
+    - XPoint2D loadChangshe()
+    - XPoint2D loadYulin()
+    - XPoint2D loadFangmen()
+    - XPoint2D loadYanyue()
+    - XPoint2D loadFengshi()
+}
+class ViewField{
+    - int w
+    - int h
+    + ViewField()
+    + ViewField(int _wh)
+    + ViewField(int _w, int _h)
+    - void setW(int _w)
+    - void setH(int _h)
+    - int getW()
+    - int getH()
+    - Creature[][] indexes;
+    - void allocMap()
+    + void clearMap()
+    - void set(Creature target)
+    + void acceptMove(Creature[] input, int n)
+    + void acceptMove(Creature input)
+    + void print()
+}
+
+class Homework3{
+    + {static} void main(String []args)
+}
+
+BioAppearance <- Creature
+XPoint2D <- Creature
+
+CalabashBrother <- GrandPa
+EvilLolo <- ScorpionSperm
+
+GrandPa--|>Creature
+CalabashBrother --|> Creature
+SnakeEssence --|> Creature
+ScorpionSperm --|> Creature
+EvilLolo --|> Creature
+
+PretrainedFormation <- GrandPa
+PretrainedFormation <- ScorpionSperm
+
+Creature <- ViewField
+
+@enduml

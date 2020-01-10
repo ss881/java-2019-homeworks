@@ -1,34 +1,14 @@
-# Java 第三次作业 171860518 刘浩文 README文件
-## 本作业中面向对象思想的介绍
-### 我在这次作业里运用了类继承的概念，把所有出现在地图上的东西抽象成了一个creature类，并且有xy坐标还有move移动函数。
-```
+#### 第三次作业readme
+##### ver 2.0 171860518 刘浩文
+面向对象概念的利用：
+    考虑到本实验中各个对象之间移动更加复杂，因此我用了一个“上帝之手”的类Handler，这样可以在保证尽量满足面向对象的要求时，使代码内容稍微简单一点。
 
-public class creature;
-public class huluboys extends creature;//葫芦娃
-public class imps extends creature;//小喽啰
-public class oracles extends creature;//老爷爷
-public class villians extends creature;//蛇精 蝎子精
+*    Handler创造各个角色，初始化一张地图（map类），把各个角色安排到地图上，并“告诉”地图上的各个Creature来干什么，该动到哪里，并调用map的一个输出函数输出布局。
 
-```
----
-葫芦娃 老爷爷 蛇精蝎子精和小喽啰都继承了这个类。
+*    此外 还有一个Position类来刻画一个生物的位置，将位置这一属性抽象出来是考虑到之后的地图会更加复杂，不一定可以用两个int就可以准确*形容。
 
-之后，葫芦娃还有一个rank类表示葫芦娃的排名 构造函数传入的数字是葫芦娃的排名。
+*    由于Handler是上帝，因此各个生物包括地图，不可以独立于它存在，所以类与类之间的关系我用了强合成Composition。
 
-其他的老爷爷等直接继承creature类。
-
----
-这样做可以方便代码复用，不然所有的类都是，或者包含很多一样的代码没有必要。
-地图我没有用类，因为感觉只是一个方便输出的标记，真实的坐标记录在类的实体化内容的成员变量xy坐标里，
-这样做没有什么必要。
-阵法我用了长蛇，方圆还有冲轭
-地图输出中：
-* H-葫芦娃
-* O-老爷爷
-* K-蛇精
-* S-蝎子精
-* I-小喽啰
-
-代码类图：
-
-![UML](https://github.com/Lautstark9217/java-2019-homeworks/blob/master/3-OOPAdvanced/%E5%88%98%E6%B5%A9%E6%96%87-171860518/uml.png)
+*    葫芦娃还有颜色这一属性，所以有一个enum COLOR，并且葫芦娃 extends Creature。这样可以体现葫芦娃是一种（特别的）生物这一点。
+UML类图：
+![UML](https://github.com/Lautstark9217/java-2019-homeworks/blob/master/3-OOPAdvanced/171860518-刘浩文/uml.png)

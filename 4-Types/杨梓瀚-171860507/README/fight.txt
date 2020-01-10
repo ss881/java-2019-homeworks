@@ -1,0 +1,17 @@
+@startUML
+class Fight{
+    - Grandpa grandpa
+    - Snake snake
+    - Scorpion scorpion
+    - void init()
+    - void ready()
+    - void run()
+    - {static} void print()
+    - {static} void main()
+}
+
+class Creature{
+    + {abstract} void print()
+}
+
+@endUML

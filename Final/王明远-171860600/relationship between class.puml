@@ -1,0 +1,242 @@
+@startuml 
+title relationship between class
+
+interface Actions{
+{abstract} void follow_orders(Identity id,int x,int y)
+{abstract} void provoke()
+{abstract} void dead()
+{abstract} void get_current_damage()
+}
+abstract Creature{
+-Identity id
+#int current_space_x
+#int current_space_y
++Object s
++final int time_gap
++int current_hp
++int current_speed
++int current_damage
++oolean state
++AtomicInteger s_flag
++Direction aim_direction
+#void born(Identity initail_id)
+#Identity get_id()
+#rush_to_somespace(int x,int y)
++int get_current_x()
++int get_current_y()
++void move (SpaceForBattle space,int mark)
+-void move_to_empty(SpaceForBattle space,int mark)
+ {static}void find_direction(Creature []list,Creature current,int num,SpaceForBattle space) 
++void find_enemy(SpaceForBattle space,int mark)
++void do_battles(SpaceForBattle space,Creature []list,int num)
++boolean monster()
+ {static}boolean monster(int mark)
++void battle(Creature a,Creature b,SpaceForBattle space)
++void dead() 
++void get_current_damage() 
+}
+
+class Grandpa{
+
++final int the_num_of_brotherstandl
++StandLaw military_for_standl
+-int size_of_space_for_battle
+-Direction direction_of_attack
+-int start_coordinate_x
+-int start_coordinate_y
++BrotherStandl []brotherstandls
++void plant_standl()
++void study_military_for_standl()
++void provoke()
+-void make_orders(BrotherStandl brotherStandl,int x,int y)    
++void make_orders(BrotherStandl a,BrotherStandl b)
++void follow_orders(Identity id,int x,int y)
++void decide_direction_of_attack(Direction direction)
++void measure_space_for_battle(SpaceForBattle space)
++void decide_start_coordinate(int initial_x,int initial_y)
++boolean choose_stand_type(StandType type)
++void cheer_for_battle()
++void embattle_for_battle(SpaceForBattle space)
++void choose_stand_place(SpaceForBattle space)
++void dead() 
+}
+
+class MonsterSaltFish {
++void provoke()
++void follow_orders(Identity id,int x,int y)
++void follow_orders(Identity id,MonsterScorpion boss)
++void get_current_damage() 
+}
+class MonsterScorpion{    
++final int the_num_of_monstersaltfish
++StandLaw military_for_monster
+-int size_of_space_for_battle
+-Direction direction_of_attack
++MonsterSaltFish []monsterSaltFishs
++void summon_monstersaltfish()
+-void make_orders(MonsterSaltFish saltfish,int x,int y)
+-void make_orders(MonsterSaltFish saltFish)
++void decide_direction_of_attack(Direction direction)
++void measure_space_for_battle(SpaceForBattle space)
++boolean decide_self_coordinate(SpaceForBattle space,int initial_x,int initial_y)
++void study_military_for_monster() 
++void provoke()
++boolean choose_stand_type(StandType type)
++void embattle_for_battle(SpaceForBattle space)
++void change_type_for_battle(SpaceForBattle space)
++void follow_orders(Identity id,int x,int y)
++void dead() 
+}
+class MonsterSnake {
++void provoke()
++void cheer_for_battle() 
++void follow_orders(Identity id,int x,int y)
++void choose_stand_place(SpaceForBattle space)
++void leave_for_some_time(SpaceForBattle space)
+}
+class BrotherStandl {
+-int rank_of_brother;
+-int color;
++BrotherStandl(int initial_rank,int initial_color)
++int report_color()
++int report_rank()
++void provoke()  
++void follow_orders(Identity id,int x,int y)
++void follow_orders(Identity id,Creature brother)
++int look_around_x(Creature brother)
++int look_around_y(Creature brother)
++void get_current_damage() 
+}
+class StandLaw{
++final int chess = 10;
++class Coordinate
++int num_of_creature;
++Direction direction_of_attack;
++SpaceForBattle image_space;
+-Coordinate change_coordinate_by_direction(Coordinate coordinate,Direction direction)
+-Coordinate standard_coordinate_by_direction(Coordinate coordinate,Direction direction)   
+-void change_stand_law_by_direction(SpaceForBattle tmp)
++boolean snake_shape(int start_x,int start_y)
++boolean wings_shape(int start_x,int start_y)
++boolean goose_shape(int start_x,int start_y)
++boolean yoke_shape(int start_x,int start_y)  
++boolean fish_shape(int start_x,int start_y)   
++boolean square_shape(int start_x,int start_y)  
++boolean arrow_shape(int start_x,int start_y)   
++boolean moon_shape(int start_x,int start_y)
+}
+class SpaceForBattle{
++ArrayList<Image> images
++Image background
++final int time_gap=500;
+-int size_of_space
+-int [][]space
++Object [][]sign
+-int identityTomark(Identity id)
++void rebulid_space()
++void image_load()
++boolean rush_to_coordinate(Identity id, int x,int y)
++void rush_to_coordinate(Creature creature,int mark, int x,int y)
++boolean rush_to_coordinate(BrotherStandl brotherStandl, int x,int y)
++void change_coordinate(Identity id,int x1, int x2, int y1, int y2)
++void overlook_space()
++int get_size()
++void set_space(int chess,int x,int y)
++int read_space(int x,int y)
++boolean check_space(Identity id ,int x ,int y)
++int color_space(Creature a,int x,int y)
+-void draw_space(int [][]tmp,int x,int y,int distance)
++void find_empty(int []x,int []y)
++int compute_distance(int x1,int y1,int x2,int y2)
++boolean isEnd()
++void show(Stage stage)
++boolean judge(int x,int y)
++void show(GraphicsContext graphicsContext,int [][]tmp)
+}
+
+
+
+class MyFiles {
+ {static}String parpath
+ {static}String input
+ {static}PrintWriter mywriter
+ {static}long output
+ {static}int point
+ {static}int []myarry
+ {static}ArrayList<Integer> buffer
+ {static}void load(int [][]tmp,int height,int width)
+ {static}void open(boolean flag)
+ {static}void close()
+ {static}boolean read(int [][]tmp,int height,int width)
+}
+
+class Mythread_creature{
+-Creature creature
+-Grandpa grandpa
+-MonsterScorpion monsterScorpion
+-MonsterSnake snake
+-Creature []list
+-CyclicBarrier cyclicBarrier
+ {static}Object b
+-int []flag
+-int id
+-int mark
+-SpaceForBattle space
++void run()
++void get_set(CyclicBarrier cyc,Creature []l,Creature c,int []f,SpaceForBattle s)
++void get_set(CyclicBarrier cyc,Creature []l,int m,int []f,SpaceForBattle s)
+}
+
+
+class Mythread_viewer{
++CyclicBarrier cyclicBarrier
++int []flags
++int [][]tmp_space
++Stage currentstage
+ {static}Object speed
+ {static}int times
++void run()
+ {static}SpaceForBattle view_space
++String mypath
+ {static}int current_creature_num
+ {static}Creature [] creature_list
++void get_set(SpaceForBattle space,String path )
++void get_set(Stage stage)
+ {static}int return_num(Creature creature)
+ {static}void empty()
+}
+
+class Replay{
++int [][]content
++void get_set(int size,int height)
++SpaceForBattle space
+-int times
++void run() 
+}
+
+
+
+Actions <|-- Creature
+Creature <|-- Grandpa
+Creature <|-- BrotherStandl
+Creature <|-- MonsterSaltFish
+Creature <|-- MonsterScorpion
+Creature <|-- MonsterSnake
+StandLaw *-- SpaceForBattle :contain >
+Grandpa *-- BrotherStandl : plant 7 >
+MonsterScorpion *-- MonsterSaltFish : summon 6 >
+Grandpa *-- StandLaw : study >
+MonsterScorpion *-- StandLaw : study >
+Thread <|-- Mythread_creature
+Thread <|-- Mythread_viewer
+Thread <|-- Replay
+MyFiles <|-- Mythread_viewer
+Creature *-- Mythread_creature
+Creature *-- Mythread_viewer
+SpaceForBattle *-- Mythread_viewer
+
+
+
+
+
+@enduml

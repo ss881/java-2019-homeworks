@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <Creature>
+    <Huluwa>
+      <damage>24</damage>
+      <convergingBonus>0.20</convergingBonus>
+      <maxHealth>100</maxHealth>
+    </Huluwa>
+    <Scorpion>
+      <damage>20</damage>
+      <convergingBonus>0.15</convergingBonus>
+      <maxHealth>100</maxHealth>
+    </Scorpion>
+    <Creep>
+      <damage>10</damage>
+      <convergingBonus>0.10</convergingBonus>
+      <maxHealth>100</maxHealth>
+    </Creep>
+    <Grandpa>
+      <damage>10</damage>
+      <convergingBonus>0.10</convergingBonus>
+      <maxHealth>100</maxHealth>
+    </Grandpa>
+    <Snake>
+      <damage>50</damage>
+      <convergingBonus>0.10</convergingBonus>
+      <maxHealth>100</maxHealth>
+    </Snake>
+  </Creature>
+</root>

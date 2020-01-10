@@ -1,0 +1,59 @@
+.root {
+  -fx-pref-width: 1280px;
+  -fx-pref-height: 720px;
+  -fx-background-repeat: stretch;
+  -fx-background-size: 1280 720;
+  -fx-background-insets: 100%;
+  -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.button {
+  -fx-pref-width: 100px;
+  -fx-pref-height: 30px;
+  -fx-border-color: transparent;
+  -fx-border-width: 0;
+  -fx-background-radius: 0;
+  -fx-background-color: transparent;
+  -fx-scale-shape: false;
+}
+
+.ImageView {
+  fitHeight: 100px;
+  fitWidth: 100px;
+}
+
+#Battlefield {
+  -fx-background-image: url("../pic/Background/battlefield.png");
+}
+
+#ChangShe {
+  -fx-background-image: url("../pic/Menu/ChangShe0.png");
+}
+
+#FangYuan {
+  -fx-background-image: url("../pic/Menu/FengShi0.png");
+}
+
+#FengShi {
+  -fx-background-image: url("../pic/Menu/FengShi0.png");
+}
+
+#HengE {
+  -fx-background-image: url("../pic/Menu/HengE0.png");
+}
+
+#HeYi {
+  -fx-background-image: url("../pic/Menu/HeYi0.png");
+}
+
+#YanXing {
+  -fx-background-image: url("../pic/Menu/YanXing0.png");
+}
+
+#YanYue {
+  -fx-background-image: url("../pic/Menu/YanYue0.png");
+}
+
+#YuLin {
+  -fx-background-image: url("../pic/Menu/YuLin0.png");
+}

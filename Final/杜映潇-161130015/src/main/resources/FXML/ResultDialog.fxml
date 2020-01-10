@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalproject.fxview.ResultDialogController">
+   <children>
+      <Label fx:id="result" alignment="CENTER" layoutX="26.0" layoutY="42.0" prefHeight="21.0" prefWidth="94.0" text="Label" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,59 @@
+.root {
+    -fx-background-image: url('ui-background.png');
+}
+
+.button {
+    -fx-text-fill: #f2be45;
+    -fx-font-size: 25;
+    -fx-font-family: "KaiTi";
+    -border-style:none;
+    -fx-border-radius: 10;
+    -fx-background-image: url('button-background-regular.png');
+
+}
+
+.button .text {
+   -fx-font-weight: 900;
+}
+
+.button:hover{
+    -fx-text-fill: #a78e44;
+    -fx-font-size: 25;
+    -fx-font-family: "KaiTi";
+    -border-style:none;
+    -fx-border-radius: 10;
+    -fx-background-image: url('button-background-hover.png');
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 5, 0.0, 0, 1);
+}
+
+.text-area {
+    -fx-text-fill: #c91f37;
+    -fx-font-size: 36;
+    -fx-font-family: "KaiTi";
+    -border-style: none;
+    -fx-background-color: transparent;
+}
+
+.text-area .text {
+    -fx-text-alignment: center;
+
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-vbar-policy: never;
+    -fx-fit-to-width: true;
+    -fx-pannable: true;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+}
