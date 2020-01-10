@@ -5,10 +5,12 @@ import java.util.Random;
 public class PlayGround {
     static GourdEva[] theGroup = new GourdEva[7]; //red, orange, yellow, green, cyan, blue, purple;
     static GourdEva[] theLine = new GourdEva[7]; //模拟的队列
+    private static String[] colorRecord = {"红色", "橙色", "黄色", "绿色", "青色", "蓝色", "紫色"};
+    private static String[] nameRecord = {"老大", "老二", "老三", "老四", "老五", "老六", "老七"};
 
     public static void main(String[] args) {
         for (int i = 0; i < 7; i++)
-            theGroup[i] = new GourdEva(i);
+            theGroup[i] = new GourdEva(i, colorRecord[i], nameRecord[i]);
 
         randomSetInLine();
         bubbleSort();
