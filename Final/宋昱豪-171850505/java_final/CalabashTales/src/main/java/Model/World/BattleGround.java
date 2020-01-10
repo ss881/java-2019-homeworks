@@ -1,5 +1,6 @@
 package Model.World;
 
+import Controller.Controller;
 import Model.Bad.Scorpion;
 import Model.Bad.Sidekicks;
 import Model.Bad.Snake;
@@ -20,8 +21,8 @@ public class BattleGround implements  Runnable{
     public static HashMap<Integer, Boolean> countlive=new HashMap<Integer,Boolean>();
     public static HashMap<Integer, Boolean> countdead=new HashMap<Integer,Boolean>();
     public static boolean end=false;
-    public void clear()
-    {
+    public void clear(File file) throws IOException {
+        System.out.print(file+"\n");
         for(int i=0;i<M;i++)
         {
             for(int j=0;j<N;j++)
@@ -29,10 +30,22 @@ public class BattleGround implements  Runnable{
                 ground[i][j].SetALL(false,null);
             }
         }
+
+        if(out==null)
+        {
+            System.out.print("out is null\n");
+        }
+        else if(Controller.newf==true)
+        {
+            out= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),"Unicode"));
+            setend(false);
+        }
     }
+
     public BattleGround(File file) throws FileNotFoundException, UnsupportedEncodingException {
         if(file!=null)
         {
+            System.out.print("success");
             out= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),"Unicode"));
         }
         for(int i=0;i<M;i++)
@@ -194,12 +207,19 @@ public class BattleGround implements  Runnable{
                 try
                 {
                     //刷新缓存区
+                    out.write("\t");
                     out.flush();
                     out.close();
+                    out.close();
+                    System.out.print("save\n");
                 } catch (IOException e)
                 {
-
+                    e.printStackTrace();
                 }
+            }
+            else
+            {
+                System.out.print("null\n");
             }
         }
 
