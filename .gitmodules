@@ -1,3 +1,9 @@
 [submodule "刘岚峰-161220082"]
 	path = 刘岚峰-161220082
 	url = https://github.com/qinglanDeku/Java_Final
+[submodule "Final/Java_Final"]
+	path = Final/Java_Final
+	url = https://github.com/qinglanDeku/Java_Final
+[submodule "Final/刘岚峰-161220082"]
+	path = Final/刘岚峰-161220082
+	url = https://github.com/qinglanDeku/Java_Final
