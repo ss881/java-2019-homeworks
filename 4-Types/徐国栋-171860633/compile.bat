@@ -1,0 +1,1 @@
+dir /s /b *.java > sources.txt && javac -encoding utf8 @sources.txt && echo compile done and press enter to run && pause && cd src && java Main && cd ../ && pause

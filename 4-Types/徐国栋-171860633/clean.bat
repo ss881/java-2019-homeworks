@@ -1,0 +1,1 @@
+del /s /q *.class && echo clean done. && pause
