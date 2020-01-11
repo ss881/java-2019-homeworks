@@ -1,0 +1,95 @@
+@startuml
+class Creature 
+{
+    +public int x,y;    //位置坐标
+    +public String name;    //生物名字
+    +public boolean camp;  //阵营，1为好，0为坏
+    +public Creature(int i,int j)
+    +public Creature(Creature another)   //复制对象坐标构造函数，创建temp用
+    +public Creature(int i,int j,String name)
+    +public Creature(int i,int j,String name,boolean camp)
+    +public void setto(int x,int y,Space filed)
+    +public void moveto(int x,int y,Space filed)
+}
+
+class Huluwa extends Creature
+{
+    +int num;
+    +String color;
+    +HuluBro hulubro;
+    +public Huluwa(int i,int x,int y)
+    +public int compareTo(Huluwa o)   //@Override
+}
+
+enum HuluBro
+{
+    +R("老大","红色"),
+    O("老二","橙色"),
+    Y("老三","黄色"),
+    G("老四","绿色"),
+    C("老五","青色"),
+    B("老六","蓝色"),
+    P("老七","紫色");
+    +final String name;
+    +final String color;
+    +HuluBro(String name,String color)
+}
+
+
+class Grandpa extends Creature
+{
+    +public Grandpa()
+    +public Grandpa(int x,int y)
+    
+}
+
+class Monsters extends Creature
+{
+    +public Monsters()
+    +public Monsters(int x,int y)
+}
+
+class Scorpion extends Creature
+{
+    +public Scorpion()
+    +public Scorpion(int x,int y)
+}
+
+class Snake extends Creature
+{
+    +public Snaken()
+    +public Snake(int x,int y)
+}
+
+
+
+class Space 
+{
+    +int x;
+    +int y;
+    
+    +public Creature[][] space;
+    +public Space(int x,int y)
+    +public void showthemap(int x,int y)      //输出地图
+    +public void initmap(int x,int y)      //初始化地图
+}
+
+
+
+class Formation
+{
+    +public void Formationforbad(Space filed,Scorpion scorpion,Monsters[] monsters,int index)
+    +public void Formationforgood(Space filed,ArrayList<Huluwa> huluwas,int index)
+}
+
+
+class Testrun
+{
+    +public static void main(String[] arg)
+}
+
+Formation --> Space:依赖
+Huluwa --> HuluBro:依赖
+Huluwa --> Comparable:关联
+
+@enduml

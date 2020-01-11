@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<GridPane fx:id="mainpane" maxHeight="450.0" maxWidth="450.0" minHeight="450.0" minWidth="450.0" prefHeight="450.0"
+          prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="GUI.LayoutControl">
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER"/>
+    </rowConstraints>
+    <ImageView fitHeight="450.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="15"
+               GridPane.rowSpan="15">
+        <Image url="@../background.png"/>
+    </ImageView>
+</GridPane>

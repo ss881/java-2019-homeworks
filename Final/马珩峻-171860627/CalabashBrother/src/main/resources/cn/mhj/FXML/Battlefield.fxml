@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane fx:id="anchorPane" id="Battlefield" stylesheets="@../CSS/BattleMapStyle.css"
+  xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1"
+  fx:controller="cn.mhj.Controller.BattlefieldController">
+
+  <Canvas id="BattleMap" fx:id="battleMap" height="675" layoutX="190" layoutY="30" width="900"
+    focusTraversable="true" onKeyPressed="#HandleKeyPressed">
+  </Canvas>
+  <ImageView id="Grandpa" layoutX="90.0" layoutY="30.0" pickOnBounds="true"
+    preserveRatio="true">
+    <image>
+      <Image url="@../pic/Creature/grandpa.png"/>
+    </image>
+  </ImageView>
+
+  <ImageView layoutX="1090.0" layoutY="605.0" pickOnBounds="true"
+    preserveRatio="true">
+    <image>
+      <Image url="@../pic/Creature/snake.png"/>
+    </image>
+  </ImageView>
+
+  <Button id="ChangShe" fx:id="ChangShe" layoutX="440" layoutY="250"
+    onMouseClicked="#FormationBtnClicked"
+    onMouseEntered="#ChangSheBtnEntered" onMouseExited="#ChangSheBtnExited"/>
+  <Button id="FangYuan" fx:id="FangYuan" layoutX="540" layoutY="250"
+    onMouseClicked="#FormationBtnClicked"
+    onMouseEntered="#FangYuanBtnEntered" onMouseExited="#FangYuanBtnExited"/>
+  <Button id="FengShi" fx:id="FengShi" layoutX="640" layoutY="250"
+    onMouseClicked="#FormationBtnClicked"
+    onMouseEntered="#FengShiBtnEntered" onMouseExited="#FengShiBtnExited"/>
+  <Button id="HengE" fx:id="HengE" layoutX="740" layoutY="250" onMouseClicked="#FormationBtnClicked"
+    onMouseEntered="#HengEBtnEntered" onMouseExited="#HengEBtnExited"/>
+  <Button id="HeYi" fx:id="HeYi" layoutX="440" layoutY="300" onMouseClicked="#FormationBtnClicked"
+    onMouseEntered="#HeYiBtnEntered" onMouseExited="#HeYiBtnExited"/>
+  <Button id="YanXing" fx:id="YanXing" layoutX="540" layoutY="300"
+    onMouseClicked="#FormationBtnClicked"
+    onMouseEntered="#YanXingBtnEntered" onMouseExited="#YanXingBtnExited"/>
+  <Button id="YuLin" fx:id="YuLin" layoutX="640" layoutY="300" onMouseClicked="#FormationBtnClicked"
+    onMouseEntered="#YuLinBtnEntered" onMouseExited="#YuLinBtnExited"/>
+  <Button id="YanYue" fx:id="YanYue" layoutX="740" layoutY="300"/>
+
+
+</AnchorPane>

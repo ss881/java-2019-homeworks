@@ -1,0 +1,83 @@
+@startuml
+abstract class Creature
+{
+int id;
+char sk;
+Point creapoi;
+BattleMap map;
+ArrayList<Creature> relationcreas;
+....
+__abstract__
+fight(),initFightData()
+....
+__important function__
+run()
+normalNearFight()
+normalDistantFight()
+...
+}
+interface LineUp
+{
+  public void lineup();
+}
+interface G1LineUp implements LineUp
+{
+}
+interface G2LineUp implements LineUp
+{
+}
+class G1LineUp1 implements G1LineUp
+{
+   //hlw heyi,changshe...
+}
+class G2LineUp1 implements G2LineUp
+{
+   //frogs heyi,changshe....
+}
+
+class FirstHlw extends Creature
+class SecondHlw extends Creature
+class ThirdHlw extends Creature
+class FourthHlw extends Creature
+class FifthHlw extends Creature
+class SixthHlw extends Creature
+class SeventhHlw extends Creature
+class Grandpa extends Creature
+class Scor extends Creature
+class Snake extends Creature
+class Frog extends Creature
+class BattleMap
+{
+  char map[][]
+  int map[][]
+  ...
+}
+Creature --* BattleMap
+
+class Control
+{
+  BattleMap map
+  ArrayList<Creature>
+}
+Control --* BattleMap
+Control --* Creature
+Control --* G1LineUp
+Control --* G2LineUp
+Control --* CreatureFactory
+class CreatureFactory
+{
+  Creature get()
+}
+class App
+{
+  javafx components,GUI threads control...
+  Control hlwcontrol
+}
+App --* Control
+
+class Main
+{
+  static public void main(String[] args);
+}
+Main --* App
+@enduml

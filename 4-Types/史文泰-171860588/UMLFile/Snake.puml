@@ -1,0 +1,15 @@
+@startuml
+
+class Snake{
+__ private __
++ Picture orderPicture;
+__ public __
+- Picture getOrderPicture();
+
+- Snake(int px, int py, Image image, Picture orderPicture);
+- void Order(EnemyTeam enemyTeam, String path, String orderPath);
+}
+Snake "1"-->"1" Picture : has
+Character <|-- Snake : extends
+
+@enduml

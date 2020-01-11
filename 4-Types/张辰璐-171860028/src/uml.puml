@@ -1,0 +1,28 @@
+@startuml
+class chessman.Creature
+class chessman.Huluwa
+chessman.Huluwa --|>chessman.Creature
+class chessman.Grandpa
+chessman.Grandpa --|> chessman.Creature
+class chessman.JusticeList
+chessman.JusticeList --> chessman.Grandpa
+chessman.JusticeList --> chessman.Huluwa
+
+class chessman.Pawn
+chessman.Pawn --|> chessman.Creature
+class chessman.MonsterList
+chessman.MonsterList --> chessman.Pawn
+
+class chessboard.Position
+class chessboard.Ground
+class chessboard.GameMaster
+class chessboard.Grid
+class chessboard.Formation
+
+chessboard.Ground -->chessboard.Grid
+chessboard.Grid --> chessman.Creature
+chessboard.GameMaster o-- chessboard.Ground
+chessboard.GameMaster o-- chessboard.Formation
+chessboard.GameMaster-->chessman.Creature
+
+@enduml

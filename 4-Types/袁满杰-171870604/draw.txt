@@ -1,0 +1,162 @@
+@startuml
+abstract class command.Command{
+  Space receiver;
+  {abstract} void execute()
+}
+class command.MoveCommand{
+  int x
+  int y
+  int dx
+  int dy
+  void execute()
+}
+abstract class creature.Creature{
+  String name
+  Space space
+  Tile floor
+  void setFloor()
+  void show()
+  void born()
+  void move_to()
+  void leave()
+}
+class creature.Huluwa{
+  int id
+  void getId()
+}
+class creature.Laoyeye{
+}
+class creature.Shejing{
+}
+class creature.Xiezijing{
+}
+class creature.Xiaolouluo{
+  int id
+  void getId()
+}
+abstract class creature.CreatureFactory{
+  Space space
+  {abstract} Creature create()
+}
+class creature.HuluwaFactory{
+  {static} int num
+  {static} String[] namelist
+  Creature create()
+}
+class creature.LaoyeyeFactory{
+  Creature create()
+}
+class creature.ShejingFactory{
+  Creature create()
+}
+class creature.XiezijingFactory{
+  Creature create()
+}
+class creature.XiaolouluoFactory{
+  {static} int num
+  Creature create()
+}
+class space.Tile{
+  int x
+  int y
+  creature.Creature sth
+  int getX
+  int getY
+  Creature get
+  void set
+  void show()
+  void swap
+}
+class space.Space{
+  int N
+  space.Tile[][] floor
+  team.HeroTeam heros
+  team.VillainTeam villains
+  int getN
+  void show()
+  {static} void move()
+}
+class team.HeroTeam{
+  HeroAdapter adapter
+  void zhenfa()
+}
+abstract class team.Team{
+  Space space
+  {abstract} void zhenfa()
+  void born()
+}
+class team.VillainTeam{
+  int[] num_map
+  void zhenfa()
+}
+abstract class team.TeamFactory{
+  Space space
+  {abstract} Team create()
+}
+class team.HeroTeamFactory{
+  HeroTeam create()
+}
+class team.VillainTeamFactory{
+  VillainTeam create()
+}
+class zhenfa.ZhenfaBook{
+  int[] search()
+}
+class zhenfa.HeroZhenfaBook{
+  int[] search()
+}
+class main{
+  void main()
+}
+creature.Creature<|--creature.Huluwa
+creature.Creature<|-- creature.Laoyeye
+creature.Creature<|--creature.Shejing
+creature.Creature<|--creature.Xiezijing
+creature.Creature<|--creature.Xiaolouluo
+
+creature.CreatureFactory<|--creature.HuluwaFactory
+creature.CreatureFactory<|--creature.LaoyeyeFactory
+creature.CreatureFactory<|--creature.ShejingFactory
+creature.CreatureFactory<|--creature.XiezijingFactory
+creature.CreatureFactory<|--creature.XiaolouluoFactory
+
+command.Command<|--command.MoveCommand
+team.Team<|--team.HeroTeam
+team.Team<|--team.VillainTeam
+team.TeamFactory<|--team.VillainTeamFactory
+team.TeamFactory<|--team.HeroTeamFactory
+zhenfa.ZhenfaBook<|--zhenfa.HeroZhenfaBook
+
+creature.HuluwaFactory<..creature.Huluwa
+creature.LaoyeyeFactory<..creature.Laoyeye
+creature.ShejingFactory<..creature.Shejing
+creature.XiezijingFactory<..creature.Xiezijing
+creature.XiaolouluoFactory<..creature.Xiaolouluo
+
+team.HeroTeamFactory<..team.HeroTeam
+team.VillainTeamFactory<..team.VillainTeam
+team.HeroTeamFactory<..team.LaoyeyeFactory
+team.HeroTeamFactory<..team.HuluwaFactory
+team.VillainTeamFactory<..team.XiezijingFactory
+team.VillainTeamFactory<..team.ShejingFactory
+team.VillainTeamFactory<..team.XiaolouluoFactory
+
+team.HeroTeam<..zhenfa.HeroZhenfaBook
+team.VillainTeam<..zhenfa.ZhenfaBook
+
+space.Space<..team.HeroTeamFactory
+space.Space<..team.VillainTeamFactory
+space.Space<..space.Tile
+creature.Creature<..command.MoveCommand
+
+creature.Creature<-->space.Tile
+creature.Creature-->space.Space
+command.MoveCommand-->space.Space
+
+team.Team--o creature.Creature
+
+space.Space--* space.Tile
+space.Space--* team.HeroTeam
+space.Space--* team.VillainTeam
+main-->space.Space
+@enduml

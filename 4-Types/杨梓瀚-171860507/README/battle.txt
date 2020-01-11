@@ -1,0 +1,19 @@
+@startUML
+
+class Battle{
+    - {static} int N
+    - {static} ArrayList<Position<?>>positionArrayList
+
+    + {static} static void setPosition(Position<?> p, int x, int y){
+    + {static} Position<?> getPosition(int x, int y)
+    + {static} int getN()
+    + {static} void print()
+    + {static} void reset()
+}
+
+class Position<<T extends Creature>>{
+    - T holder
+    + Position(T h)
+    + T getHolder()
+}
+@endUML

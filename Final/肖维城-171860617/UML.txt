@@ -1,0 +1,157 @@
+@startuml uml
+package java.lang{
+    interface Runnable{
+        + {abstract} void run()
+    }
+}
+
+package javafx.scene.Parent{
+    class Parent{
+    }
+}
+
+package location{
+    class Position{
+        + int x
+        + int y
+        + Creature holder
+        + Position()
+        + int getX()
+        + int getY
+        + void setX()
+        + void setY()
+    }
+}
+
+package record{
+    class Player implements Runnable{
+        + StringBuilder recordBuffer
+        + String filePath
+
+        {static} + Player getInstance()
+        + void setFilePath()
+        void readFile()
+        + void run()
+    }
+    class Recorder implements Runnable{
+        + FileWriter write
+        + StringBuilder StringBuilder
+
+        {static} + Recorder getInstance()
+        + void writeToFile()
+        + void run()
+    }
+}
+
+package sample{
+    class Main extends APPLICATION{
+        + void start()
+        {static} + void main()
+    }
+}
+
+package creature{
+    class Creature{
+        + Image icon
+        + Position pos
+        - int healthPoint
+        - int manaPoint
+        + int id
+
+        + Boolean isAlive()
+        + int getHealthPoint()
+        + int getManaPoint()
+		+ void setHealthPoint()
+		+ void loadIcon()
+		+ void setPosition()
+		+ Boolean isValidMove()
+		+ DIRECTION randomDirection()
+    }
+    class Hulu extends Creature implements Runnable{
+        + Hulu()
+        + String toString()
+        + void run()
+    }
+	class HuluBros{
+        + ArrayList hList
+        + Hulu grandPa
+
+        + Boolean isAllDead()
+        + void loadIcons()
+        + ArrayList getImageView()
+	}
+    class Monster extends Creature implements Runnable{
+        + Monster()
+        + String toString()
+        + void run()
+    }
+    class Monsters{
+        + int monsterCount
+        + ArrayList mList
+        + Monster SnakeSpirit
+        + Monster ScorpionSpirit
+
+        + Boolean isAllDead()
+        + void loadIcons()
+        + ArrayList getImageView()
+	}
+}
+package war{
+    class Formation{
+        + String fStr
+        + int mCount
+        + void setFormation()
+    }
+    class Index{
+        {static} + int[] arr1
+        {static} + int[] arr2
+
+        {static} + Index getInstance()
+        + int getViewIndex()
+        + int getId()
+    }
+    class BattleField extends Parent{
+        {static} + int FIELD_WIDTH
+        {static} + int FIELD_HEIGHT
+        + Formation f
+		+ HuluBros hb
+		+ Monsters ms
+		+ STATE state
+		+ ArrayList posList
+		+ ArrayList posViewList
+		+ ArrayList creatureViewList
+		+ ExecutorService execService
+        + BattleField getInstance()
+        + void reStart()
+        {static} + int getIndex()
+        + void modifyView()
+		+ void setPlay()
+		+ void setEnd()
+		+ Boolean isPlay()
+		+ Boolean isGameOver()
+        + void play()
+        + ObservableList getChildren()
+        + void setBackGround()
+    }
+}
+
+HuluBros +--> Hulu
+Monsters +--> Monster
+
+BattleField *--> Position
+BattleField *--> Formation
+BattleField *--> HuluBros
+BattleField *--> Monsters
+BattleField ..> Index
+
+Main *--> BattleField
+Main ..> Player
+
+Formation ..> BattleField
+
+Player ..> BattleField
+Recorder <..> BattleField
+
+Position *--> Creature
+
+@enduml

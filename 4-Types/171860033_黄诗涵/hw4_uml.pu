@@ -1,0 +1,72 @@
+@startuml
+package "myorganism" #Yellow{
+class Organism {
+    #Position mypos;
+    #boolean queuing;
+    #String id; 
+    +void setpos();
+    +void setId();
+    +String getId();
+    +void setQueuing();
+}
+class Huluwa {
+    #String rank;
+    #String color;
+    #int num;
+
+}
+class Monster {
+    
+}
+class Scorpion {
+}
+class Position<T> {
+    -int x;
+    -int y;
+    -T creature;
+    +void set();
+    +void get();
+}
+Red--|>Huluwa
+Orange--|>Huluwa
+Yellow--|>Huluwa
+Green--|>Huluwa
+Indigo--|>Huluwa
+Blue--|>Huluwa
+Purple--|>Huluwa
+Huluwa--|>Organism
+Grandfather--|>Organism
+Monster--|>Organism
+Scorpion--|>Organism
+Snack--|>Organism
+BattleMap..>Position
+Position..->Organism
+class BattleMap {
+    -Position position;
+    -int size;
+    -int mid;
+    -int monsterNum;
+    -Vector<Monster> monsters;
+    -Vector<Scorpion> scorpions;
+    -void Return()
+    -void Exit()
+    +void initmap()
+    +void createMonsters() 
+    +void crescentMoon()
+    +void craneWing()
+    +void wildGoose()
+    +void chongE()
+    +void fishScale()
+    +void fangYuan()
+    +void sharpArrow()
+    +void printMap()
+}
+
+}
+
+class Formation {
+    {static}+void main()
+    
+}
+myorganism..|>Formation
+@enduml

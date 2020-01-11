@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Reply RoundNum="142">
+  <Creature0 InitialPositionX="7" InitialPositionY="8">
+    <Round0 alive="true" PositionX="7" PositionY="9"/>
+    <Round34 alive="true" PositionX="7" PositionY="10"/>
+    <Round57 alive="true" PositionX="6" PositionY="10"/>
+    <Round73 alive="true" PositionX="5" PositionY="10"/>
+    <Round87 alive="true" PositionX="4" PositionY="10"/>
+    <Round107 alive="true" PositionX="4" PositionY="10"/>
+    <Round119 alive="true" PositionX="4" PositionY="11"/>
+    <Round130 alive="true" PositionX="4" PositionY="12"/>
+    <Round134 alive="true" PositionX="4" PositionY="11"/>
+    <Round137 alive="true" PositionX="4" PositionY="12"/>
+  </Creature0>
+  <Creature1 InitialPositionX="6" InitialPositionY="7">
+    <Round10 alive="true" PositionX="6" PositionY="8"/>
+    <Round35 alive="true" PositionX="6" PositionY="9"/>
+    <Round54 alive="true" PositionX="6" PositionY="9"/>
+    <Round77 alive="true" PositionX="6" PositionY="10"/>
+    <Round91 alive="true" PositionX="6" PositionY="11"/>
+    <Round105 alive="true" PositionX="6" PositionY="12"/>
+    <Round120 alive="true" PositionX="6" PositionY="13"/>
+    <Round127 alive="false" PositionX="6" PositionY="13"/>
+  </Creature1>
+  <Creature2 InitialPositionX="7" InitialPositionY="7">
+    <Round9 alive="true" PositionX="7" PositionY="8"/>
+    <Round38 alive="true" PositionX="7" PositionY="9"/>
+    <Round62 alive="true" PositionX="7" PositionY="10"/>
+    <Round83 alive="true" PositionX="7" PositionY="10"/>
+    <Round96 alive="true" PositionX="7" PositionY="11"/>
+    <Round109 alive="true" PositionX="7" PositionY="12"/>
+    <Round117 alive="true" PositionX="7" PositionY="12"/>
+    <Round126 alive="false" PositionX="7" PositionY="12"/>
+  </Creature2>
+  <Creature3 InitialPositionX="8" InitialPositionY="7">
+    <Round8 alive="true" PositionX="8" PositionY="8"/>
+    <Round24 alive="true" PositionX="8" PositionY="9"/>
+    <Round45 alive="true" PositionX="8" PositionY="9"/>
+    <Round69 alive="true" PositionX="8" PositionY="10"/>
+    <Round88 alive="true" PositionX="9" PositionY="10"/>
+    <Round104 alive="true" PositionX="9" PositionY="10"/>
+    <Round121 alive="false" PositionX="9" PositionY="10"/>
+  </Creature3>
+  <Creature4 InitialPositionX="7" InitialPositionY="6">
+    <Round5 alive="true" PositionX="6" PositionY="6"/>
+    <Round27 alive="true" PositionX="6" PositionY="7"/>
+    <Round44 alive="true" PositionX="6" PositionY="8"/>
+    <Round63 alive="true" PositionX="5" PositionY="8"/>
+    <Round82 alive="true" PositionX="5" PositionY="9"/>
+    <Round102 alive="true" PositionX="5" PositionY="10"/>
+    <Round114 alive="true" PositionX="5" PositionY="11"/>
+    <Round125 alive="true" PositionX="5" PositionY="12"/>
+    <Round132 alive="true" PositionX="5" PositionY="13"/>
+    <Round136 alive="true" PositionX="5" PositionY="12"/>
+    <Round140 alive="true" PositionX="6" PositionY="12"/>
+  </Creature4>
+  <Creature5 InitialPositionX="7" InitialPositionY="5">
+    <Round7 alive="true" PositionX="7" PositionY="6"/>
+    <Round28 alive="true" PositionX="7" PositionY="7"/>
+    <Round50 alive="true" PositionX="7" PositionY="8"/>
+    <Round75 alive="true" PositionX="7" PositionY="9"/>
+    <Round99 alive="true" PositionX="7" PositionY="10"/>
+    <Round111 alive="true" PositionX="7" PositionY="11"/>
+    <Round124 alive="true" PositionX="7" PositionY="11"/>
+    <Round129 alive="true" PositionX="7" PositionY="12"/>
+    <Round133 alive="true" PositionX="7" PositionY="12"/>
+    <Round138 alive="true" PositionX="8" PositionY="12"/>
+    <Round141 alive="true" PositionX="8" PositionY="12"/>
+  </Creature5>
+  <Creature6 InitialPositionX="8" InitialPositionY="5">
+    <Round3 alive="true" PositionX="8" PositionY="6"/>
+    <Round25 alive="true" PositionX="8" PositionY="7"/>
+    <Round47 alive="true" PositionX="8" PositionY="8"/>
+    <Round72 alive="true" PositionX="8" PositionY="9"/>
+    <Round98 alive="true" PositionX="8" PositionY="10"/>
+    <Round110 alive="true" PositionX="8" PositionY="11"/>
+    <Round122 alive="true" PositionX="8" PositionY="11"/>
+    <Round128 alive="true" PositionX="9" PositionY="11"/>
+    <Round131 alive="false" PositionX="9" PositionY="11"/>
+  </Creature6>
+  <Creature7 InitialPositionX="7" InitialPositionY="19">
+    <Round1 alive="true" PositionX="7" PositionY="18"/>
+    <Round40 alive="true" PositionX="7" PositionY="17"/>
+    <Round61 alive="true" PositionX="7" PositionY="16"/>
+    <Round84 alive="true" PositionX="7" PositionY="15"/>
+    <Round103 alive="true" PositionX="7" PositionY="14"/>
+    <Round118 alive="true" PositionX="7" PositionY="13"/>
+    <Round127 alive="true" PositionX="7" PositionY="13"/>
+    <Round133 alive="false" PositionX="7" PositionY="13"/>
+  </Creature7>
+  <Creature8 InitialPositionX="6" InitialPositionY="18">
+    <Round2 alive="true" PositionX="6" PositionY="17"/>
+    <Round43 alive="true" PositionX="6" PositionY="16"/>
+    <Round65 alive="true" PositionX="6" PositionY="15"/>
+    <Round79 alive="true" PositionX="6" PositionY="14"/>
+    <Round101 alive="true" PositionX="6" PositionY="13"/>
+    <Round115 alive="false" PositionX="6" PositionY="13"/>
+  </Creature8>
+  <Creature9 InitialPositionX="8" InitialPositionY="18">
+    <Round15 alive="true" PositionX="8" PositionY="17"/>
+    <Round41 alive="true" PositionX="8" PositionY="16"/>
+    <Round60 alive="true" PositionX="8" PositionY="15"/>
+    <Round78 alive="true" PositionX="8" PositionY="14"/>
+    <Round94 alive="true" PositionX="8" PositionY="13"/>
+    <Round113 alive="true" PositionX="8" PositionY="12"/>
+    <Round117 alive="false" PositionX="8" PositionY="12"/>
+  </Creature9>
+  <Creature10 InitialPositionX="5" InitialPositionY="17">
+    <Round4 alive="true" PositionX="5" PositionY="16"/>
+    <Round32 alive="true" PositionX="5" PositionY="15"/>
+    <Round49 alive="true" PositionX="5" PositionY="14"/>
+    <Round70 alive="true" PositionX="5" PositionY="13"/>
+    <Round90 alive="true" PositionX="5" PositionY="12"/>
+    <Round106 alive="false" PositionX="5" PositionY="12"/>
+  </Creature10>
+  <Creature11 InitialPositionX="9" InitialPositionY="17">
+    <Round14 alive="true" PositionX="9" PositionY="16"/>
+    <Round33 alive="true" PositionX="9" PositionY="15"/>
+    <Round48 alive="true" PositionX="9" PositionY="14"/>
+    <Round66 alive="true" PositionX="9" PositionY="13"/>
+    <Round89 alive="true" PositionX="9" PositionY="12"/>
+    <Round100 alive="true" PositionX="9" PositionY="11"/>
+    <Round104 alive="false" PositionX="9" PositionY="11"/>
+  </Creature11>
+  <Creature12 InitialPositionX="4" InitialPositionY="16">
+    <Round6 alive="true" PositionX="4" PositionY="15"/>
+    <Round22 alive="true" PositionX="4" PositionY="14"/>
+    <Round52 alive="true" PositionX="4" PositionY="13"/>
+    <Round67 alive="true" PositionX="4" PositionY="12"/>
+    <Round92 alive="true" PositionX="4" PositionY="11"/>
+    <Round107 alive="false" PositionX="4" PositionY="11"/>
+  </Creature12>
+  <Creature13 InitialPositionX="10" InitialPositionY="16">
+    <Round12 alive="true" PositionX="10" PositionY="15"/>
+    <Round42 alive="true" PositionX="10" PositionY="14"/>
+    <Round64 alive="true" PositionX="10" PositionY="13"/>
+    <Round85 alive="true" PositionX="10" PositionY="12"/>
+    <Round108 alive="true" PositionX="10" PositionY="11"/>
+    <Round116 alive="true" PositionX="9" PositionY="11"/>
+    <Round122 alive="false" PositionX="9" PositionY="11"/>
+  </Creature13>
+  <Creature14 InitialPositionX="3" InitialPositionY="15">
+    <Round13 alive="true" PositionX="3" PositionY="14"/>
+    <Round26 alive="true" PositionX="3" PositionY="13"/>
+    <Round46 alive="true" PositionX="3" PositionY="12"/>
+    <Round59 alive="true" PositionX="3" PositionY="11"/>
+    <Round80 alive="true" PositionX="3" PositionY="10"/>
+    <Round97 alive="false" PositionX="3" PositionY="10"/>
+  </Creature14>
+  <Creature15 InitialPositionX="11" InitialPositionY="15">
+    <Round11 alive="true" PositionX="11" PositionY="14"/>
+    <Round30 alive="true" PositionX="11" PositionY="13"/>
+    <Round51 alive="true" PositionX="11" PositionY="12"/>
+    <Round76 alive="true" PositionX="11" PositionY="11"/>
+    <Round93 alive="true" PositionX="11" PositionY="10"/>
+    <Round112 alive="true" PositionX="10" PositionY="10"/>
+    <Round123 alive="true" PositionX="10" PositionY="11"/>
+    <Round131 alive="true" PositionX="10" PositionY="11"/>
+    <Round135 alive="true" PositionX="10" PositionY="12"/>
+    <Round139 alive="true" PositionX="9" PositionY="12"/>
+    <Round141 alive="false" PositionX="9" PositionY="12"/>
+  </Creature15>
+  <Creature16 InitialPositionX="4" InitialPositionY="14">
+    <Round17 alive="true" PositionX="4" PositionY="13"/>
+    <Round23 alive="true" PositionX="4" PositionY="12"/>
+    <Round53 alive="true" PositionX="4" PositionY="11"/>
+    <Round71 alive="true" PositionX="4" PositionY="10"/>
+    <Round86 alive="false" PositionX="4" PositionY="10"/>
+  </Creature16>
+  <Creature17 InitialPositionX="10" InitialPositionY="14">
+    <Round19 alive="true" PositionX="10" PositionY="13"/>
+    <Round31 alive="true" PositionX="10" PositionY="12"/>
+    <Round56 alive="true" PositionX="10" PositionY="11"/>
+    <Round74 alive="true" PositionX="10" PositionY="10"/>
+    <Round95 alive="false" PositionX="10" PositionY="10"/>
+  </Creature17>
+  <Creature18 InitialPositionX="5" InitialPositionY="13">
+    <Round20 alive="true" PositionX="5" PositionY="12"/>
+    <Round37 alive="true" PositionX="5" PositionY="11"/>
+    <Round55 alive="true" PositionX="5" PositionY="10"/>
+    <Round68 alive="false" PositionX="5" PositionY="10"/>
+  </Creature18>
+  <Creature19 InitialPositionX="9" InitialPositionY="13">
+    <Round18 alive="true" PositionX="9" PositionY="12"/>
+    <Round39 alive="true" PositionX="9" PositionY="11"/>
+    <Round58 alive="true" PositionX="9" PositionY="10"/>
+    <Round81 alive="false" PositionX="9" PositionY="10"/>
+  </Creature19>
+  <Creature20 InitialPositionX="6" InitialPositionY="12">
+    <Round16 alive="true" PositionX="6" PositionY="11"/>
+    <Round29 alive="true" PositionX="6" PositionY="10"/>
+    <Round54 alive="false" PositionX="6" PositionY="10"/>
+  </Creature20>
+  <Creature21 InitialPositionX="8" InitialPositionY="12">
+    <Round21 alive="true" PositionX="8" PositionY="11"/>
+    <Round36 alive="true" PositionX="8" PositionY="10"/>
+    <Round45 alive="false" PositionX="8" PositionY="10"/>
+  </Creature21>
+</Reply>

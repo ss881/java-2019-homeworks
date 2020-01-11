@@ -1,0 +1,13 @@
+@startUML
+class Formation{
+    + Vector<Pair<Integer, Integer>> crane()
+    + Vector<Pair<Integer, Integer>> goose()
+    + Vector<Pair<Integer, Integer>> yoke()
+    + Vector<Pair<Integer, Integer>> fish()
+    + Vector<Pair<Integer, Integer>> square()
+    + Vector<Pair<Integer, Integer>> moon()
+    + Vector<Pair<Integer, Integer>> arrow()
+    + Vector<Pair<Integer, Integer>> snake(int x)
+    + Vector<Pair<Integer, Integer>> fillVector(int []num, int []x)
+}
+@endUML

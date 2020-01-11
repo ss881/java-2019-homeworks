@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="204.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalproject.fxview.LogChooseDialogController">
+   <children>
+      <Button fx:id="button" layoutX="105.0" layoutY="118.0" mnemonicParsing="false"
+              text="Choose a log file ..."
+              AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="50.0" />
+   </children>
+</AnchorPane>
