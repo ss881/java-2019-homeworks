@@ -1,0 +1,7 @@
+.board_square {
+ -fx-fill：＃1e90ff;
+}
+
+.board_square_lt {
+ -fx-fill：#cccccc;
+}
